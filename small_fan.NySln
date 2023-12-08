@@ -1,0 +1,11 @@
+﻿
+Nyquest IDE Solution File, Format Version 1.00
+# NYIDE 4.61.0.2471
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any = Debug|Any
+		Release|Any = Release|Any
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+	EndGlobalSection
+EndGlobal

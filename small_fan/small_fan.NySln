@@ -1,0 +1,19 @@
+﻿
+Nyquest IDE Solution File, Format Version 1.00
+# NYIDE 4.61.0.2471
+Project("{608D5F73-6C2E-489F-8ED6-C0FBCCEB586F}") = "small_fan", "small_fan.naprj", "{6BCD211A-A6C8-4080-8304-B9EAF4218B44}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|CNy8 = Debug|CNy8
+		Release|CNy8 = Release|CNy8
+		Debug|CNy8 = Debug|CNy8
+		Release|CNy8 = Release|CNy8
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6BCD211A-A6C8-4080-8304-B9EAF4218B44}.Debug|CNy8.Build.0 = Debug|CNy8
+		{6BCD211A-A6C8-4080-8304-B9EAF4218B44}.Debug|CNy8.ActiveCfg = Debug|CNy8
+		{6BCD211A-A6C8-4080-8304-B9EAF4218B44}.Release|CNy8.Build.0 = Release|CNy8
+		{6BCD211A-A6C8-4080-8304-B9EAF4218B44}.Release|CNy8.ActiveCfg = Release|CNy8
+	EndGlobalSection
+EndGlobal

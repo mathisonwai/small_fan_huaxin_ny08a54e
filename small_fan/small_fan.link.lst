@@ -1,0 +1,1001 @@
+00000000 c7f6                LGOTO    0x9; __nyc_ny8_startup=0x9
+_disable_breathing_mode:
+00000001 e0fc                BCR      STATUS, BK0
+00000002 e1df                BCR      0x20, 0x4
+00000003 e4df                BSR      0x20, 0x6
+00000004 e3de                BCR      0x21, 0x0
+00000005 e2f9                BCR      PORTB, PB2
+00000006 ffef                RET
+___cinit_load__:
+___cinit_run__:
+00000007 ffef                RET
+00000008 c5db                LGOTO    0x224; _isr=0x224
+__nyc_ny8_startup:
+00000009 de5f                MOVIA    0xa0
+0000000a ff7b                MOVAR    FSR
+crt0.o:.l0:
+0000000b e4fc                BSR      STATUS, BK0
+0000000c fd7f                CLRR     INDF
+0000000d e0fc                BCR      STATUS, BK0
+0000000e fd7f                CLRR     INDF
+0000000f e97b                INCRSZ   FSR, ToReg
+00000010 c7f4                LGOTO    0xb; crt0.o:.l0=0xb
+00000011 d7f8                LCALL    0x7; ___cinit_load__=0x7
+00000012 c7ec                LGOTO    0x13; _main=0x13
+_main:
+crt0.o:crt0_end:
+00000013 ffec                DISI
+00000014 de40                MOVIA    0xbf
+00000015 fff6                IOST     APHCON
+00000016 de10                MOVIA    0xef
+00000017 ff73                MOVAR    BPHCON
+00000018 fd7a                CLRR     PORTA
+00000019 fd79                CLRR     PORTB
+0000001a de8c                MOVIA    0x73
+0000001b fffa                IOST     IOSTA
+0000001c de0f                MOVIA    0xf0
+0000001d fff9                IOST     IOSTB
+0000001e def5                MOVIA    0xa
+0000001f fff1                IOST     CMPCR
+00000020 ffe0                IOSTR    PCON1
+00000021 e0fc                BCR      STATUS, BK0
+00000022 ff50                MOVAR    0x2f
+00000023 de3c                MOVIA    0xc3
+00000024 ef50                ANDAR    0x2f, ToReg
+00000025 fed0                MOVR     0x2f, ToAcc
+00000026 fff0                IOST     PCON1
+00000027 ffe0                IOSTR    PCON1
+00000028 ff50                MOVAR    0x2f
+00000029 ded7                MOVIA    0x28
+0000002a ee50                IORAR    0x2f, ToReg
+0000002b fed0                MOVR     0x2f, ToAcc
+0000002c fff0                IOST     PCON1
+0000002d e577                BSR      PCON, LVDEN
+0000002e def0                MOVIA    0xf
+0000002f fffc                T0MD
+00000030 defe                MOVIA    0x1
+00000031 ff71                MOVAR    INTE
+00000032 fd70                CLRR     INTF
+00000033 de03                MOVIA    0xfc
+00000034 ff77                MOVAR    PCON
+00000035 ffe0                IOSTR    PCON1
+00000036 ff50                MOVAR    0x2f
+00000037 e7d0                BSR      0x2f, 0x0
+00000038 fed0                MOVR     0x2f, ToAcc
+00000039 fff0                IOST     PCON1
+0000003a fffb                ENI
+0000003b def5                MOVIA    0xa
+0000003c ff59                MOVAR    0x26
+0000003d e45f                BSR      0x20, 0x7
+0000003e defe                MOVIA    0x1
+0000003f ff5d                MOVAR    0x22
+main.o:_00404_DS_:
+00000040 fffd                CLRWDT
+00000041 e0fc                BCR      STATUS, BK0
+00000042 f55f                BTRSS    0x20, 0x5
+00000043 c7bf                LGOTO    0x40; main.o:_00404_DS_=0x40
+00000044 e15f                BCR      0x20, 0x5
+00000045 fed5                MOVR     0x2a, ToAcc
+00000046 ff50                MOVAR    0x2f
+00000047 fad0                INCR     0x2f, ToAcc
+00000048 ff55                MOVAR    0x2a
+00000049 dd80                ANDIA    0x7f
+0000004a f6fc                BTRSS    STATUS, Z
+0000004b c79d                LGOTO    0x62; main.o:_00001_DS_=0x62
+0000004c fedc                MOVR     0x23, ToAcc
+0000004d f6fc                BTRSS    STATUS, Z
+0000004e c7ac                LGOTO    0x53; main.o:_00365_DS_=0x53
+0000004f d4bb                LCALL    0x344; _get_vin_status=0x344
+00000050 e0fc                BCR      STATUS, BK0
+00000051 f1df                BTRSC    0x20, 0x4
+00000052 d4e1                LCALL    0x31e; _get_chrg_status=0x31e
+main.o:_00365_DS_:
+00000053 d718                LCALL    0xe7; _gpioKeyScan=0xe7
+00000054 e0fc                BCR      STATUS, BK0
+00000055 feda                MOVR     0x25, ToAcc
+00000056 ff50                MOVAR    0x2f
+00000057 fad0                INCR     0x2f, ToAcc
+00000058 ff5a                MOVAR    0x25
+00000059 ddf0                ANDIA    0xf
+0000005a f2fc                BTRSC    STATUS, Z
+0000005b d531                LCALL    0x2ce; _get_lvd_voltage=0x2ce
+0000005c e0fc                BCR      STATUS, BK0
+0000005d feda                MOVR     0x25, ToAcc
+0000005e dde0                ANDIA    0x1f
+0000005f f6fc                BTRSS    STATUS, Z
+00000060 c79d                LGOTO    0x62; main.o:_00001_DS_=0x62
+00000061 e6df                BSR      0x20, 0x2
+main.o:_00001_DS_:
+00000062 e0fc                BCR      STATUS, BK0
+00000063 f6df                BTRSS    0x20, 0x2
+00000064 c7bf                LGOTO    0x40; main.o:_00404_DS_=0x40
+00000065 e2df                BCR      0x20, 0x2
+00000066 fedc                MOVR     0x23, ToAcc
+00000067 f2fc                BTRSC    STATUS, Z
+00000068 c78b                LGOTO    0x74; main.o:_00376_DS_=0x74
+00000069 fedc                MOVR     0x23, ToAcc
+0000006a ff50                MOVAR    0x2f
+0000006b f9d0                DECR     0x2f, ToAcc
+0000006c ff5c                MOVAR    0x23
+0000006d f7dc                BTRSS    0x23, 0x0
+0000006e c78d                LGOTO    0x72; main.o:_00373_DS_=0x72
+0000006f e279                BCR      PORTB, PB3
+00000070 e6f9                BSR      PORTB, PB2
+00000071 c78a                LGOTO    0x75; main.o:_00377_DS_=0x75
+main.o:_00373_DS_:
+00000072 e2f9                BCR      PORTB, PB2
+00000073 c78a                LGOTO    0x75; main.o:_00377_DS_=0x75
+main.o:_00376_DS_:
+00000074 e279                BCR      PORTB, PB3
+main.o:_00377_DS_:
+00000075 e0fc                BCR      STATUS, BK0
+00000076 fedb                MOVR     0x24, ToAcc
+00000077 f2fc                BTRSC    STATUS, Z
+00000078 c76a                LGOTO    0x95; main.o:_00386_DS_=0x95
+00000079 fedb                MOVR     0x24, ToAcc
+0000007a ff50                MOVAR    0x2f
+0000007b f9d0                DECR     0x2f, ToAcc
+0000007c ff5b                MOVAR    0x24
+0000007d f7db                BTRSS    0x24, 0x0
+0000007e c779                LGOTO    0x86; main.o:_00379_DS_=0x86
+0000007f e679                BSR      PORTB, PB3
+00000080 ffe9                IOSTR    IOSTB
+00000081 ff50                MOVAR    0x2f
+00000082 e250                BCR      0x2f, 0x3
+00000083 fed0                MOVR     0x2f, ToAcc
+00000084 fff9                IOST     IOSTB
+00000085 c772                LGOTO    0x8d; main.o:_00380_DS_=0x8d
+main.o:_00379_DS_:
+00000086 e279                BCR      PORTB, PB3
+00000087 ffe9                IOSTR    IOSTB
+00000088 e0fc                BCR      STATUS, BK0
+00000089 ff50                MOVAR    0x2f
+0000008a e250                BCR      0x2f, 0x3
+0000008b fed0                MOVR     0x2f, ToAcc
+0000008c fff9                IOST     IOSTB
+main.o:_00380_DS_:
+0000008d e0fc                BCR      STATUS, BK0
+0000008e fedb                MOVR     0x24, ToAcc
+0000008f f6fc                BTRSS    STATUS, Z
+00000090 c76a                LGOTO    0x95; main.o:_00386_DS_=0x95
+00000091 f6de                BTRSS    0x21, 0x2
+00000092 c76a                LGOTO    0x95; main.o:_00386_DS_=0x95
+00000093 def5                MOVIA    0xa
+00000094 ff5b                MOVAR    0x24
+main.o:_00386_DS_:
+00000095 e0fc                BCR      STATUS, BK0
+00000096 f1df                BTRSC    0x20, 0x4
+00000097 c7bf                LGOTO    0x40; main.o:_00404_DS_=0x40
+00000098 f3df                BTRSC    0x20, 0x0
+00000099 c7bf                LGOTO    0x40; main.o:_00404_DS_=0x40
+0000009a fed9                MOVR     0x26, ToAcc
+0000009b f6fc                BTRSS    STATUS, Z
+0000009c c71f                LGOTO    0xe0; main.o:_00394_DS_=0xe0
+0000009d ffec                DISI
+0000009e fd71                CLRR     INTE
+0000009f de87                MOVIA    0x78
+000000a0 ff77                MOVAR    PCON
+000000a1 fd7a                CLRR     PORTA
+000000a2 fd79                CLRR     PORTB
+000000a3 de8c                MOVIA    0x73
+000000a4 fffa                IOST     IOSTA
+000000a5 de0f                MOVIA    0xf0
+000000a6 fff9                IOST     IOSTB
+000000a7 fdff                CLRA
+000000a8 fff3                IOST     BODCON
+000000a9 e279                BCR      PORTB, PB3
+000000aa e2f9                BCR      PORTB, PB2
+000000ab de9f                MOVIA    0x60
+000000ac ff6a                MOVAR    AWUCON
+000000ad deef                MOVIA    0x10
+000000ae ff76                MOVAR    BWUCON
+000000af defd                MOVIA    0x2
+000000b0 ff71                MOVAR    INTE
+000000b1 fd70                CLRR     INTF
+000000b2 f5f9                BTRSS    PORTB, PB4
+000000b3 c746                LGOTO    0xb9; main.o:_00389_DS_=0xb9
+000000b4 fe79                MOVR     PORTB, ToReg
+000000b5 fe7a                MOVR     PORTA, ToReg
+000000b6 ffff                NOP
+000000b7 fffe                SLEEP
+000000b8 ffff                NOP
+main.o:_00389_DS_:
+000000b9 de02                MOVIA    0xfd
+000000ba ff70                MOVAR    INTF
+000000bb def5                MOVIA    0xa
+000000bc e0fc                BCR      STATUS, BK0
+000000bd ff59                MOVAR    0x26
+000000be fff1                IOST     CMPCR
+000000bf de03                MOVIA    0xfc
+000000c0 ff77                MOVAR    PCON
+000000c1 ffe0                IOSTR    PCON1
+000000c2 ff50                MOVAR    0x2f
+000000c3 de3c                MOVIA    0xc3
+000000c4 ef50                ANDAR    0x2f, ToReg
+000000c5 fed0                MOVR     0x2f, ToAcc
+000000c6 fff0                IOST     PCON1
+000000c7 f6de                BTRSS    0x21, 0x2
+000000c8 c730                LGOTO    0xcf; main.o:_00391_DS_=0xcf
+000000c9 ffe0                IOSTR    PCON1
+000000ca ff50                MOVAR    0x2f
+000000cb e550                BSR      0x2f, 0x5
+000000cc fed0                MOVR     0x2f, ToAcc
+000000cd fff0                IOST     PCON1
+000000ce c729                LGOTO    0xd6; main.o:_00392_DS_=0xd6
+main.o:_00391_DS_:
+000000cf ffe0                IOSTR    PCON1
+000000d0 e0fc                BCR      STATUS, BK0
+000000d1 ff50                MOVAR    0x2f
+000000d2 ded7                MOVIA    0x28
+000000d3 ee50                IORAR    0x2f, ToReg
+000000d4 fed0                MOVR     0x2f, ToAcc
+000000d5 fff0                IOST     PCON1
+main.o:_00392_DS_:
+000000d6 ffe0                IOSTR    PCON1
+000000d7 e0fc                BCR      STATUS, BK0
+000000d8 ff50                MOVAR    0x2f
+000000d9 e7d0                BSR      0x2f, 0x0
+000000da fed0                MOVR     0x2f, ToAcc
+000000db fff0                IOST     PCON1
+000000dc defe                MOVIA    0x1
+000000dd ff71                MOVAR    INTE
+000000de fffb                ENI
+000000df c7bf                LGOTO    0x40; main.o:_00404_DS_=0x40
+main.o:_00394_DS_:
+000000e0 e0fc                BCR      STATUS, BK0
+000000e1 fed9                MOVR     0x26, ToAcc
+000000e2 ff50                MOVAR    0x2f
+000000e3 f9d0                DECR     0x2f, ToAcc
+000000e4 ff59                MOVAR    0x26
+000000e5 c7bf                LGOTO    0x40; main.o:_00404_DS_=0x40
+000000e6 ffef                RET
+_gpioKeyScan:
+000000e7 ffe9                IOSTR    IOSTB
+000000e8 e0fc                BCR      STATUS, BK0
+000000e9 ff51                MOVAR    0x2e
+000000ea e5d1                BSR      0x2e, 0x4
+000000eb fed1                MOVR     0x2e, ToAcc
+000000ec fff9                IOST     IOSTB
+000000ed fed8                MOVR     0x27, ToAcc
+000000ee f2fc                BTRSC    STATUS, Z
+000000ef c70b                LGOTO    0xf4; main.o:_00169_DS_=0xf4
+000000f0 fed8                MOVR     0x27, ToAcc
+000000f1 ff51                MOVAR    0x2e
+000000f2 f9d1                DECR     0x2e, ToAcc
+000000f3 ff58                MOVAR    0x27
+main.o:_00169_DS_:
+000000f4 e0fc                BCR      STATUS, BK0
+000000f5 e15e                BCR      0x21, 0x5
+000000f6 f1f9                BTRSC    PORTB, PB4
+000000f7 e55e                BSR      0x21, 0x5
+000000f8 fed7                MOVR     0x28, ToAcc
+000000f9 f2fc                BTRSC    STATUS, Z
+000000fa c6f7                LGOTO    0x108; main.o:_00172_DS_=0x108
+000000fb fed7                MOVR     0x28, ToAcc
+000000fc dbfe                XORIA    0x1
+000000fd f2fc                BTRSC    STATUS, Z
+000000fe c6ed                LGOTO    0x112; main.o:_00175_DS_=0x112
+000000ff fed7                MOVR     0x28, ToAcc
+00000100 dbfd                XORIA    0x2
+00000101 f2fc                BTRSC    STATUS, Z
+00000102 c6df                LGOTO    0x120; main.o:_00181_DS_=0x120
+00000103 fed7                MOVR     0x28, ToAcc
+00000104 dbfc                XORIA    0x3
+00000105 f2fc                BTRSC    STATUS, Z
+00000106 c660                LGOTO    0x19f; main.o:_00197_DS_=0x19f
+00000107 c65b                LGOTO    0x1a4; main.o:_00200_DS_=0x1a4
+main.o:_00172_DS_:
+00000108 e0fc                BCR      STATUS, BK0
+00000109 f55e                BTRSS    0x21, 0x5
+0000010a c6f2                LGOTO    0x10d; main.o:_00174_DS_=0x10d
+0000010b deff                MOVIA    0x0
+0000010c c658                LGOTO    0x1a7; main.o:_00202_DS_=0x1a7
+main.o:_00174_DS_:
+0000010d defd                MOVIA    0x2
+0000010e e0fc                BCR      STATUS, BK0
+0000010f ff58                MOVAR    0x27
+00000110 defe                MOVIA    0x1
+00000111 ff57                MOVAR    0x28
+main.o:_00175_DS_:
+00000112 e0fc                BCR      STATUS, BK0
+00000113 f55e                BTRSS    0x21, 0x5
+00000114 c6e8                LGOTO    0x117; main.o:_00179_DS_=0x117
+00000115 fd57                CLRR     0x28
+00000116 c659                LGOTO    0x1a6; main.o:_00201_DS_=0x1a6
+main.o:_00179_DS_:
+00000117 e0fc                BCR      STATUS, BK0
+00000118 fed8                MOVR     0x27, ToAcc
+00000119 f6fc                BTRSS    STATUS, Z
+0000011a c659                LGOTO    0x1a6; main.o:_00201_DS_=0x1a6
+0000011b de37                MOVIA    0xc8
+0000011c ff58                MOVAR    0x27
+0000011d defd                MOVIA    0x2
+0000011e ff57                MOVAR    0x28
+0000011f c659                LGOTO    0x1a6; main.o:_00201_DS_=0x1a6
+main.o:_00181_DS_:
+00000120 e0fc                BCR      STATUS, BK0
+00000121 f55e                BTRSS    0x21, 0x5
+00000122 c669                LGOTO    0x196; main.o:_00195_DS_=0x196
+00000123 fd57                CLRR     0x28
+00000124 f25e                BTRSC    0x21, 0x3
+00000125 c66b                LGOTO    0x194; main.o:_00191_DS_=0x194
+00000126 f3df                BTRSC    0x20, 0x0
+00000127 c6d5                LGOTO    0x12a; main.o:_00188_DS_=0x12a
+00000128 d657                LCALL    0x1a8; _motor_open=0x1a8
+00000129 c66b                LGOTO    0x194; main.o:_00191_DS_=0x194
+main.o:_00188_DS_:
+0000012a e0fc                BCR      STATUS, BK0
+0000012b fedd                MOVR     0x22, ToAcc
+0000012c ff51                MOVAR    0x2e
+0000012d dbfe                XORIA    0x1
+0000012e f2fc                BTRSC    STATUS, Z
+0000012f c6c6                LGOTO    0x139; main.o:_00182_DS_=0x139
+00000130 fed1                MOVR     0x2e, ToAcc
+00000131 dbfd                XORIA    0x2
+00000132 f2fc                BTRSC    STATUS, Z
+00000133 c6af                LGOTO    0x150; main.o:_00183_DS_=0x150
+00000134 fed1                MOVR     0x2e, ToAcc
+00000135 dbfc                XORIA    0x3
+00000136 f2fc                BTRSC    STATUS, Z
+00000137 c698                LGOTO    0x167; main.o:_00184_DS_=0x167
+00000138 c681                LGOTO    0x17e; main.o:_00185_DS_=0x17e
+main.o:_00182_DS_:
+00000139 defd                MOVIA    0x2
+0000013a e0fc                BCR      STATUS, BK0
+0000013b ff5d                MOVAR    0x22
+0000013c ffe9                IOSTR    IOSTB
+0000013d ff51                MOVAR    0x2e
+0000013e e551                BSR      0x2e, 0x5
+0000013f fed1                MOVR     0x2e, ToAcc
+00000140 fff9                IOST     IOSTB
+00000141 ffea                IOSTR    IOSTA
+00000142 ff51                MOVAR    0x2e
+00000143 e751                BSR      0x2e, 0x1
+00000144 fed1                MOVR     0x2e, ToAcc
+00000145 fffa                IOST     IOSTA
+00000146 e3fa                BCR      PORTA, PA0
+00000147 ffea                IOSTR    IOSTA
+00000148 ff51                MOVAR    0x2e
+00000149 e3d1                BCR      0x2e, 0x0
+0000014a fed1                MOVR     0x2e, ToAcc
+0000014b fffa                IOST     IOSTA
+0000014c defa                MOVIA    0x5
+0000014d ff5c                MOVAR    0x23
+0000014e d7fe                LCALL    0x1; _disable_breathing_mode=0x1
+0000014f c66b                LGOTO    0x194; main.o:_00191_DS_=0x194
+main.o:_00183_DS_:
+00000150 defc                MOVIA    0x3
+00000151 e0fc                BCR      STATUS, BK0
+00000152 ff5d                MOVAR    0x22
+00000153 ffe9                IOSTR    IOSTB
+00000154 ff51                MOVAR    0x2e
+00000155 e551                BSR      0x2e, 0x5
+00000156 fed1                MOVR     0x2e, ToAcc
+00000157 fff9                IOST     IOSTB
+00000158 ffea                IOSTR    IOSTA
+00000159 ff51                MOVAR    0x2e
+0000015a e7d1                BSR      0x2e, 0x0
+0000015b fed1                MOVR     0x2e, ToAcc
+0000015c fffa                IOST     IOSTA
+0000015d e37a                BCR      PORTA, PA1
+0000015e ffea                IOSTR    IOSTA
+0000015f ff51                MOVAR    0x2e
+00000160 e351                BCR      0x2e, 0x1
+00000161 fed1                MOVR     0x2e, ToAcc
+00000162 fffa                IOST     IOSTA
+00000163 def8                MOVIA    0x7
+00000164 ff5c                MOVAR    0x23
+00000165 d7fe                LCALL    0x1; _disable_breathing_mode=0x1
+00000166 c66b                LGOTO    0x194; main.o:_00191_DS_=0x194
+main.o:_00184_DS_:
+00000167 defe                MOVIA    0x1
+00000168 e0fc                BCR      STATUS, BK0
+00000169 ff5d                MOVAR    0x22
+0000016a ffea                IOSTR    IOSTA
+0000016b ff51                MOVAR    0x2e
+0000016c e7d1                BSR      0x2e, 0x0
+0000016d fed1                MOVR     0x2e, ToAcc
+0000016e fffa                IOST     IOSTA
+0000016f ffea                IOSTR    IOSTA
+00000170 ff51                MOVAR    0x2e
+00000171 e751                BSR      0x2e, 0x1
+00000172 fed1                MOVR     0x2e, ToAcc
+00000173 fffa                IOST     IOSTA
+00000174 e179                BCR      PORTB, PB5
+00000175 ffe9                IOSTR    IOSTB
+00000176 ff51                MOVAR    0x2e
+00000177 e151                BCR      0x2e, 0x5
+00000178 fed1                MOVR     0x2e, ToAcc
+00000179 fff9                IOST     IOSTB
+0000017a defc                MOVIA    0x3
+0000017b ff5c                MOVAR    0x23
+0000017c d7fe                LCALL    0x1; _disable_breathing_mode=0x1
+0000017d c66b                LGOTO    0x194; main.o:_00191_DS_=0x194
+main.o:_00185_DS_:
+0000017e defe                MOVIA    0x1
+0000017f e0fc                BCR      STATUS, BK0
+00000180 ff5d                MOVAR    0x22
+00000181 ffea                IOSTR    IOSTA
+00000182 ff51                MOVAR    0x2e
+00000183 e7d1                BSR      0x2e, 0x0
+00000184 fed1                MOVR     0x2e, ToAcc
+00000185 fffa                IOST     IOSTA
+00000186 ffea                IOSTR    IOSTA
+00000187 ff51                MOVAR    0x2e
+00000188 e751                BSR      0x2e, 0x1
+00000189 fed1                MOVR     0x2e, ToAcc
+0000018a fffa                IOST     IOSTA
+0000018b e179                BCR      PORTB, PB5
+0000018c ffe9                IOSTR    IOSTB
+0000018d ff51                MOVAR    0x2e
+0000018e e151                BCR      0x2e, 0x5
+0000018f fed1                MOVR     0x2e, ToAcc
+00000190 fff9                IOST     IOSTB
+00000191 defc                MOVIA    0x3
+00000192 ff5c                MOVAR    0x23
+00000193 d7fe                LCALL    0x1; _disable_breathing_mode=0x1
+main.o:_00191_DS_:
+00000194 dede                MOVIA    0x21
+00000195 c658                LGOTO    0x1a7; main.o:_00202_DS_=0x1a7
+main.o:_00195_DS_:
+00000196 e0fc                BCR      STATUS, BK0
+00000197 fed8                MOVR     0x27, ToAcc
+00000198 f6fc                BTRSS    STATUS, Z
+00000199 c659                LGOTO    0x1a6; main.o:_00201_DS_=0x1a6
+0000019a defc                MOVIA    0x3
+0000019b ff57                MOVAR    0x28
+0000019c d499                LCALL    0x366; _motor_close=0x366
+0000019d debe                MOVIA    0x41
+0000019e c658                LGOTO    0x1a7; main.o:_00202_DS_=0x1a7
+main.o:_00197_DS_:
+0000019f e0fc                BCR      STATUS, BK0
+000001a0 f55e                BTRSS    0x21, 0x5
+000001a1 c659                LGOTO    0x1a6; main.o:_00201_DS_=0x1a6
+000001a2 fd57                CLRR     0x28
+000001a3 c659                LGOTO    0x1a6; main.o:_00201_DS_=0x1a6
+main.o:_00200_DS_:
+000001a4 e0fc                BCR      STATUS, BK0
+000001a5 fd57                CLRR     0x28
+main.o:_00201_DS_:
+000001a6 deff                MOVIA    0x0
+main.o:_00202_DS_:
+000001a7 ffef                RET
+_motor_open:
+000001a8 e0fc                BCR      STATUS, BK0
+000001a9 e7df                BSR      0x20, 0x0
+000001aa def5                MOVIA    0xa
+000001ab ff59                MOVAR    0x26
+000001ac e67a                BSR      PORTA, PA3
+000001ad ffea                IOSTR    IOSTA
+000001ae ff52                MOVAR    0x2d
+000001af e252                BCR      0x2d, 0x3
+000001b0 fed2                MOVR     0x2d, ToAcc
+000001b1 fffa                IOST     IOSTA
+000001b2 e779                BSR      PORTB, PB1
+000001b3 ffe9                IOSTR    IOSTB
+000001b4 ff52                MOVAR    0x2d
+000001b5 e352                BCR      0x2d, 0x1
+000001b6 fed2                MOVR     0x2d, ToAcc
+000001b7 fff9                IOST     IOSTB
+000001b8 fedd                MOVR     0x22, ToAcc
+000001b9 ff52                MOVAR    0x2d
+000001ba dbfe                XORIA    0x1
+000001bb f2fc                BTRSC    STATUS, Z
+000001bc c639                LGOTO    0x1c6; main.o:_00138_DS_=0x1c6
+000001bd fed2                MOVR     0x2d, ToAcc
+000001be dbfd                XORIA    0x2
+000001bf f2fc                BTRSC    STATUS, Z
+000001c0 c622                LGOTO    0x1dd; main.o:_00139_DS_=0x1dd
+000001c1 fed2                MOVR     0x2d, ToAcc
+000001c2 dbfc                XORIA    0x3
+000001c3 f2fc                BTRSC    STATUS, Z
+000001c4 c60b                LGOTO    0x1f4; main.o:_00140_DS_=0x1f4
+000001c5 c5f4                LGOTO    0x20b; main.o:_00141_DS_=0x20b
+main.o:_00138_DS_:
+000001c6 ffea                IOSTR    IOSTA
+000001c7 e0fc                BCR      STATUS, BK0
+000001c8 ff52                MOVAR    0x2d
+000001c9 e7d2                BSR      0x2d, 0x0
+000001ca fed2                MOVR     0x2d, ToAcc
+000001cb fffa                IOST     IOSTA
+000001cc ffea                IOSTR    IOSTA
+000001cd ff52                MOVAR    0x2d
+000001ce e752                BSR      0x2d, 0x1
+000001cf fed2                MOVR     0x2d, ToAcc
+000001d0 fffa                IOST     IOSTA
+000001d1 e179                BCR      PORTB, PB5
+000001d2 ffe9                IOSTR    IOSTB
+000001d3 ff52                MOVAR    0x2d
+000001d4 e152                BCR      0x2d, 0x5
+000001d5 fed2                MOVR     0x2d, ToAcc
+000001d6 fff9                IOST     IOSTB
+000001d7 e2f9                BCR      PORTB, PB2
+000001d8 e679                BSR      PORTB, PB3
+000001d9 defc                MOVIA    0x3
+000001da ff5c                MOVAR    0x23
+000001db d7fe                LCALL    0x1; _disable_breathing_mode=0x1
+000001dc c5dc                LGOTO    0x223; main.o:_00143_DS_=0x223
+main.o:_00139_DS_:
+000001dd ffe9                IOSTR    IOSTB
+000001de e0fc                BCR      STATUS, BK0
+000001df ff52                MOVAR    0x2d
+000001e0 e552                BSR      0x2d, 0x5
+000001e1 fed2                MOVR     0x2d, ToAcc
+000001e2 fff9                IOST     IOSTB
+000001e3 ffea                IOSTR    IOSTA
+000001e4 ff52                MOVAR    0x2d
+000001e5 e752                BSR      0x2d, 0x1
+000001e6 fed2                MOVR     0x2d, ToAcc
+000001e7 fffa                IOST     IOSTA
+000001e8 e3fa                BCR      PORTA, PA0
+000001e9 ffea                IOSTR    IOSTA
+000001ea ff52                MOVAR    0x2d
+000001eb e3d2                BCR      0x2d, 0x0
+000001ec fed2                MOVR     0x2d, ToAcc
+000001ed fffa                IOST     IOSTA
+000001ee e2f9                BCR      PORTB, PB2
+000001ef e679                BSR      PORTB, PB3
+000001f0 defa                MOVIA    0x5
+000001f1 ff5c                MOVAR    0x23
+000001f2 d7fe                LCALL    0x1; _disable_breathing_mode=0x1
+000001f3 c5dc                LGOTO    0x223; main.o:_00143_DS_=0x223
+main.o:_00140_DS_:
+000001f4 ffe9                IOSTR    IOSTB
+000001f5 e0fc                BCR      STATUS, BK0
+000001f6 ff52                MOVAR    0x2d
+000001f7 e552                BSR      0x2d, 0x5
+000001f8 fed2                MOVR     0x2d, ToAcc
+000001f9 fff9                IOST     IOSTB
+000001fa ffea                IOSTR    IOSTA
+000001fb ff52                MOVAR    0x2d
+000001fc e7d2                BSR      0x2d, 0x0
+000001fd fed2                MOVR     0x2d, ToAcc
+000001fe fffa                IOST     IOSTA
+000001ff e37a                BCR      PORTA, PA1
+00000200 ffea                IOSTR    IOSTA
+00000201 ff52                MOVAR    0x2d
+00000202 e352                BCR      0x2d, 0x1
+00000203 fed2                MOVR     0x2d, ToAcc
+00000204 fffa                IOST     IOSTA
+00000205 e2f9                BCR      PORTB, PB2
+00000206 e679                BSR      PORTB, PB3
+00000207 def8                MOVIA    0x7
+00000208 ff5c                MOVAR    0x23
+00000209 d7fe                LCALL    0x1; _disable_breathing_mode=0x1
+0000020a c5dc                LGOTO    0x223; main.o:_00143_DS_=0x223
+main.o:_00141_DS_:
+0000020b ffea                IOSTR    IOSTA
+0000020c e0fc                BCR      STATUS, BK0
+0000020d ff52                MOVAR    0x2d
+0000020e e7d2                BSR      0x2d, 0x0
+0000020f fed2                MOVR     0x2d, ToAcc
+00000210 fffa                IOST     IOSTA
+00000211 ffea                IOSTR    IOSTA
+00000212 ff52                MOVAR    0x2d
+00000213 e752                BSR      0x2d, 0x1
+00000214 fed2                MOVR     0x2d, ToAcc
+00000215 fffa                IOST     IOSTA
+00000216 e179                BCR      PORTB, PB5
+00000217 ffe9                IOSTR    IOSTB
+00000218 ff52                MOVAR    0x2d
+00000219 e152                BCR      0x2d, 0x5
+0000021a fed2                MOVR     0x2d, ToAcc
+0000021b fff9                IOST     IOSTB
+0000021c e2f9                BCR      PORTB, PB2
+0000021d e679                BSR      PORTB, PB3
+0000021e defe                MOVIA    0x1
+0000021f ff5d                MOVAR    0x22
+00000220 defc                MOVIA    0x3
+00000221 ff5c                MOVAR    0x23
+00000222 d7fe                LCALL    0x1; _disable_breathing_mode=0x1
+main.o:_00143_DS_:
+00000223 ffef                RET
+_isr:
+main.o:__sdcc_interrupt:
+00000224 ff3d                MOVAR    0x42
+00000225 eafc                SWAPR    STATUS, ToAcc
+00000226 fd7c                CLRR     STATUS
+00000227 ff3e                MOVAR    0x41
+00000228 fef5                MOVR     PCHBUF, ToAcc
+00000229 fd75                CLRR     PCHBUF
+0000022a ff3f                MOVAR    0x40
+0000022b fefb                MOVR     FSR, ToAcc
+0000022c e0fc                BCR      STATUS, BK0
+0000022d ff4c                MOVAR    0x33
+0000022e feb0                MOVR     0x4f, ToAcc
+0000022f ff4b                MOVAR    0x34
+00000230 feb1                MOVR     0x4e, ToAcc
+00000231 ff4a                MOVAR    0x35
+00000232 f7f0                BTRSS    INTF, T0IF
+00000233 c595                LGOTO    0x26a; main.o:_00122_DS_=0x26a
+00000234 de01                MOVIA    0xfe
+00000235 ff70                MOVAR    INTF
+00000236 fa4f                INCR     0x30, ToReg
+00000237 f3cf                BTRSC    0x30, 0x0
+00000238 c5c5                LGOTO    0x23a; main.o:_00002_DS_=0x23a
+00000239 e55f                BSR      0x20, 0x5
+main.o:_00002_DS_:
+0000023a e0fc                BCR      STATUS, BK0
+0000023b f7de                BTRSS    0x21, 0x0
+0000023c c595                LGOTO    0x26a; main.o:_00122_DS_=0x26a
+0000023d fed6                MOVR     0x29, ToAcc
+0000023e ff54                MOVAR    0x2b
+0000023f fad4                INCR     0x2b, ToAcc
+00000240 ff56                MOVAR    0x29
+00000241 fed6                MOVR     0x29, ToAcc
+00000242 f6fc                BTRSS    STATUS, Z
+00000243 c59d                LGOTO    0x262; main.o:_00115_DS_=0x262
+00000244 f75e                BTRSS    0x21, 0x1
+00000245 c5b5                LGOTO    0x24a; main.o:_00112_DS_=0x24a
+00000246 e84e                DECRSZ   0x31, ToReg
+00000247 c5ac                LGOTO    0x253; main.o:_00113_DS_=0x253
+00000248 e35e                BCR      0x21, 0x1
+00000249 c5ac                LGOTO    0x253; main.o:_00113_DS_=0x253
+main.o:_00112_DS_:
+0000024a e0fc                BCR      STATUS, BK0
+0000024b fa4e                INCR     0x31, ToReg
+0000024c deaf                MOVIA    0x50
+0000024d fbce                SUBAR    0x31, ToAcc
+0000024e f7fc                BTRSS    STATUS, C
+0000024f c5ac                LGOTO    0x253; main.o:_00113_DS_=0x253
+00000250 deaf                MOVIA    0x50
+00000251 ff4e                MOVAR    0x31
+00000252 e75e                BSR      0x21, 0x1
+main.o:_00113_DS_:
+00000253 e0fc                BCR      STATUS, BK0
+00000254 fece                MOVR     0x31, ToAcc
+00000255 da82                ADDIA    0x7d
+00000256 ff54                MOVAR    0x2b
+00000257 defd                MOVIA    0x2
+00000258 d9ff                ADCIA    0x0
+00000259 ff53                MOVAR    0x2c
+0000025a fed4                MOVR     0x2b, ToAcc
+0000025b ff31                MOVAR    0x4e
+0000025c fed3                MOVR     0x2c, ToAcc
+0000025d ff30                MOVAR    0x4f
+0000025e de7f                MOVIA    0x80
+0000025f d47b                LCALL    0x384; __gptrget=0x384
+00000260 e0fc                BCR      STATUS, BK0
+00000261 ff4d                MOVAR    0x32
+main.o:_00115_DS_:
+00000262 e0fc                BCR      STATUS, BK0
+00000263 fecd                MOVR     0x32, ToAcc
+00000264 fbd6                SUBAR    0x29, ToAcc
+00000265 f7fc                BTRSS    STATUS, C
+00000266 c596                LGOTO    0x269; main.o:_00117_DS_=0x269
+00000267 e2f9                BCR      PORTB, PB2
+00000268 c595                LGOTO    0x26a; main.o:_00122_DS_=0x26a
+main.o:_00117_DS_:
+00000269 e6f9                BSR      PORTB, PB2
+main.o:_00122_DS_:
+0000026a f5f0                BTRSS    INTF, LVDIF
+0000026b c591                LGOTO    0x26e; main.o:_00125_DS_=0x26e
+0000026c de10                MOVIA    0xef
+0000026d ff70                MOVAR    INTF
+main.o:_00125_DS_:
+0000026e e0fc                BCR      STATUS, BK0
+0000026f feca                MOVR     0x35, ToAcc
+00000270 ff31                MOVAR    0x4e
+00000271 fecb                MOVR     0x34, ToAcc
+00000272 ff30                MOVAR    0x4f
+00000273 fecc                MOVR     0x33, ToAcc
+00000274 ff7b                MOVAR    FSR
+00000275 febf                MOVR     0x40, ToAcc
+00000276 ff75                MOVAR    PCHBUF
+00000277 fd7c                CLRR     STATUS
+00000278 eabe                SWAPR    0x41, ToAcc
+00000279 ff7c                MOVAR    STATUS
+0000027a ea3d                SWAPR    0x42, ToReg
+0000027b eabd                SWAPR    0x42, ToAcc
+main.o:END_OF_INTERRUPT:
+0000027c ffee                RETIE
+_RESPIRATION_LAMP_TABLE:
+0000027d dffe                RETIA    0x1
+0000027e dffe                RETIA    0x1
+0000027f dffe                RETIA    0x1
+00000280 dffe                RETIA    0x1
+00000281 dffe                RETIA    0x1
+00000282 dffd                RETIA    0x2
+00000283 dffd                RETIA    0x2
+00000284 dffd                RETIA    0x2
+00000285 dffd                RETIA    0x2
+00000286 dffd                RETIA    0x2
+00000287 dffd                RETIA    0x2
+00000288 dffd                RETIA    0x2
+00000289 dffd                RETIA    0x2
+0000028a dffc                RETIA    0x3
+0000028b dffc                RETIA    0x3
+0000028c dffc                RETIA    0x3
+0000028d dffc                RETIA    0x3
+0000028e dffc                RETIA    0x3
+0000028f dffb                RETIA    0x4
+00000290 dffb                RETIA    0x4
+00000291 dffb                RETIA    0x4
+00000292 dffa                RETIA    0x5
+00000293 dffa                RETIA    0x5
+00000294 dffa                RETIA    0x5
+00000295 dff9                RETIA    0x6
+00000296 dff9                RETIA    0x6
+00000297 dff9                RETIA    0x6
+00000298 dff8                RETIA    0x7
+00000299 dff8                RETIA    0x7
+0000029a dff7                RETIA    0x8
+0000029b dff6                RETIA    0x9
+0000029c dff6                RETIA    0x9
+0000029d dff5                RETIA    0xa
+0000029e dff4                RETIA    0xb
+0000029f dff4                RETIA    0xb
+000002a0 dff3                RETIA    0xc
+000002a1 dff2                RETIA    0xd
+000002a2 dff1                RETIA    0xe
+000002a3 dff0                RETIA    0xf
+000002a4 dfef                RETIA    0x10
+000002a5 dfee                RETIA    0x11
+000002a6 dfed                RETIA    0x12
+000002a7 dfeb                RETIA    0x14
+000002a8 dfea                RETIA    0x15
+000002a9 dfe8                RETIA    0x17
+000002aa dfe7                RETIA    0x18
+000002ab dfe5                RETIA    0x1a
+000002ac dfe3                RETIA    0x1c
+000002ad dfe1                RETIA    0x1e
+000002ae dfdf                RETIA    0x20
+000002af dfdd                RETIA    0x22
+000002b0 dfda                RETIA    0x25
+000002b1 dfd8                RETIA    0x27
+000002b2 dfd5                RETIA    0x2a
+000002b3 dfd2                RETIA    0x2d
+000002b4 dfcf                RETIA    0x30
+000002b5 dfcb                RETIA    0x34
+000002b6 dfc7                RETIA    0x38
+000002b7 dfc3                RETIA    0x3c
+000002b8 dfbf                RETIA    0x40
+000002b9 dfbb                RETIA    0x44
+000002ba dfb6                RETIA    0x49
+000002bb dfb0                RETIA    0x4f
+000002bc dfab                RETIA    0x54
+000002bd dfa5                RETIA    0x5a
+000002be df9e                RETIA    0x61
+000002bf df97                RETIA    0x68
+000002c0 df90                RETIA    0x6f
+000002c1 df88                RETIA    0x77
+000002c2 df7f                RETIA    0x80
+000002c3 df76                RETIA    0x89
+000002c4 df6c                RETIA    0x93
+000002c5 df62                RETIA    0x9d
+000002c6 df57                RETIA    0xa8
+000002c7 df4b                RETIA    0xb4
+000002c8 df3e                RETIA    0xc1
+000002c9 df30                RETIA    0xcf
+000002ca df21                RETIA    0xde
+000002cb df11                RETIA    0xee
+000002cc df00                RETIA    0xff
+000002cd df00                RETIA    0xff
+_get_lvd_voltage:
+000002ce e0fc                BCR      STATUS, BK0
+000002cf f5df                BTRSS    0x20, 0x4
+000002d0 c51c                LGOTO    0x2e3; main.o:_00338_DS_=0x2e3
+000002d1 fd47                CLRR     0x38
+000002d2 fd46                CLRR     0x39
+000002d3 e2de                BCR      0x21, 0x2
+000002d4 e25e                BCR      0x21, 0x3
+000002d5 fd5b                CLRR     0x24
+000002d6 ffe0                IOSTR    PCON1
+000002d7 ff51                MOVAR    0x2e
+000002d8 de3c                MOVIA    0xc3
+000002d9 ef51                ANDAR    0x2e, ToReg
+000002da fed1                MOVR     0x2e, ToAcc
+000002db fff0                IOST     PCON1
+000002dc ffe0                IOSTR    PCON1
+000002dd ff51                MOVAR    0x2e
+000002de ded7                MOVIA    0x28
+000002df ee51                IORAR    0x2e, ToReg
+000002e0 fed1                MOVR     0x2e, ToAcc
+000002e1 fff0                IOST     PCON1
+000002e2 c4e2                LGOTO    0x31d; main.o:_00357_DS_=0x31d
+main.o:_00338_DS_:
+000002e3 e0fc                BCR      STATUS, BK0
+000002e4 f2de                BTRSC    0x21, 0x2
+000002e5 c4f5                LGOTO    0x30a; main.o:_00355_DS_=0x30a
+000002e6 ffe0                IOSTR    PCON1
+000002e7 ff51                MOVAR    0x2e
+000002e8 f0d1                BTRSC    0x2e, 0x6
+000002e9 c4f9                LGOTO    0x306; main.o:_00345_DS_=0x306
+000002ea e2fa                BCR      PORTA, PA2
+000002eb fa47                INCR     0x38, ToReg
+000002ec dedf                MOVIA    0x20
+000002ed fbc7                SUBAR    0x38, ToAcc
+000002ee f7fc                BTRSS    STATUS, C
+000002ef c4e2                LGOTO    0x31d; main.o:_00357_DS_=0x31d
+000002f0 e6de                BSR      0x21, 0x2
+000002f1 ffe0                IOSTR    PCON1
+000002f2 ff51                MOVAR    0x2e
+000002f3 de3c                MOVIA    0xc3
+000002f4 ef51                ANDAR    0x2e, ToReg
+000002f5 fed1                MOVR     0x2e, ToAcc
+000002f6 fff0                IOST     PCON1
+000002f7 ffe0                IOSTR    PCON1
+000002f8 ff51                MOVAR    0x2e
+000002f9 e551                BSR      0x2e, 0x5
+000002fa fed1                MOVR     0x2e, ToAcc
+000002fb fff0                IOST     PCON1
+000002fc fedc                MOVR     0x23, ToAcc
+000002fd f2fc                BTRSC    STATUS, Z
+000002fe c4fd                LGOTO    0x302; main.o:_00340_DS_=0x302
+000002ff fedc                MOVR     0x23, ToAcc
+00000300 ff5b                MOVAR    0x24
+00000301 c4e2                LGOTO    0x31d; main.o:_00357_DS_=0x31d
+main.o:_00340_DS_:
+00000302 def4                MOVIA    0xb
+00000303 e0fc                BCR      STATUS, BK0
+00000304 ff5b                MOVAR    0x24
+00000305 c4e2                LGOTO    0x31d; main.o:_00357_DS_=0x31d
+main.o:_00345_DS_:
+00000306 e0fc                BCR      STATUS, BK0
+00000307 fd47                CLRR     0x38
+00000308 e6fa                BSR      PORTA, PA2
+00000309 c4e2                LGOTO    0x31d; main.o:_00357_DS_=0x31d
+main.o:_00355_DS_:
+0000030a e0fc                BCR      STATUS, BK0
+0000030b f25e                BTRSC    0x21, 0x3
+0000030c c4e2                LGOTO    0x31d; main.o:_00357_DS_=0x31d
+0000030d ffe0                IOSTR    PCON1
+0000030e ff51                MOVAR    0x2e
+0000030f f0d1                BTRSC    0x2e, 0x6
+00000310 c4e5                LGOTO    0x31a; main.o:_00350_DS_=0x31a
+00000311 e2fa                BCR      PORTA, PA2
+00000312 fa46                INCR     0x39, ToReg
+00000313 dedf                MOVIA    0x20
+00000314 fbc6                SUBAR    0x39, ToAcc
+00000315 f7fc                BTRSS    STATUS, C
+00000316 c4e2                LGOTO    0x31d; main.o:_00357_DS_=0x31d
+00000317 e65e                BSR      0x21, 0x3
+00000318 d499                LCALL    0x366; _motor_close=0x366
+00000319 c4e2                LGOTO    0x31d; main.o:_00357_DS_=0x31d
+main.o:_00350_DS_:
+0000031a e0fc                BCR      STATUS, BK0
+0000031b fd46                CLRR     0x39
+0000031c e6fa                BSR      PORTA, PA2
+main.o:_00357_DS_:
+0000031d ffef                RET
+_get_chrg_status:
+0000031e ffea                IOSTR    IOSTA
+0000031f e0fc                BCR      STATUS, BK0
+00000320 ff52                MOVAR    0x2d
+00000321 e4d2                BSR      0x2d, 0x6
+00000322 fed2                MOVR     0x2d, ToAcc
+00000323 fffa                IOST     IOSTA
+00000324 f0df                BTRSC    0x20, 0x6
+00000325 c4cb                LGOTO    0x334; main.o:_00330_DS_=0x334
+00000326 f4fa                BTRSS    PORTA, PA6
+00000327 c4ce                LGOTO    0x331; main.o:_00322_DS_=0x331
+00000328 fa48                INCR     0x37, ToReg
+00000329 de7e                MOVIA    0x81
+0000032a fbc8                SUBAR    0x37, ToAcc
+0000032b f7fc                BTRSS    STATUS, C
+0000032c c4bc                LGOTO    0x343; main.o:_00332_DS_=0x343
+0000032d e4df                BSR      0x20, 0x6
+0000032e d7fe                LCALL    0x1; _disable_breathing_mode=0x1
+0000032f e6f9                BSR      PORTB, PB2
+00000330 c4bc                LGOTO    0x343; main.o:_00332_DS_=0x343
+main.o:_00322_DS_:
+00000331 e0fc                BCR      STATUS, BK0
+00000332 fd48                CLRR     0x37
+00000333 c4bc                LGOTO    0x343; main.o:_00332_DS_=0x343
+main.o:_00330_DS_:
+00000334 f0fa                BTRSC    PORTA, PA6
+00000335 c4be                LGOTO    0x341; main.o:_00327_DS_=0x341
+00000336 e0fc                BCR      STATUS, BK0
+00000337 fa48                INCR     0x37, ToReg
+00000338 debf                MOVIA    0x40
+00000339 fbc8                SUBAR    0x37, ToAcc
+0000033a f7fc                BTRSS    STATUS, C
+0000033b c4bc                LGOTO    0x343; main.o:_00332_DS_=0x343
+0000033c e0df                BCR      0x20, 0x6
+0000033d def5                MOVIA    0xa
+0000033e ff59                MOVAR    0x26
+0000033f d468                LCALL    0x397; _enable_breathing_mode=0x397
+00000340 c4bc                LGOTO    0x343; main.o:_00332_DS_=0x343
+main.o:_00327_DS_:
+00000341 e0fc                BCR      STATUS, BK0
+00000342 fd48                CLRR     0x37
+main.o:_00332_DS_:
+00000343 ffef                RET
+_get_vin_status:
+00000344 ffea                IOSTR    IOSTA
+00000345 e0fc                BCR      STATUS, BK0
+00000346 ff52                MOVAR    0x2d
+00000347 e552                BSR      0x2d, 0x5
+00000348 fed2                MOVR     0x2d, ToAcc
+00000349 fffa                IOST     IOSTA
+0000034a f5df                BTRSS    0x20, 0x4
+0000034b c4a6                LGOTO    0x359; main.o:_00312_DS_=0x359
+0000034c f17a                BTRSC    PORTA, PA5
+0000034d c4a9                LGOTO    0x356; main.o:_00304_DS_=0x356
+0000034e fa49                INCR     0x36, ToReg
+0000034f dedf                MOVIA    0x20
+00000350 fbc9                SUBAR    0x36, ToAcc
+00000351 f7fc                BTRSS    STATUS, C
+00000352 c49a                LGOTO    0x365; main.o:_00314_DS_=0x365
+00000353 e1df                BCR      0x20, 0x4
+00000354 d7fe                LCALL    0x1; _disable_breathing_mode=0x1
+00000355 c49a                LGOTO    0x365; main.o:_00314_DS_=0x365
+main.o:_00304_DS_:
+00000356 e0fc                BCR      STATUS, BK0
+00000357 fd49                CLRR     0x36
+00000358 c49a                LGOTO    0x365; main.o:_00314_DS_=0x365
+main.o:_00312_DS_:
+00000359 f57a                BTRSS    PORTA, PA5
+0000035a c49c                LGOTO    0x363; main.o:_00309_DS_=0x363
+0000035b e0fc                BCR      STATUS, BK0
+0000035c fa49                INCR     0x36, ToReg
+0000035d dedf                MOVIA    0x20
+0000035e fbc9                SUBAR    0x36, ToAcc
+0000035f f7fc                BTRSS    STATUS, C
+00000360 c49a                LGOTO    0x365; main.o:_00314_DS_=0x365
+00000361 e5df                BSR      0x20, 0x4
+00000362 c49a                LGOTO    0x365; main.o:_00314_DS_=0x365
+main.o:_00309_DS_:
+00000363 e0fc                BCR      STATUS, BK0
+00000364 fd49                CLRR     0x36
+main.o:_00314_DS_:
+00000365 ffef                RET
+_motor_close:
+00000366 e27a                BCR      PORTA, PA3
+00000367 ffea                IOSTR    IOSTA
+00000368 e0fc                BCR      STATUS, BK0
+00000369 ff52                MOVAR    0x2d
+0000036a e252                BCR      0x2d, 0x3
+0000036b fed2                MOVR     0x2d, ToAcc
+0000036c fffa                IOST     IOSTA
+0000036d e379                BCR      PORTB, PB1
+0000036e ffe9                IOSTR    IOSTB
+0000036f ff52                MOVAR    0x2d
+00000370 e352                BCR      0x2d, 0x1
+00000371 fed2                MOVR     0x2d, ToAcc
+00000372 fff9                IOST     IOSTB
+00000373 ffe9                IOSTR    IOSTB
+00000374 ff52                MOVAR    0x2d
+00000375 e552                BSR      0x2d, 0x5
+00000376 fed2                MOVR     0x2d, ToAcc
+00000377 fff9                IOST     IOSTB
+00000378 ffea                IOSTR    IOSTA
+00000379 ff52                MOVAR    0x2d
+0000037a e7d2                BSR      0x2d, 0x0
+0000037b fed2                MOVR     0x2d, ToAcc
+0000037c fffa                IOST     IOSTA
+0000037d ffea                IOSTR    IOSTA
+0000037e ff52                MOVAR    0x2d
+0000037f e752                BSR      0x2d, 0x1
+00000380 fed2                MOVR     0x2d, ToAcc
+00000381 fffa                IOST     IOSTA
+00000382 e3df                BCR      0x20, 0x0
+00000383 ffef                RET
+__gptrget:
+__gptrget1:
+00000384 dbff                XORIA    0x0
+00000385 f2fc                BTRSC    STATUS, Z
+00000386 c474                LGOTO    0x38b; _gptrget1.o:__dataptrget1=0x38b
+00000387 db7f                XORIA    0x80
+00000388 f2fc                BTRSC    STATUS, Z
+00000389 c46d                LGOTO    0x392; __codeptrget1=0x392
+0000038a dfff                RETIA    0x0
+_gptrget1.o:__dataptrget1:
+0000038b feb1                MOVR     0x4e, ToAcc
+0000038c ff7b                MOVAR    FSR
+0000038d e0fc                BCR      STATUS, BK0
+0000038e f031                BTRSC    0x4e, 0x7
+0000038f e4fc                BSR      STATUS, BK0
+00000390 feff                MOVR     INDF, ToAcc
+00000391 ffef                RET
+__codeptrget1:
+00000392 feb0                MOVR     0x4f, ToAcc
+00000393 ffb8                SFUN     TBHP
+00000394 feb1                MOVR     0x4e, ToAcc
+00000395 fdee                TABLEA
+00000396 ffef                RET
+_enable_breathing_mode:
+00000397 e0fc                BCR      STATUS, BK0
+00000398 e7de                BSR      0x21, 0x0
+00000399 ffef                RET
+

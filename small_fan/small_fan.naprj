@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup Condition="">
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>small_fan</AssemblyName>
+    <BackupACC>True</BackupACC>
+    <BackupFSR>True</BackupFSR>
+    <BackupPCHBUF>True</BackupPCHBUF>
+    <BackupSTATUS>True</BackupSTATUS>
+    <Bank0Only>False</Bank0Only>
+    <BankselOptLevel>1</BankselOptLevel>
+    <BuildCCompilerVersion>NYC_NY8 1.51 [Build: 220916.00]</BuildCCompilerVersion>
+    <BuildNYASMVersion>NYASM 2.36 [Build: 220823.00]</BuildNYASMVersion>
+    <BuildNYIDEVersion>NYIDE 4.80 [Build: 220831.00]</BuildNYIDEVersion>
+    <CCompilerInstallDir>C:\Nyquest\NYC_NY8</CCompilerInstallDir>
+    <ChipId>NY8A054E</ChipId>
+    <ClientName>qiaoning</ClientName>
+    <CodeOptimization>Enable</CodeOptimization>
+    <Configuration>Debug</Configuration>
+    <FreezeMode>True</FreezeMode>
+    <GenAsmListFile>True</GenAsmListFile>
+    <GenListFile>True</GenListFile>
+    <GenMapFile>True</GenMapFile>
+    <IncludePath></IncludePath>
+    <InitEEPROM>True</InitEEPROM>
+    <InitializeBss>True</InitializeBss>
+    <IsBankselOpt>True</IsBankselOpt>
+    <LibraryFiles></LibraryFiles>
+    <NYASMInstallDir>C:\Nyquest\NYASM\</NYASMInstallDir>
+    <NYIDEInstallDir>C:\Nyquest\NYIDE\</NYIDEInstallDir>
+    <OutputType>bin</OutputType>
+    <Platform>CNy8</Platform>
+    <ProjectGuid>{6BCD211A-A6C8-4080-8304-B9EAF4218B44}</ProjectGuid>
+    <ProjectOptionChanged>False</ProjectOptionChanged>
+    <ReservedInterruptRam>2</ReservedInterruptRam>
+    <ReservedRam>16</ReservedRam>
+    <RootNamespace>PWM_Output</RootNamespace>
+    <TrimSetting>+ 10%</TrimSetting>
+    <WarningMsgCode0>110</WarningMsgCode0>
+    <WarningMsgCode1>112</WarningMsgCode1>
+    <WarningMsgCode10>84</WarningMsgCode10>
+    <WarningMsgCode11>126</WarningMsgCode11>
+    <WarningMsgCode12>126</WarningMsgCode12>
+    <WarningMsgCode13>126</WarningMsgCode13>
+    <WarningMsgCode14>126</WarningMsgCode14>
+    <WarningMsgCode15>126</WarningMsgCode15>
+    <WarningMsgCode16>126</WarningMsgCode16>
+    <WarningMsgCode17>126</WarningMsgCode17>
+    <WarningMsgCode18>126</WarningMsgCode18>
+    <WarningMsgCode19>126</WarningMsgCode19>
+    <WarningMsgCode2>84</WarningMsgCode2>
+    <WarningMsgCode20>126</WarningMsgCode20>
+    <WarningMsgCode21>126</WarningMsgCode21>
+    <WarningMsgCode22>126</WarningMsgCode22>
+    <WarningMsgCode23>126</WarningMsgCode23>
+    <WarningMsgCode24>126</WarningMsgCode24>
+    <WarningMsgCode25>126</WarningMsgCode25>
+    <WarningMsgCode26>126</WarningMsgCode26>
+    <WarningMsgCode27>126</WarningMsgCode27>
+    <WarningMsgCode28>126</WarningMsgCode28>
+    <WarningMsgCode29>126</WarningMsgCode29>
+    <WarningMsgCode3>84</WarningMsgCode3>
+    <WarningMsgCode30>126</WarningMsgCode30>
+    <WarningMsgCode31>126</WarningMsgCode31>
+    <WarningMsgCode32>126</WarningMsgCode32>
+    <WarningMsgCode33>126</WarningMsgCode33>
+    <WarningMsgCode34>126</WarningMsgCode34>
+    <WarningMsgCode35>126</WarningMsgCode35>
+    <WarningMsgCode36>126</WarningMsgCode36>
+    <WarningMsgCode37>126</WarningMsgCode37>
+    <WarningMsgCode38>126</WarningMsgCode38>
+    <WarningMsgCode39>126</WarningMsgCode39>
+    <WarningMsgCode4>112</WarningMsgCode4>
+    <WarningMsgCode40>126</WarningMsgCode40>
+    <WarningMsgCode41>126</WarningMsgCode41>
+    <WarningMsgCode42>126</WarningMsgCode42>
+    <WarningMsgCode43>126</WarningMsgCode43>
+    <WarningMsgCode44>84</WarningMsgCode44>
+    <WarningMsgCode45>84</WarningMsgCode45>
+    <WarningMsgCode46>84</WarningMsgCode46>
+    <WarningMsgCode47>84</WarningMsgCode47>
+    <WarningMsgCode48>84</WarningMsgCode48>
+    <WarningMsgCode49>84</WarningMsgCode49>
+    <WarningMsgCode5>112</WarningMsgCode5>
+    <WarningMsgCode50>84</WarningMsgCode50>
+    <WarningMsgCode6>84</WarningMsgCode6>
+    <WarningMsgCode7>84</WarningMsgCode7>
+    <WarningMsgCode8>110</WarningMsgCode8>
+    <WarningMsgCode9>110</WarningMsgCode9>
+    <WarningMsgCount>0</WarningMsgCount>
+    <WarningMsgFileName0>D:\wksp_ex\fan_huaxin_small_54e\small_fan\main.c</WarningMsgFileName0>
+    <WarningMsgFileName1>D:\wksp\fan_huaxin_small_054E\small_fan\main.c</WarningMsgFileName1>
+    <WarningMsgFileName10>D:\wksp\fan_huaxin_small_054E\small_fan\main.c</WarningMsgFileName10>
+    <WarningMsgFileName11>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName11>
+    <WarningMsgFileName12>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName12>
+    <WarningMsgFileName13>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName13>
+    <WarningMsgFileName14>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName14>
+    <WarningMsgFileName15>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName15>
+    <WarningMsgFileName16>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName16>
+    <WarningMsgFileName17>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName17>
+    <WarningMsgFileName18>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName18>
+    <WarningMsgFileName19>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName19>
+    <WarningMsgFileName2>D:\wksp\fan_huaxin_small_054E\small_fan\main.c</WarningMsgFileName2>
+    <WarningMsgFileName20>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName20>
+    <WarningMsgFileName21>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName21>
+    <WarningMsgFileName22>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName22>
+    <WarningMsgFileName23>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName23>
+    <WarningMsgFileName24>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName24>
+    <WarningMsgFileName25>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName25>
+    <WarningMsgFileName26>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName26>
+    <WarningMsgFileName27>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName27>
+    <WarningMsgFileName28>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName28>
+    <WarningMsgFileName29>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName29>
+    <WarningMsgFileName3>D:\wksp\fan_huaxin_small_054E\small_fan\main.c</WarningMsgFileName3>
+    <WarningMsgFileName30>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName30>
+    <WarningMsgFileName31>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName31>
+    <WarningMsgFileName32>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName32>
+    <WarningMsgFileName33>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName33>
+    <WarningMsgFileName34>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName34>
+    <WarningMsgFileName35>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName35>
+    <WarningMsgFileName36>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName36>
+    <WarningMsgFileName37>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName37>
+    <WarningMsgFileName38>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName38>
+    <WarningMsgFileName39>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName39>
+    <WarningMsgFileName4>D:\wksp\fan_huaxin_small_054E\small_fan\main.c</WarningMsgFileName4>
+    <WarningMsgFileName40>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName40>
+    <WarningMsgFileName41>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName41>
+    <WarningMsgFileName42>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName42>
+    <WarningMsgFileName43>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName43>
+    <WarningMsgFileName44>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName44>
+    <WarningMsgFileName45>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName45>
+    <WarningMsgFileName46>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName46>
+    <WarningMsgFileName47>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName47>
+    <WarningMsgFileName48>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName48>
+    <WarningMsgFileName49>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName49>
+    <WarningMsgFileName5>D:\wksp\fan_huaxin_small_054E\small_fan\main.c</WarningMsgFileName5>
+    <WarningMsgFileName50>E:\2022年工作\乔宁风扇项目\乔宁风扇\small_fan\main.c</WarningMsgFileName50>
+    <WarningMsgFileName6>D:\wksp\fan_huaxin_small_054E\small_fan\main.c</WarningMsgFileName6>
+    <WarningMsgFileName7>D:\wksp\fan_huaxin_small_054E\small_fan\main.c</WarningMsgFileName7>
+    <WarningMsgFileName8>D:\wksp\fan_huaxin_small_054E\small_fan\main.c</WarningMsgFileName8>
+    <WarningMsgFileName9>D:\wksp\fan_huaxin_small_054E\small_fan\main.c</WarningMsgFileName9>
+    <WarningMsgLineNumber0>765</WarningMsgLineNumber0>
+    <WarningMsgLineNumber1>324</WarningMsgLineNumber1>
+    <WarningMsgLineNumber10>657</WarningMsgLineNumber10>
+    <WarningMsgLineNumber11>458</WarningMsgLineNumber11>
+    <WarningMsgLineNumber12>460</WarningMsgLineNumber12>
+    <WarningMsgLineNumber13>460</WarningMsgLineNumber13>
+    <WarningMsgLineNumber14>462</WarningMsgLineNumber14>
+    <WarningMsgLineNumber15>462</WarningMsgLineNumber15>
+    <WarningMsgLineNumber16>464</WarningMsgLineNumber16>
+    <WarningMsgLineNumber17>464</WarningMsgLineNumber17>
+    <WarningMsgLineNumber18>467</WarningMsgLineNumber18>
+    <WarningMsgLineNumber19>467</WarningMsgLineNumber19>
+    <WarningMsgLineNumber2>301</WarningMsgLineNumber2>
+    <WarningMsgLineNumber20>468</WarningMsgLineNumber20>
+    <WarningMsgLineNumber21>468</WarningMsgLineNumber21>
+    <WarningMsgLineNumber22>471</WarningMsgLineNumber22>
+    <WarningMsgLineNumber23>471</WarningMsgLineNumber23>
+    <WarningMsgLineNumber24>472</WarningMsgLineNumber24>
+    <WarningMsgLineNumber25>472</WarningMsgLineNumber25>
+    <WarningMsgLineNumber26>473</WarningMsgLineNumber26>
+    <WarningMsgLineNumber27>473</WarningMsgLineNumber27>
+    <WarningMsgLineNumber28>475</WarningMsgLineNumber28>
+    <WarningMsgLineNumber29>492</WarningMsgLineNumber29>
+    <WarningMsgLineNumber3>324</WarningMsgLineNumber3>
+    <WarningMsgLineNumber30>498</WarningMsgLineNumber30>
+    <WarningMsgLineNumber31>500</WarningMsgLineNumber31>
+    <WarningMsgLineNumber32>502</WarningMsgLineNumber32>
+    <WarningMsgLineNumber33>505</WarningMsgLineNumber33>
+    <WarningMsgLineNumber34>509</WarningMsgLineNumber34>
+    <WarningMsgLineNumber35>525</WarningMsgLineNumber35>
+    <WarningMsgLineNumber36>547</WarningMsgLineNumber36>
+    <WarningMsgLineNumber37>554</WarningMsgLineNumber37>
+    <WarningMsgLineNumber38>556</WarningMsgLineNumber38>
+    <WarningMsgLineNumber39>562</WarningMsgLineNumber39>
+    <WarningMsgLineNumber4>426</WarningMsgLineNumber4>
+    <WarningMsgLineNumber40>570</WarningMsgLineNumber40>
+    <WarningMsgLineNumber41>576</WarningMsgLineNumber41>
+    <WarningMsgLineNumber42>581</WarningMsgLineNumber42>
+    <WarningMsgLineNumber43>593</WarningMsgLineNumber43>
+    <WarningMsgLineNumber44>56</WarningMsgLineNumber44>
+    <WarningMsgLineNumber45>56</WarningMsgLineNumber45>
+    <WarningMsgLineNumber46>56</WarningMsgLineNumber46>
+    <WarningMsgLineNumber47>57</WarningMsgLineNumber47>
+    <WarningMsgLineNumber48>57</WarningMsgLineNumber48>
+    <WarningMsgLineNumber49>57</WarningMsgLineNumber49>
+    <WarningMsgLineNumber5>435</WarningMsgLineNumber5>
+    <WarningMsgLineNumber50>57</WarningMsgLineNumber50>
+    <WarningMsgLineNumber6>426</WarningMsgLineNumber6>
+    <WarningMsgLineNumber7>435</WarningMsgLineNumber7>
+    <WarningMsgLineNumber8>681</WarningMsgLineNumber8>
+    <WarningMsgLineNumber9>681</WarningMsgLineNumber9>
+    <WarningMsgMessage0>main.c:765: warning 110: conditional flow changed by optimizer.</WarningMsgMessage0>
+    <WarningMsgMessage1>main.c:324: warning 112: function 'disable_breathing_mode' implicit declaration</WarningMsgMessage1>
+    <WarningMsgMessage10>main.c:657: warning 84: 'auto' variable 'sendCmdProc' may be used before initialization</WarningMsgMessage10>
+    <WarningMsgMessage11>unreachable code</WarningMsgMessage11>
+    <WarningMsgMessage12>unreachable code</WarningMsgMessage12>
+    <WarningMsgMessage13>unreachable code</WarningMsgMessage13>
+    <WarningMsgMessage14>unreachable code</WarningMsgMessage14>
+    <WarningMsgMessage15>unreachable code</WarningMsgMessage15>
+    <WarningMsgMessage16>unreachable code</WarningMsgMessage16>
+    <WarningMsgMessage17>unreachable code</WarningMsgMessage17>
+    <WarningMsgMessage18>unreachable code</WarningMsgMessage18>
+    <WarningMsgMessage19>unreachable code</WarningMsgMessage19>
+    <WarningMsgMessage2>main.c:301: warning 84: 'auto' variable 'disable_breathing_mode' may be used before initialization</WarningMsgMessage2>
+    <WarningMsgMessage20>unreachable code</WarningMsgMessage20>
+    <WarningMsgMessage21>unreachable code</WarningMsgMessage21>
+    <WarningMsgMessage22>unreachable code</WarningMsgMessage22>
+    <WarningMsgMessage23>unreachable code</WarningMsgMessage23>
+    <WarningMsgMessage24>unreachable code</WarningMsgMessage24>
+    <WarningMsgMessage25>unreachable code</WarningMsgMessage25>
+    <WarningMsgMessage26>unreachable code</WarningMsgMessage26>
+    <WarningMsgMessage27>unreachable code</WarningMsgMessage27>
+    <WarningMsgMessage28>unreachable code</WarningMsgMessage28>
+    <WarningMsgMessage29>unreachable code</WarningMsgMessage29>
+    <WarningMsgMessage3>main.c:324: warning 84: 'auto' variable 'disable_breathing_mode' may be used before initialization</WarningMsgMessage3>
+    <WarningMsgMessage30>unreachable code</WarningMsgMessage30>
+    <WarningMsgMessage31>unreachable code</WarningMsgMessage31>
+    <WarningMsgMessage32>unreachable code</WarningMsgMessage32>
+    <WarningMsgMessage33>unreachable code</WarningMsgMessage33>
+    <WarningMsgMessage34>unreachable code</WarningMsgMessage34>
+    <WarningMsgMessage35>unreachable code</WarningMsgMessage35>
+    <WarningMsgMessage36>unreachable code</WarningMsgMessage36>
+    <WarningMsgMessage37>unreachable code</WarningMsgMessage37>
+    <WarningMsgMessage38>unreachable code</WarningMsgMessage38>
+    <WarningMsgMessage39>unreachable code</WarningMsgMessage39>
+    <WarningMsgMessage4>main.c:426: warning 112: function 'disable_breathing_mode' implicit declaration</WarningMsgMessage4>
+    <WarningMsgMessage40>unreachable code</WarningMsgMessage40>
+    <WarningMsgMessage41>unreachable code</WarningMsgMessage41>
+    <WarningMsgMessage42>unreachable code</WarningMsgMessage42>
+    <WarningMsgMessage43>unreachable code</WarningMsgMessage43>
+    <WarningMsgMessage44>'auto' variable '__nop' may be used before initialization</WarningMsgMessage44>
+    <WarningMsgMessage45>'auto' variable '__nop' may be used before initialization</WarningMsgMessage45>
+    <WarningMsgMessage46>'auto' variable '__nop' may be used before initialization</WarningMsgMessage46>
+    <WarningMsgMessage47>'auto' variable '__nop' may be used before initialization</WarningMsgMessage47>
+    <WarningMsgMessage48>'auto' variable '__nop' may be used before initialization</WarningMsgMessage48>
+    <WarningMsgMessage49>'auto' variable '__nop' may be used before initialization</WarningMsgMessage49>
+    <WarningMsgMessage5>main.c:435: warning 112: function 'disable_breathing_mode' implicit declaration</WarningMsgMessage5>
+    <WarningMsgMessage50>'auto' variable '__nop' may be used before initialization</WarningMsgMessage50>
+    <WarningMsgMessage6>main.c:426: warning 84: 'auto' variable 'disable_breathing_mode' may be used before initialization</WarningMsgMessage6>
+    <WarningMsgMessage7>main.c:435: warning 84: 'auto' variable 'disable_breathing_mode' may be used before initialization</WarningMsgMessage7>
+    <WarningMsgMessage8>main.c:681: warning 110: conditional flow changed by optimizer.</WarningMsgMessage8>
+    <WarningMsgMessage9>main.c:681: warning 110: conditional flow changed by optimizer.</WarningMsgMessage9>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="main.c" EntryPoint="false" MetaData="" />
+    <None Include="small_fan.cb" EntryPoint="false" MetaData="" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Client: NYQUEST" EntryPoint="false" MetaData="" />
+    <Reference Include="Config Block: small_fan.cb" EntryPoint="false" MetaData="" />
+    <Reference Include="IC Body: NY8A054E" EntryPoint="false" MetaData="" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="app_cfg.h" EntryPoint="false" MetaData="Dependency Files\app_cfg.h" />
+    <ApplicationDefinition Include="C:\Nyquest\NY8_Example_Code\include\NY8 C\ny8_constant.h" EntryPoint="false" MetaData="Dependency Files\ny8_constant.h" />
+    <ApplicationDefinition Include="C:\Nyquest\NY8_Example_Code\include\NY8 C\ny8a054e_constant.h" EntryPoint="false" MetaData="Dependency Files\ny8a054e_constant.h" />
+    <ApplicationDefinition Include="C:\Nyquest\NYC_NY8\include\ny8.h" EntryPoint="false" MetaData="Dependency Files\ny8.h" />
+    <ApplicationDefinition Include="C:\Nyquest\NYC_NY8\include\ny8a054e.h" EntryPoint="false" MetaData="Dependency Files\ny8a054e.h" />
+    <ApplicationDefinition Include="C:\Nyquest\NYC_NY8\include\ny8common.h" EntryPoint="false" MetaData="Dependency Files\ny8common.h" />
+    <Folder Include="Dependency Files" EntryPoint="false" MetaData="" />
+  </ItemGroup>
+  <Properties>
+    <Array name="ActionFiles" />
+    <Array name="bookmarks" />
+    <Array name="DisassemblyPadColumnWidthInfo">
+      <Element value="AddrWidth|60" />
+      <Element value="CodeWidth|140" />
+      <Element value="ArrowWidth|20" />
+    </Array>
+    <Array name="EEPROMOverwriteData" />
+    <Array name="ExternalResource" />
+    <Array name="files">
+      <Element value="main.c|True" />
+      <Element value="C:/Nyquest/NYC_NY8/include/ny8common.h|False" />
+      <Element value="C:/Nyquest/NY8_Example_Code/include/NY8 C/ny8a054e_constant.h|False" />
+    </Array>
+    <Array name="InstrumentFiles" />
+    <Array name="MelodyDatabaseFiles" />
+    <Array name="MusicFiles" />
+    <Array name="RegisterPadExpandInfo">
+      <Element value="0|True" />
+      <Element value="100|False" />
+      <Element value="101|False" />
+      <Element value="102|False" />
+      <Element value="103|False" />
+      <Element value="104|False" />
+      <Element value="105|False" />
+      <Element value="106|False" />
+      <Element value="107|False" />
+      <Element value="108|False" />
+      <Element value="109|False" />
+      <Element value="110|False" />
+      <Element value="111|False" />
+      <Element value="112|False" />
+      <Element value="113|False" />
+      <Element value="114|False" />
+      <Element value="115|False" />
+      <Element value="116|False" />
+      <Element value="117|False" />
+      <Element value="118|False" />
+      <Element value="119|False" />
+      <Element value="1|True" />
+      <Element value="200|False" />
+      <Element value="201|False" />
+      <Element value="202|False" />
+      <Element value="203|False" />
+      <Element value="204|False" />
+      <Element value="205|False" />
+      <Element value="206|False" />
+      <Element value="2|True" />
+      <Element value="300|False" />
+      <Element value="301|False" />
+      <Element value="302|False" />
+      <Element value="303|False" />
+      <Element value="304|False" />
+      <Element value="305|False" />
+      <Element value="306|False" />
+      <Element value="307|False" />
+      <Element value="308|False" />
+      <Element value="309|False" />
+      <Element value="310|False" />
+      <Element value="311|False" />
+      <Element value="312|False" />
+      <Element value="313|False" />
+      <Element value="314|False" />
+      <Element value="315|False" />
+      <Element value="316|False" />
+      <Element value="317|False" />
+      <Element value="318|False" />
+      <Element value="319|False" />
+      <Element value="320|False" />
+      <Element value="321|False" />
+    </Array>
+    <Array name="ResourceManager" />
+    <Array name="UpdateableResources" />
+    <Array name="VoiceFiles" />
+    <Array name="VRModule" />
+    <Array name="WatchItemInfo">
+      <Element value="vFlag_0|" />
+      <Element value="vFlag_1|" />
+    </Array>
+    <Array name="WatchPadColumnWidthInfo">
+      <Element value="NameWidth|113" />
+      <Element value="AddrWidth|80" />
+      <Element value="ValWidth|64" />
+      <Element value="PageWidth|50" />
+    </Array>
+  </Properties>
+</Project>

@@ -1,0 +1,454 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-pc-mingw32
+ 
+
+# Make data base, printed on Tue Oct 19 20:10:44 2021
+
+# ����
+
+# �Զ�
+<D = $(patsubst %/,%,$(dir $<))
+# �Զ�
+?F = $(notdir $?)
+# makefile
+MAKEFLAGS = Rrqp
+# makefile (from `makefile', line 27)
+ENABLE_INIT_BSS := 1
+# ����
+VSCODE_LOG_NATIVE = false
+# �Զ�
+?D = $(patsubst %/,%,$(dir $?))
+# �Զ�
+@D = $(patsubst %/,%,$(dir $@))
+# ����
+HOMEDRIVE = C:
+# �Զ�
+@F = $(notdir $@)
+# �Զ�
+^D = $(patsubst %/,%,$(dir $^))
+# makefile
+CURDIR := e:/���뵥Ƭ��/NYIDE 4.20 Beta [Build 210119.00]/Example Code/NY8_C/NY8A054E/small_fan/small_fan
+# Ĭ��
+SHELL := sh.exe
+# ����
+WINDIR = C:\Windows
+# ����
+VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"641b9120268979c895e11c97f0a822f6.zh-cn","_translationsConfigFile":"C:\\Users\\hljx_\\AppData\\Roaming\\Code\\clp\\641b9120268979c895e11c97f0a822f6.zh-cn\\tcf.json","_cacheRoot":"C:\\Users\\hljx_\\AppData\\Roaming\\Code\\clp\\641b9120268979c895e11c97f0a822f6.zh-cn","_resolvedLanguagePackCoreLocation":"C:\\Users\\hljx_\\AppData\\Roaming\\Code\\ 
+clp\\641b9120268979c895e11c97f0a822f6.zh-cn\\ee8c7def80afc00dd6e593ef12f37756d8f504ea","_corruptedFile":"C:\\Users\\hljx_\\AppData\\Roaming\\Code\\clp\\641b9120268979c895e11c97f0a822f6.zh-cn\\corrupted.info","_languagePackSupport":true}
+# makefile (from `makefile', line 39)
+CFLAGS := -mny8 --errfmt-ny -pNY8A054E -D__CPU_NY8A054E --debug -I"C:\Nyquest\NYC_NY8/include" -I"C:\Nyquest\NY8_Example_Code\\include\NY8 C"  -MD --stack-size 16 --backup-stk 2 
+# ����
+ONEDRIVE = C:\Users\hljx_\OneDrive
+# makefile (from `makefile', line 2)
+CLIENT_NAME := NYQUEST
+# ����
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# makefile (from `makefile', line 1)
+MAKEFILE_LIST :=  makefile
+# makefile (from `makefile', line 84)
+L = @
+# ����
+TMP = C:\Users\hljx_\AppData\Local\Temp
+# ����
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from `makefile', line 30)
+AS := nyas
+# ����
+PROGRAMW6432 = C:\Program Files
+# makefile (from `makefile', line 51)
+OBJS := OBJ/main.o
+# ����
+PROGRAMDATA = C:\ProgramData
+# ����
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-e547a4ed-4bdf-4bbf-8122-c5e12c326b75-sock
+# ����
+VSCODE_CWD = C:\Users\hljx_\AppData\Local\Programs\Microsoft VS Code
+# ����
+PATH = C:\Program Files (x86)\GnuWin32\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\RV32-Toolchain\bin;C:\Program Files (x86)\GNU Arm Embedded Toolchain\9 2020-q2-update\lib\gcc\arm-none-eabi\9.3.1;C:\Users\hljx_\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\GNU Arm Embedded Toolchain\9 2020-q2-update\bin;;C:\Users\hljx_\AppData\Local\Programs\Microsoft VS Code\bin
+# makefile (from `makefile', line 31)
+LD := nylinker
+# ����
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# ����
+ZES_ENABLE_SYSMAN = 1
+# makefile (from `makefile', line 48)
+ASM_SRC := OBJ/main.s
+# ����
+PROCESSOR_ARCHITECTURE = x86
+# makefile (from `makefile', line 7)
+USER_ASM := 
+# ����
+USERPROFILE = C:\Users\hljx_
+# ����
+ALLUSERSPROFILE = C:\ProgramData
+# makefile (from `makefile', line 65)
+CFG_FILE := C:\Nyquest\NYC_NY8/cfg/bankram/NY8A054E.cfg
+# makefile (from `makefile', line 13)
+VPATH := 
+# makefile (from `makefile', line 32)
+AR := nyar
+# makefile (from `makefile', line 5)
+USER_C := main.c  
+# ����
+VSCODE_LOG_STACK = false
+# ����
+NUMBER_OF_PROCESSORS = 8
+# ����
+ELECTRON_RUN_AS_NODE = 1
+# makefile (from `makefile', line 34)
+LDFLAGS := -p NY8A054E --client "NYQUEST" -L "C:\Nyquest\NYC_NY8/lib" -g -M --riffbin --elf --disasm --host "NYIDE 4.40" --cinit --no-programchecksum --codechecksum   --w-no 32797 --lang en-us --fcinit-ram-zero --fcinit-bk0
+# Ĭ��
+.FEATURES := target-specific order-only second-expansion else-if archives
+# makefile (from `makefile', line 54)
+BIN_FILE := PWM\ Output.bin
+# �Զ�
+%F = $(notdir $%)
+# ����
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_13896_GGMXZGKYRVEMDZGD
+# makefile (from `makefile', line 9)
+OUT_NAME_U := PWM\ Output
+# ����
+VSCODE_PIPE_LOGGING = true
+# makefile (from `makefile', line 8)
+OUT_NAME := small_fan
+# ����
+COMPUTERNAME = LAPTOP-8HCRTMTR
+# ����
+PROGRAMFILES = C:\Program Files (x86)
+# makefile (from `makefile', line 25)
+MODEL := bank2_8b
+# makefile (from `makefile', line 97)
+mkdir = -@mkdir $(subst /,\,$(1)) >nul 2>nul
+# ����
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# ����
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# ����
+USERNAME = hljx_
+# ����
+PUBLIC = C:\Users\Public
+# ����
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# makefile (from `makefile', line 4)
+HOST_TOOL := NYIDE 4.40
+# ����
+VSCODE_CODE_CACHE_PATH = C:\Users\hljx_\AppData\Roaming\Code\CachedData\ee8c7def80afc00dd6e593ef12f37756d8f504ea
+# ����
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# ����
+COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
+# ����
+LOGONSERVER = \\LAPTOP-8HCRTMTR
+# ����
+ONEDRIVECONSUMER = C:\Users\hljx_\OneDrive
+# ����
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# ����
+USERDOMAIN = LAPTOP-8HCRTMTR
+# Ĭ��
+MAKE = $(MAKE_COMMAND)
+# Ĭ��
+MAKECMDGOALS := all
+# makefile (from `makefile', line 29)
+CC := sdcc
+# makefile (from `makefile', line 66)
+ASFLAGS := -p NY8A054E --dbgfmt 2 -g -l --w-no 32797 --lang en-us -I "C:\Nyquest\NYC_NY8/inc" -D ENABLE_RAM_BANK=1
+# Ĭ��
+MAKE_VERSION := 3.81
+# makefile (from `makefile', line 91)
+cc = $(L)$(info [CC] $(3)) $(CC) $(1) -o $(2)
+# makefile
+.DEFAULT_GOAL := all
+# ����
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# �Զ�
+%D = $(patsubst %/,%,$(dir $%))
+# ����
+LOCALAPPDATA = C:\Users\hljx_\AppData\Local
+# ����
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+# Ĭ��
+MAKE_COMMAND := make.exe
+# ����
+PROCESSOR_ARCHITEW6432 = AMD64
+# Ĭ��
+.VARIABLES := 
+# makefile (from `makefile', line 1)
+ICBODY := NY8A054E
+# �Զ�
+*F = $(notdir $*)
+# ����
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+# ����
+OS = Windows_NT
+# ����
+VSCODE_IPC_HOOK = \\.\pipe\026b0cb3e58d045e27caf8f17e728d8c-1.61.0-main-sock
+# ����
+HOMEPATH = \Users\hljx_
+# ����
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# ����
+PROMPT = $P$G
+# ����
+MFLAGS = -Rrqp
+# �Զ�
+*D = $(patsubst %/,%,$(dir $*))
+# ����
+SYSTEMROOT = C:\Windows
+# �Զ�
++D = $(patsubst %/,%,$(dir $+))
+# makefile (from `makefile', line 11)
+TEMP_FOLDER := 
+# �Զ�
++F = $(notdir $+)
+# ����
+APPDATA = C:\Users\hljx_\AppData\Roaming
+# ����
+TEMP = C:\Users\hljx_\AppData\Local\Temp
+# makefile (from `makefile', line 94)
+ld = $(L)$(info [LD] $(2)) $(LD) $(1)
+# ����
+COMSPEC = C:\Windows\system32\cmd.exe
+# Ĭ��
+MAKEFILES := 
+# makefile (from `makefile', line 3)
+CB_FILE := small_fan.cb
+# �Զ�
+<F = $(notdir $<)
+# makefile (from `makefile', line 12)
+OBJDIR := OBJ
+# ����
+LC_ALL = C
+# makefile (from `makefile', line 10)
+CC_PATH := C:\Nyquest\NYC_NY8
+# makefile (from `makefile', line 88)
+as = $(L)$(info [AS] $(subst $(OBJDIR)/,,$(3))) $(AS) $(1) -o $(2)
+# makefile (from `makefile', line 77)
+LIBS :=  NY8A054E.a libsdcc_bankram.a startup/bank2_8b.a
+# �Զ�
+^F = $(notdir $^)
+# makefile (from `makefile', line 46)
+DEPS := main.d
+# Ĭ��
+SUFFIXES := 
+# ����
+SYSTEMDRIVE = C:
+# ����
+SESSIONNAME 
+ = Console
+# ����
+PROCESSOR_REVISION = 8c01
+# ����
+MAKELEVEL := 0
+# ����
+LANG = C
+# ����
+PROCESSOR_LEVEL = 6
+# ����
+VSCODE_PID = 13896
+# ����
+USERDOMAIN_ROAMINGPROFILE = LAPTOP-8HCRTMTR
+# variable set hash-table stats:
+# Load=120/1024=12%, Rehash=0, Collisions=27/186=15%
+
+# Pattern-specific Variable Values
+
+# û�� pattern-specific ������ֵ��
+
+# Ŀ¼
+
+# ���޷�������� stat ������
+# C:\Users\hljx_\AppData\Local\Programs\Microsoft VS Code\bin (�ؼ��� C:/Users/hljx_/AppData/Local/Programs/Microsoft VS Code/bin� 
+��޸�ʱ�� 1633665186)��4 �ļ��� �� impossibilities.
+# OBJ (�ؼ��� e:/���뵥Ƭ��/NYIDE 4.20 Beta [Build 210119.00]/Example Code/NY8_C/NY8A054E/small_fan/small_fan/OBJ���޸�ʱ�� 1634645159)��6 �ļ��� �� impossibilities ����Ϊֹ��
+# C:\Windows\System32\WindowsPowerShell\v1.0\ (�ؼ��� C:/Windows/System32/WindowsPowerShell/v1.0/���޸�ʱ�� 1617020307)��31 �ļ��� �� impossibilities.
+# C:\Windows\System32\Wbem (�ؼ��� C:/Windows/System32/Wbem���޸�ʱ�� 1631720903)��155 �ļ��� �� impossibilities.
+# . (�ؼ��� e:/���뵥Ƭ��/NYIDE 4.20 Beta [Build 210119.00]/Example Code/NY8_C/NY8A054E/small_fan/small_fan���޸�ʱ�� 1634645444)��14 �ļ��� �� impossibilities.
+# C:\Program Files (x86)\GNU Arm Embedded Toolchain\9 2020-q2-update\lib\gcc\arm-none-eabi\9.3.1 (�ؼ��� C:/Program Files (x86)/GNU Arm Embedded Toolchain/9 2020-q2-update/lib/gcc/arm-none-eabi/9.3.1���޸�ʱ�� 1625229866)��20 �ļ��� �� impossibilities.
+# C:\Program Files (x86)\GNU Arm Embedded Toolchain\9 2020-q2-update\bin (�ؼ��� C:/Program Files (x86)/GNU Arm Embedded Toolchain/9 2020-q2-update/bin���޸�ʱ�� 1625229864)��34 �ļ��� �� impossibilities.
+# C:\Users\hljx_\AppData\Local\Microsoft\WindowsApps (�ؼ��� C:/Users/hljx_/AppData/Local/Microsoft/WindowsApps���޸�ʱ�� 1633661058)��13 �ļ��� �� impossibilities.
+# C:\Windows\System32\OpenSSH\���޷�������� stat ������
+# C:\Windows (�ؼ��� C:/Windows���޸�ʱ�� 1634640914)��115 �ļ��� �� impossibilities.
+# C:\Windows\system32 (�ؼ��� C:/Windows/system32���޸�ʱ�� 1634640914)��2863 �ļ��� �� impossibilities.
+# C:\Pr 
+ogram Files (x86)\RV32-Toolchain\bin���޷�������� stat ������
+# C:\Program Files (x86)\GnuWin32\bin (�ؼ��� C:/Program Files (x86)/GnuWin32/bin���޸�ʱ�� 1625210843)��7 �ļ��� �� impossibilities.
+
+# 3262 �ļ��� �� impossibilities in 14 directories.
+
+# Implicit Rules
+
+OBJ/%.s: %.c
+#  Ҫִ�е����� (�ӡ�makefile������ 112)��
+	$(call cc,-S $< $(CFLAGS),$@,$<)
+	
+
+OBJ/%.o: OBJ/%.s
+#  Ҫִ�е����� (�ӡ�makefile������ 115)��
+	$(call as,$< $(ASFLAGS),$@,$<)
+	
+
+OBJ/%.o: %.s
+#  Ҫִ�е����� (�ӡ�makefile������ 118)�� 
+
+	$(call as,$< $(ASFLAGS),$@,$<)
+	
+
+# 3 ����������0 (0.0%) �նˡ�
+
+# �ļ�
+
+all: small_fan.bin
+#  Phony target (prerequisite of .PHONY).
+#  ������Ŀ�ꡣ
+#  �����������������δ��ɡ�
+#  �ļ���һ���м�ǰ�ᡣ
+#  �ļ������ڡ�
+#  �ļ��Ѿ������¡�
+#  ���³ɹ���
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+small_fan.bin: OBJ/main.o
+#  �����������������δ��ɡ�
+#  ������� 2021-10-19 20:06:00
+#  �ļ��Ѿ������¡�
+#  ���³ɹ���
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Ҫִ�е����� (�ӡ�makefile������ 107)��
+	$(call ld,$(OBJS) $(LIBS) "$(CB_FILE)" -s "$(CFG_FILE)" -o "$(TEMP_FOLDER)$(OUT_NAME)" $(LDFLAGS),$@)
+	
+
+.SECONDARY:
+#  �����������������δ��ɡ�
+#  �ļ���һ���м�ǰ�ᡣ
+#  �Ӳ�����޸�ʱ�䡣
+#  �ļ���δ�����¡�
+
+.PHONY: all clean rebuild
+#  �����������������δ��ɡ�
+#  �ļ���һ���м�ǰ�ᡣ
+#  �Ӳ�����޸�ʱ�䡣
+#  �ļ���δ�����¡�
+
+# ����һ��Ŀ�꣺
+main.c:
+#  �������������������ɡ�
+#  ������� 2020-06-10 16:53:52
+#  �ļ��Ѿ������¡�
+# 
+  ���³ɹ���
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# ����һ��Ŀ�꣺
+.DEFAULT:
+#  �����������������δ��ɡ�
+#  �ļ���һ���м�ǰ�ᡣ
+#  �Ӳ�����޸�ʱ�䡣
+#  �ļ���δ�����¡�
+
+OBJ/main.o: OBJ/main.s
+#  �������������������ɡ�
+#  ����/��̬ģʽ���ɣ���main��
+#  ������� 2021-10-19 20:05:59
+#  �ļ��Ѿ������¡�
+#  ���³ɹ���
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Ҫִ�е����� (�ӡ�makefile������ 115)��
+	$(call as,$< $(ASFLAGS),$@,$<)
+	
+
+rebuild: clean all
+#  Phony target (prerequisite of .PHONY).
+#  �����������������δ��ɡ�
+#  �ļ���һ���м�ǰ�ᡣ
+#  �ļ������ڡ�
+#  �ļ���δ�����¡�
+
+# ����һ��Ŀ�꣺
+makefile:
+#  �������������������ɡ�
+#  ������� 2021-10-19 20:05:58
+#  �ļ��Ѿ������¡�
+#  ���³ɹ���
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# ����һ��Ŀ�꣺
+main.d:
+#  A default, MAKEFILES, or -include/sinclude makefile.
+#  �������������������ɡ�
+#  �ļ���һ���м�ǰ�ᡣ
+#  �ļ������ڡ�
+#  �ļ��Ѿ������¡�
+#  ����ʧ�ܡ�
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+.SUFFIXES:
+#  �����������������δ��ɡ�
+#  �ļ���һ���м�ǰ�ᡣ
+#  �Ӳ�����޸�ʱ�䡣
+#  �ļ���δ�����¡�
+
+OBJ/main.s: main.c
+#  �������������������ɡ�
+#  ����/��̬ģʽ���ɣ���main��
+#  ������� 2021-10-19 20:05:58
+#  �ļ��Ѿ������¡�
+#  ���³ɹ���
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Ҫִ�е����� (�ӡ�makefile������ 112)��
+	$(call cc,-S $< $(CFLAGS),$@,$<)
+ 
+	
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  �����������������δ��ɡ�
+#  �ļ���һ���м�ǰ�ᡣ
+#  �ļ������ڡ�
+#  �ļ���δ�����¡�
+#  Ҫִ�е����� (�ӡ�makefile������ 125)��
+	-@1>nul 2>nul del "$(OUT_NAME).bin" "$(OUT_NAME).fpga" "$(OUT_NAME).elf" "$(OUT_NAME).link.lst" "$(OUT_NAME).map" "$(OUT_NAME).htm"
+	-@1>nul 2>nul del $(patsubst %.c, %.adb, $(USER_C))
+	-@1>nul 2>nul del $(patsubst %.c, %.p, $(USER_C))
+	-@1>nul 2>nul del $(patsubst %.c, %.s, $(USER_C))
+	-@1>nul 2>nul del $(patsubst %.c, %.o, $(USER_C))
+	-@1>nul 2>nul del $(patsubst %.c, %.d, $(USER_C))
+	-@1>nul 2>nul del $(subst /,\,$(addsuffix .o, $(basename $(ASM_SRC))))
+	-@1>nul 2>nul del $(subst /,\,$(addsuffix .lst, $(basename $(ASM_SRC))))
+	-@1>nul 2>nul del $(addprefix $(OBJDIR)\,$(subst /,\, $(patsubst %.c,%.adb,$(USER_C))))
+	-@1>nul 2>nul del $(addprefix $(OBJDIR)\,$(subst /,\, $(patsubst %.c,%.p,$(USER_C))))
+	-@1>nul 2>nul del $(addprefix $(OBJDIR)\,$(subst /,\, $(patsubst %.c,%.s,$(USER_C))))
+	-@1>nul 2>nul del $(addprefix $(OBJDIR)\,$(subst /,\, $(addsuffix .o, $(basename $(USER_ASM)))))
+	-@1>nul 2>nul del $(addprefix $(OBJDIR)\,$(subst /,\, $(addsuffix .lst, $(basename $(USER_ASM)))))
+	
+
+# files hash-table stats:
+# Load=13/1024=1%, Rehash=0, Collisions=0/40=0%
+# VPATH ����·��
+
+# û�С�vpath������·����
+
+# û��ͨ������·��(��VPATH������)��
+
+# # of strings in strcache: 2
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4080 / max = 4080 / min = 4080 / avg = 4080
+ 
+
+# Finished Make data base on Tue Oct 19 20:10:44 2021
+
+ 

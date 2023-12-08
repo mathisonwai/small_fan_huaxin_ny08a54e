@@ -1,0 +1,10 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+[CC] main.c
+make.exe: Entering directory `e:/���뵥Ƭ��/NYIDE 4.20 Beta [Build 210119.00]/Example Code/NY8_C/NY8A054E/small_fan/small_fan'
+sdcc -S main.c -mny8 --errfmt-ny -pNY8A054E -D__CPU_NY8A054E --debug -I"C:\Nyquest\NYC_NY8/include" -I"C:\Nyquest\NY8_Example_Code\\include\NY8 C"  -MD --stack-size 16 --backup-stk 2  -o OBJ/main.s
+[AS] main.s
+nyas OBJ/main.s -p NY8A054E --dbgfmt 2 -g -l --w-no 32797 --lang en-us -I "C:\Nyquest\NYC_NY8/inc" -D ENABLE_RAM_BANK=1 -o OBJ/main.o
+[LD] small_fan.bin
+nylinker OBJ/main.o  NY8A054E.a libsdcc_bankram.a startup/bank2_8b.a "small_fan.cb" -s "C:\Nyquest\NYC_NY8/cfg/bankram/NY8A054E.cfg" -o "small_fan" -p NY8A054E --client "NYQUEST" -L "C:\Nyquest\NYC_NY8/lib" -g -M --riffbin --elf --disasm --host "NYIDE 4.40" --cinit --no-programchecksum --codechecksum   --w-no 32797 --lang en-us --fcinit-ram-zero --fcinit-bk0
+make.exe: Leaving directory `e:/���뵥Ƭ��/NYIDE 4.20 Beta [Build 210119.00]/Example Code/NY8_C/NY8A054E/small_fan/small_fan'
+ 

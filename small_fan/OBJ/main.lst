@@ -1,0 +1,2156 @@
+
+                    Nyquest Technology Co., Ltd.
+
+NYASM 2.36
+
+    ADDR  OPCODE/VALUE              LINE   TAG  SOURCE                   STATEMENT    
+
+                                    1-    1     ;--------------------------------------------------------
+                                    1-    2     ; File Created by SDCC : free open source ISO C Compiler 
+                                    1-    3     ; Version 4.2.2 #0 (MSVC)
+                                    1-    4     ;--------------------------------------------------------
+                                    1-    5     ; NY8A port
+                                    1-    6     ;--------------------------------------------------------
+                                    1-    7     	.file	"main.c"
+                                    1-    8     	list	p=NY8A054E,c=on
+                                    1-    9     	#include "ny8a054e.inc"
+                                    1-   11     ;--------------------------------------------------------
+                                    1-   12     ; external declarations
+                                    1-   13     ;--------------------------------------------------------
+                                    1-   14     	extern	_T0MD
+                                    1-   15     	extern	_PCON1
+                                    1-   16     	extern	_CMPCR
+                                    1-   17     	extern	_BODCON
+                                    1-   18     	extern	_APHCON
+                                    1-   19     	extern	_IOSTB
+                                    1-   20     	extern	_IOSTA
+                                    1-   21     	extern	_INTFbits
+                                    1-   22     	extern	_PCONbits
+                                    1-   23     	extern	_PORTBbits
+                                    1-   24     	extern	_PORTAbits
+                                    1-   25     	extern	__gptrget1
+                                    1-   26     	extern	__nyc_ny8_startup
+                                    1-   27     ;--------------------------------------------------------
+                                    1-   28     ; global declarations
+                                    1-   29     ;--------------------------------------------------------
+                                    1-   30     	extern	_main
+                                    1-   31     	extern	_get_lvd_voltage
+                                    1-   32     	extern	_get_chrg_status
+                                    1-   33     	extern	_get_vin_status
+                                    1-   34     	extern	_get_motor_in_status
+                                    1-   35     	extern	_gpioKeyScan
+                                    1-   36     	extern	_motor_close
+                                    1-   37     	extern	_motor_open
+                                    1-   38     	extern	_disable_breathing_mode
+                                    1-   39     	extern	_enable_breathing_mode
+                                    1-   40     	extern	_isr
+                                    1-   41     	extern	_RESPIRATION_LAMP_TABLE
+                                    1-   42     	extern	_INTE2
+                                    1-   43     	extern	_RFC
+                                    1-   44     	extern	_INTEDG
+                                    1-   45     	extern	_AWUCON
+                                    1-   46     	extern	_INTF
+                                    1-   47     	extern	_INTE
+                                    1-   48     	extern	_BPHCON
+                                    1-   49     	extern	_ABPLCON
+                                    1-   50     	extern	_BWUCON
+                                    1-   51     	extern	_PCON
+                                    1-   52     	extern	_PORTB
+                                    1-   53     	extern	_PORTA
+                                    1-   54     	extern	_gSysTick
+                                    1-   55     	extern	_respiration_lamp_timer
+                                    1-   56     	extern	_GpioKeyState
+                                    1-   57     	extern	_gpioKeyWaitTimer
+                                    1-   58     	extern	_delaySleepTime
+                                    1-   59     	extern	_timer_slice_16ms
+                                    1-   60     	extern	_dispTimerBatLow
+                                    1-   61     	extern	_dispTimerForce
+                                    1-   62     	extern	_displayData
+                                    1-   63     	extern	_moto_work_mode
+                                    1-   64     	extern	_vFlag_1
+                                    1-   65     	extern	_vFlag_0
+                                    1-   67     	extern PSAVE
+                                    1-   68     	extern SSAVE
+                                    1-   69     	extern WSAVE
+                                    1-   70     	extern STK12
+                                    1-   71     	extern STK11
+                                    1-   72     	extern STK10
+                                    1-   73     	extern STK09
+                                    1-   74     	extern STK08
+                                    1-   75     	extern STK07
+                                    1-   76     	extern STK06
+                                    1-   77     	extern STK05
+                                    1-   78     	extern STK04
+                                    1-   79     	extern STK03
+                                    1-   80     	extern STK02
+                                    1-   81     	extern STK01
+                                    1-   82     	extern STK00
+                                    1-   84     .segment "uninit", 0x20000040
+ 20000040                           1-   85     PSAVE:
+                                    1-   86     	.res 1
+ 20000041                           1-   87     SSAVE:
+                                    1-   88     	.res 1
+ 20000042                           1-   89     WSAVE:
+                                    1-   90     	.res 1
+ 20000043                           1-   91     STK12:
+                                    1-   92     	.res 1
+ 20000044                           1-   93     STK11:
+                                    1-   94     	.res 1
+ 20000045                           1-   95     STK10:
+                                    1-   96     	.res 1
+ 20000046                           1-   97     STK09:
+                                    1-   98     	.res 1
+ 20000047                           1-   99     STK08:
+                                    1-  100     	.res 1
+ 20000048                           1-  101     STK07:
+                                    1-  102     	.res 1
+ 20000049                           1-  103     STK06:
+                                    1-  104     	.res 1
+ 2000004A                           1-  105     STK05:
+                                    1-  106     	.res 1
+ 2000004B                           1-  107     STK04:
+                                    1-  108     	.res 1
+ 2000004C                           1-  109     STK03:
+                                    1-  110     	.res 1
+ 2000004D                           1-  111     STK02:
+                                    1-  112     	.res 1
+ 2000004E                           1-  113     STK01:
+                                    1-  114     	.res 1
+ 2000004F                           1-  115     STK00:
+                                    1-  116     	.res 1
+                                    1-  118     ;--------------------------------------------------------
+                                    1-  119     ; global definitions
+                                    1-  120     ;--------------------------------------------------------
+                                    1-  121     .segment "uninit"
+     0000                           1-  122     _vFlag_0:
+                                    1-  123     	.res 1
+                                    1-  126     .segment "uninit"
+     0000                           1-  127     _vFlag_1:
+                                    1-  128     	.res 1
+                                    1-  131     .segment "uninit"
+     0000                           1-  132     _moto_work_mode:
+                                    1-  133     	.res 1
+                                    1-  136     .segment "uninit"
+     0000                           1-  137     _displayData:
+                                    1-  138     	.res 1
+                                    1-  141     .segment "uninit"
+     0000                           1-  142     _dispTimerForce:
+                                    1-  143     	.res 1
+                                    1-  146     .segment "uninit"
+     0000                           1-  147     _dispTimerBatLow:
+                                    1-  148     	.res 1
+                                    1-  151     .segment "uninit"
+     0000                           1-  152     _timer_slice_16ms:
+                                    1-  153     	.res 1
+                                    1-  156     .segment "uninit"
+     0000                           1-  157     _delaySleepTime:
+                                    1-  158     	.res 1
+                                    1-  161     .segment "uninit"
+     0000                           1-  162     _gpioKeyWaitTimer:
+                                    1-  163     	.res 1
+                                    1-  166     .segment "uninit"
+     0000                           1-  167     _GpioKeyState:
+                                    1-  168     	.res 1
+                                    1-  171     .segment "uninit"
+     0000                           1-  172     _respiration_lamp_timer:
+                                    1-  173     	.res 1
+                                    1-  176     .segment "uninit"
+     0000                           1-  177     _gSysTick:
+                                    1-  178     	.res 1
+                                    1-  181     ;--------------------------------------------------------
+                                    1-  182     ; absolute symbol definitions
+                                    1-  183     ;--------------------------------------------------------
+                                    1-  184     ;--------------------------------------------------------
+                                    1-  185     ; compiler-defined variables
+                                    1-  186     ;--------------------------------------------------------
+                                    1-  187     .segment "uninit"
+     0000                           1-  188     r0x1018:
+                                    1-  189     	.res	1
+                                    1-  190     .segment "uninit"
+     0000                           1-  191     r0x1019:
+                                    1-  192     	.res	1
+                                    1-  193     .segment "uninit"
+     0000                           1-  194     r0x1014:
+                                    1-  195     	.res	1
+                                    1-  196     .segment "uninit"
+     0000                           1-  197     r0x1015:
+                                    1-  198     	.res	1
+                                    1-  199     .segment "uninit"
+     0000                           1-  200     r0x1017:
+                                    1-  201     	.res	1
+                                    1-  202     .segment "uninit"
+     0000                           1-  203     r0x1016:
+                                    1-  204     	.res	1
+                                    1-  205     .segment "uninit"
+     0000                           1-  206     _isr_timerCnt_65536_3:
+                                    1-  207     	.res	1
+                                    1-  209     .segment "uninit"
+     0000                           1-  210     _isr_respiration_lamp_series_65536_3:
+                                    1-  211     	.res	1
+                                    1-  213     .segment "uninit"
+     0000                           1-  214     _isr_led_lamp_65536_3:
+                                    1-  215     	.res	1
+                                    1-  217     .segment "uninit"
+     0000                           1-  218     ___sdcc_saved_fsr:
+                                    1-  219     	.res	1
+                                    1-  221     .segment "uninit"
+     0000                           1-  222     ___sdcc_saved_stk00:
+                                    1-  223     	.res	1
+                                    1-  225     .segment "uninit"
+     0000                           1-  226     ___sdcc_saved_stk01:
+                                    1-  227     	.res	1
+                                    1-  229     .segment "uninit"
+     0000                           1-  230     _get_motor_in_status_counter_65536_43:
+                                    1-  231     	.res	1
+                                    1-  233     .segment "uninit"
+     0000                           1-  234     _get_vin_status_counter_65536_53:
+                                    1-  235     	.res	1
+                                    1-  237     .segment "uninit"
+     0000                           1-  238     _get_chrg_status_counter_65536_63:
+                                    1-  239     	.res	1
+                                    1-  241     .segment "uninit"
+     0000                           1-  242     _get_lvd_voltage_counter_65536_73:
+                                    1-  243     	.res	1
+                                    1-  245     .segment "uninit"
+     0000                           1-  246     _get_lvd_voltage_counter2_65536_73:
+                                    1-  247     	.res	1
+                                    1-  249     ;--------------------------------------------------------
+                                    1-  250     ; initialized data
+                                    1-  251     ;--------------------------------------------------------
+                                    1-  253     .segment "code"
+     0000                           1-  254     _RESPIRATION_LAMP_TABLE:
+     0000 2001                      1-  255     	retia 0x01	; 1
+     0001 2001                      1-  256     	retia 0x01	; 1
+     0002 2001                      1-  257     	retia 0x01	; 1
+     0003 2001                      1-  258     	retia 0x01	; 1
+     0004 2001                      1-  259     	retia 0x01	; 1
+     0005 2002                      1-  260     	retia 0x02	; 2
+     0006 2002                      1-  261     	retia 0x02	; 2
+     0007 2002                      1-  262     	retia 0x02	; 2
+     0008 2002                      1-  263     	retia 0x02	; 2
+     0009 2002                      1-  264     	retia 0x02	; 2
+     000A 2002                      1-  265     	retia 0x02	; 2
+     000B 2002                      1-  266     	retia 0x02	; 2
+     000C 2002                      1-  267     	retia 0x02	; 2
+     000D 2003                      1-  268     	retia 0x03	; 3
+     000E 2003                      1-  269     	retia 0x03	; 3
+     000F 2003                      1-  270     	retia 0x03	; 3
+     0010 2003                      1-  271     	retia 0x03	; 3
+     0011 2003                      1-  272     	retia 0x03	; 3
+     0012 2004                      1-  273     	retia 0x04	; 4
+     0013 2004                      1-  274     	retia 0x04	; 4
+     0014 2004                      1-  275     	retia 0x04	; 4
+     0015 2005                      1-  276     	retia 0x05	; 5
+     0016 2005                      1-  277     	retia 0x05	; 5
+     0017 2005                      1-  278     	retia 0x05	; 5
+     0018 2006                      1-  279     	retia 0x06	; 6
+     0019 2006                      1-  280     	retia 0x06	; 6
+     001A 2006                      1-  281     	retia 0x06	; 6
+     001B 2007                      1-  282     	retia 0x07	; 7
+     001C 2007                      1-  283     	retia 0x07	; 7
+     001D 2008                      1-  284     	retia 0x08	; 8
+     001E 2009                      1-  285     	retia 0x09	; 9
+     001F 2009                      1-  286     	retia 0x09	; 9
+     0020 200A                      1-  287     	retia 0x0a	; 10
+     0021 200B                      1-  288     	retia 0x0b	; 11
+     0022 200B                      1-  289     	retia 0x0b	; 11
+     0023 200C                      1-  290     	retia 0x0c	; 12
+     0024 200D                      1-  291     	retia 0x0d	; 13
+     0025 200E                      1-  292     	retia 0x0e	; 14
+     0026 200F                      1-  293     	retia 0x0f	; 15
+     0027 2010                      1-  294     	retia 0x10	; 16
+     0028 2011                      1-  295     	retia 0x11	; 17
+     0029 2012                      1-  296     	retia 0x12	; 18
+     002A 2014                      1-  297     	retia 0x14	; 20
+     002B 2015                      1-  298     	retia 0x15	; 21
+     002C 2017                      1-  299     	retia 0x17	; 23
+     002D 2018                      1-  300     	retia 0x18	; 24
+     002E 201A                      1-  301     	retia 0x1a	; 26
+     002F 201C                      1-  302     	retia 0x1c	; 28
+     0030 201E                      1-  303     	retia 0x1e	; 30
+     0031 2020                      1-  304     	retia 0x20	; 32
+     0032 2022                      1-  305     	retia 0x22	; 34
+     0033 2025                      1-  306     	retia 0x25	; 37
+     0034 2027                      1-  307     	retia 0x27	; 39
+     0035 202A                      1-  308     	retia 0x2a	; 42
+     0036 202D                      1-  309     	retia 0x2d	; 45
+     0037 2030                      1-  310     	retia 0x30	; 48	'0'
+     0038 2034                      1-  311     	retia 0x34	; 52	'4'
+     0039 2038                      1-  312     	retia 0x38	; 56	'8'
+     003A 203C                      1-  313     	retia 0x3c	; 60
+     003B 2040                      1-  314     	retia 0x40	; 64
+     003C 2044                      1-  315     	retia 0x44	; 68	'D'
+     003D 2049                      1-  316     	retia 0x49	; 73	'I'
+     003E 204F                      1-  317     	retia 0x4f	; 79	'O'
+     003F 2054                      1-  318     	retia 0x54	; 84	'T'
+     0040 205A                      1-  319     	retia 0x5a	; 90	'Z'
+     0041 2061                      1-  320     	retia 0x61	; 97	'a'
+     0042 2068                      1-  321     	retia 0x68	; 104	'h'
+     0043 206F                      1-  322     	retia 0x6f	; 111	'o'
+     0044 2077                      1-  323     	retia 0x77	; 119	'w'
+     0045 2080                      1-  324     	retia 0x80	; 128
+     0046 2089                      1-  325     	retia 0x89	; 137
+     0047 2093                      1-  326     	retia 0x93	; 147
+     0048 209D                      1-  327     	retia 0x9d	; 157
+     0049 20A8                      1-  328     	retia 0xa8	; 168
+     004A 20B4                      1-  329     	retia 0xb4	; 180
+     004B 20C1                      1-  330     	retia 0xc1	; 193
+     004C 20CF                      1-  331     	retia 0xcf	; 207
+     004D 20DE                      1-  332     	retia 0xde	; 222
+     004E 20EE                      1-  333     	retia 0xee	; 238
+     004F 20FF                      1-  334     	retia 0xff	; 255
+     0050 20FF                      1-  335     	retia 0xff	; 255
+                                    1-  336     ;--------------------------------------------------------
+                                    1-  337     ; initialized absolute data
+                                    1-  338     ;--------------------------------------------------------
+                                    1-  339     ;--------------------------------------------------------
+                                    1-  340     ; overlayable items in internal ram 
+                                    1-  341     ;--------------------------------------------------------
+                                    1-  342     ;	udata_ovr
+                                    1-  343     ;--------------------------------------------------------
+                                    1-  344     ; reset vector 
+                                    1-  345     ;--------------------------------------------------------
+                                    1-  346     ORG	0x0000
+     0000 3rrr                      1-  347     	LGOTO	__nyc_ny8_startup
+                                    1-  348     ;--------------------------------------------------------
+                                    1-  349     ; interrupt and initialization code
+                                    1-  350     ;--------------------------------------------------------
+                                    1-  351     ORG 0x0008
+                                    1-  352     	MGOTO	__sdcc_interrupt
+     0008 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  354     .segment "code"
+     0000                           1-  355     __sdcc_interrupt:
+                                    1-  356     ;***
+                                    1-  357     ;  pBlock Stats: dbName = I
+                                    1-  358     ;***
+                                    1-  359     ;functions called:
+                                    1-  360     ;   __gptrget1
+                                    1-  361     ;   __gptrget1
+                                    1-  362     ;4 compiler assigned registers:
+                                    1-  363     ;   STK00
+                                    1-  364     ;   STK01
+                                    1-  365     ;   r0x1018
+                                    1-  366     ;   r0x1019
+                                    1-  367     ;; Starting pCode block
+     0000                           1-  368     _isr:
+                                    1-  369     ; 0 exit points
+                                    1-  370     	.line	132, "main.c"; 	void isr(void) __interrupt(0) // 64us
+     0000 00rr                      1-  371     	MOVAR	WSAVE
+     0001 1503                      1-  372     	SWAPR	STATUS,W
+     0002 0283                      1-  373     	CLRR	STATUS
+     0003 00rr                      1-  374     	MOVAR	SSAVE
+     0004 010A                      1-  375     	MOVR	PCHBUF,W
+     0005 028A                      1-  376     	CLRR	PCHBUF
+     0006 00rr                      1-  377     	MOVAR	PSAVE
+     0007 0104                      1-  378     	MOVR	FSR,W
+                                    1-  379     	BANKSEL	___sdcc_saved_fsr
+     0008 rrrr                      3-  108 m1      .banksel ram_address
+     0009 00rr                      1-  380     	MOVAR	___sdcc_saved_fsr
+     000A 01rr                      1-  381     	MOVR	STK00,W
+                                    1-  382     	BANKSEL	___sdcc_saved_stk00
+     000B rrrr                      3-  108 m1      .banksel ram_address
+     000C 00rr                      1-  383     	MOVAR	___sdcc_saved_stk00
+     000D 01rr                      1-  384     	MOVR	STK01,W
+                                    1-  385     	BANKSEL	___sdcc_saved_stk01
+     000E rrrr                      3-  108 m1      .banksel ram_address
+     000F 00rr                      1-  386     	MOVAR	___sdcc_saved_stk01
+                                    1-  387     	.line	138, "main.c"; 	if (TM0IF)
+     0010 08rr                      1-  388     	BTRSS	_INTFbits,0
+                                    1-  389     	MGOTO	_00122_DS_
+     0011 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  390     	.line	140, "main.c"; 	TM0IF = 0;
+     0012 21FE                      1-  391     	MOVIA	0xfe
+     0013 00rr                      1-  392     	MOVAR	(_INTFbits + 0)
+                                    1-  393     	.line	146, "main.c"; 	timerCnt++;
+                                    1-  394     	BANKSEL	_isr_timerCnt_65536_3
+     0014 rrrr                      3-  108 m1      .banksel ram_address
+     0015 05rr                      1-  395     	INCR	_isr_timerCnt_65536_3,F
+                                    1-  396     	.line	148, "main.c"; 	if (!(timerCnt & 0x01))
+     0016 0Crr                      1-  397     	BTRSC	_isr_timerCnt_65536_3,0
+                                    1-  398     	MGOTO	_00002_DS_
+     0017 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  399     	.line	150, "main.c"; 	bFlag_gSysTick_Change = 1; // 128us
+                                    1-  400     	BANKSEL	_vFlag_0
+     0018 rrrr                      3-  108 m1      .banksel ram_address
+     0019 1Arr                      1-  401     	BSR	_vFlag_0,5
+     001A                           1-  402     _00002_DS_:
+                                    1-  403     	.line	155, "main.c"; 	if (bFlag_is_breathing_mode) // 100us
+                                    1-  404     	BANKSEL	_vFlag_1
+     001A rrrr                      3-  108 m1      .banksel ram_address
+     001B 08rr                      1-  405     	BTRSS	_vFlag_1,0
+                                    1-  406     	MGOTO	_00122_DS_
+     001C 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  407     	.line	157, "main.c"; 	respiration_lamp_timer++;
+                                    1-  408     	BANKSEL	_respiration_lamp_timer
+     001D rrrr                      3-  108 m1      .banksel ram_address
+     001E 01rr                      1-  409     	MOVR	_respiration_lamp_timer,W
+                                    1-  410     	BANKSEL	r0x1018
+     001F rrrr                      3-  108 m1      .banksel ram_address
+     0020 00rr                      1-  411     	MOVAR	r0x1018
+     0021 05rr                      1-  412     	INCR	r0x1018,W
+                                    1-  413     	BANKSEL	_respiration_lamp_timer
+     0022 rrrr                      3-  108 m1      .banksel ram_address
+     0023 00rr                      1-  414     	MOVAR	_respiration_lamp_timer
+                                    1-  415     	.line	159, "main.c"; 	if (!(respiration_lamp_timer))
+     0024 01rr                      1-  416     	MOVR	_respiration_lamp_timer,W
+     0025 0903                      1-  417     	BTRSS	STATUS,2
+                                    1-  418     	MGOTO	_00115_DS_
+     0026 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  419     	.line	161, "main.c"; 	if (bFlag_inc_or_dec)
+                                    1-  420     	BANKSEL	_vFlag_1
+     0027 rrrr                      3-  108 m1      .banksel ram_address
+     0028 08rr                      1-  421     	BTRSS	_vFlag_1,1
+                                    1-  422     	MGOTO	_00112_DS_
+     0029 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  423     	.line	163, "main.c"; 	if (!(--respiration_lamp_series))
+                                    1-  424     	BANKSEL	_isr_respiration_lamp_series_65536_3
+     002A rrrr                      3-  108 m1      .banksel ram_address
+     002B 17rr                      1-  425     	DECRSZ	_isr_respiration_lamp_series_65536_3,F
+                                    1-  426     	MGOTO	_00113_DS_
+     002C 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  427     	.line	165, "main.c"; 	bFlag_inc_or_dec = 0;
+                                    1-  428     	BANKSEL	_vFlag_1
+     002D rrrr                      3-  108 m1      .banksel ram_address
+     002E 1Crr                      1-  429     	BCR	_vFlag_1,1
+                                    1-  430     	.line	165, "main.c"; 	// bFlag_disable_key = 0;
+                                    1-  431     	MGOTO	_00113_DS_
+     002F 3rrr                      3-   61 m1      LGOTO rom_address
+     0030                           1-  432     _00112_DS_:
+                                    1-  433     	.line	182, "main.c"; 	if (++respiration_lamp_series >= CONST_RESPIRATION_LAMP_SERIES)
+                                    1-  434     	BANKSEL	_isr_respiration_lamp_series_65536_3
+     0030 rrrr                      3-  108 m1      .banksel ram_address
+     0031 05rr                      1-  435     	INCR	_isr_respiration_lamp_series_65536_3,F
+                                    1-  436     ;;unsigned compare: left < lit(0x50=80), size=1
+     0032 2150                      1-  437     	MOVIA	0x50
+     0033 04rr                      1-  438     	SUBAR	_isr_respiration_lamp_series_65536_3,W
+     0034 0803                      1-  439     	BTRSS	STATUS,0
+                                    1-  440     	MGOTO	_00113_DS_
+     0035 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  441     	.line	184, "main.c"; 	respiration_lamp_series = CONST_RESPIRATION_LAMP_SERIES;
+     0036 2150                      1-  442     	MOVIA	0x50
+     0037 00rr                      1-  443     	MOVAR	_isr_respiration_lamp_series_65536_3
+                                    1-  444     	.line	188, "main.c"; 	bFlag_inc_or_dec = 1;
+                                    1-  445     	BANKSEL	_vFlag_1
+     0038 rrrr                      3-  108 m1      .banksel ram_address
+     0039 18rr                      1-  446     	BSR	_vFlag_1,1
+     003A                           1-  447     _00113_DS_:
+                                    1-  448     	.line	193, "main.c"; 	led_lamp = RESPIRATION_LAMP_TABLE[respiration_lamp_series];
+                                    1-  449     	BANKSEL	_isr_respiration_lamp_series_65536_3
+     003A rrrr                      3-  108 m1      .banksel ram_address
+     003B 01rr                      1-  450     	MOVR	_isr_respiration_lamp_series_65536_3,W
+     003C 25rr                      1-  451     	ADDIA	(_RESPIRATION_LAMP_TABLE + 0)
+                                    1-  452     	BANKSEL	r0x1018
+     003D rrrr                      3-  108 m1      .banksel ram_address
+     003E 00rr                      1-  453     	MOVAR	r0x1018
+     003F 21rr                      1-  454     	MOVIA	((_RESPIRATION_LAMP_TABLE + 0) >> 8) & 0xff
+     0040 2600                      1-  455     	ADCIA	0x00
+                                    1-  456     	BANKSEL	r0x1019
+     0041 rrrr                      3-  108 m1      .banksel ram_address
+     0042 00rr                      1-  457     	MOVAR	r0x1019
+                                    1-  458     	BANKSEL	r0x1018
+     0043 rrrr                      3-  108 m1      .banksel ram_address
+     0044 01rr                      1-  459     	MOVR	r0x1018,W
+     0045 00rr                      1-  460     	MOVAR	STK01
+                                    1-  461     	BANKSEL	r0x1019
+     0046 rrrr                      3-  108 m1      .banksel ram_address
+     0047 01rr                      1-  462     	MOVR	r0x1019,W
+     0048 00rr                      1-  463     	MOVAR	STK00
+     0049 2180                      1-  464     	MOVIA	0x80
+                                    1-  465     	MCALL	__gptrget1
+     004A 2rrr                      3-   64 m1      LCALL rom_address
+                                    1-  466     	BANKSEL	_isr_led_lamp_65536_3
+     004B rrrr                      3-  108 m1      .banksel ram_address
+     004C 00rr                      1-  467     	MOVAR	_isr_led_lamp_65536_3
+     004D                           1-  468     _00115_DS_:
+                                    1-  469     	.line	196, "main.c"; 	if (respiration_lamp_timer >= led_lamp)
+                                    1-  470     	BANKSEL	_isr_led_lamp_65536_3
+     004D rrrr                      3-  108 m1      .banksel ram_address
+     004E 01rr                      1-  471     	MOVR	_isr_led_lamp_65536_3,W
+                                    1-  472     	BANKSEL	_respiration_lamp_timer
+     004F rrrr                      3-  108 m1      .banksel ram_address
+     0050 04rr                      1-  473     	SUBAR	_respiration_lamp_timer,W
+     0051 0803                      1-  474     	BTRSS	STATUS,0
+                                    1-  475     	MGOTO	_00117_DS_
+     0052 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  476     	.line	198, "main.c"; 	P_LED_B_OFF;
+     0053 1Drr                      1-  477     	BCR	_PORTBbits,2
+                                    1-  478     	.line	198, "main.c"; 	// P_LED_G_OFF;
+                                    1-  479     	MGOTO	_00122_DS_
+     0054 3rrr                      3-   61 m1      LGOTO rom_address
+     0055                           1-  480     _00117_DS_:
+                                    1-  481     	.line	204, "main.c"; 	P_LED_B_ON;
+     0055 19rr                      1-  482     	BSR	_PORTBbits,2
+     0056                           1-  483     _00122_DS_:
+                                    1-  484     	.line	230, "main.c"; 	if (INTFbits.LVDIF)
+     0056 0Arr                      1-  485     	BTRSS	_INTFbits,4
+                                    1-  486     	MGOTO	_00125_DS_
+     0057 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  487     	.line	232, "main.c"; 	INTFbits.LVDIF = 0;
+     0058 21EF                      1-  488     	MOVIA	0xef
+     0059 00rr                      1-  489     	MOVAR	(_INTFbits + 0)
+     005A                           1-  490     _00125_DS_:
+                                    1-  491     	.line	234, "main.c"; 	}
+                                    1-  492     	BANKSEL	___sdcc_saved_stk01
+     005A rrrr                      3-  108 m1      .banksel ram_address
+     005B 01rr                      1-  493     	MOVR	___sdcc_saved_stk01,W
+     005C 00rr                      1-  494     	MOVAR	STK01
+                                    1-  495     	BANKSEL	___sdcc_saved_stk00
+     005D rrrr                      3-  108 m1      .banksel ram_address
+     005E 01rr                      1-  496     	MOVR	___sdcc_saved_stk00,W
+     005F 00rr                      1-  497     	MOVAR	STK00
+                                    1-  498     	BANKSEL	___sdcc_saved_fsr
+     0060 rrrr                      3-  108 m1      .banksel ram_address
+     0061 01rr                      1-  499     	MOVR	___sdcc_saved_fsr,W
+     0062 0084                      1-  500     	MOVAR	FSR
+     0063 01rr                      1-  501     	MOVR	PSAVE,W
+     0064 008A                      1-  502     	MOVAR	PCHBUF
+     0065 0283                      1-  503     	CLRR	STATUS
+     0066 15rr                      1-  504     	SWAPR	SSAVE,W
+     0067 0083                      1-  505     	MOVAR	STATUS
+     0068 15rr                      1-  506     	SWAPR	WSAVE,F
+     0069 15rr                      1-  507     	SWAPR	WSAVE,W
+     006A                           1-  508     END_OF_INTERRUPT:
+     006A 0011                      1-  509     	RETIE	
+                                    1-  511     ;--------------------------------------------------------
+                                    1-  512     ; code
+                                    1-  513     ;--------------------------------------------------------
+                                    1-  514     ; code_main	code
+                                    1-  515     ;***
+                                    1-  516     ;  pBlock Stats: dbName = M
+                                    1-  517     ;***
+                                    1-  518     ;has an exit
+                                    1-  519     ;functions called:
+                                    1-  520     ;   _get_vin_status
+                                    1-  521     ;   _get_chrg_status
+                                    1-  522     ;   _gpioKeyScan
+                                    1-  523     ;   _get_lvd_voltage
+                                    1-  524     ;   _get_vin_status
+                                    1-  525     ;   _get_chrg_status
+                                    1-  526     ;   _gpioKeyScan
+                                    1-  527     ;   _get_lvd_voltage
+                                    1-  528     ;1 compiler assigned register :
+                                    1-  529     ;   r0x1016
+                                    1-  530     ;; Starting pCode block
+                                    1-  531     .segment "code"; module=main, function=_main
+     0000                           1-  533     _main:
+                                    1-  534     ; 2 exit points
+                                    1-  535     	.line	760, "main.c"; 	DISI();
+     0000 0013                      1-  536     	DISI
+                                    1-  537     	.line	762, "main.c"; 	APHCON = 0xBF; //(unsigned char)(~C_PA7_PHB);
+     0001 21BF                      1-  538     	MOVIA	0xbf
+     0002 000r                      1-  539     	IOST	_APHCON
+                                    1-  540     	.line	763, "main.c"; 	BPHCON = 0xEF; //! PB5--PB0 ,only pb4 have pullhigh
+     0003 21EF                      1-  541     	MOVIA	0xef
+     0004 00rr                      1-  542     	MOVAR	_BPHCON
+                                    1-  543     	.line	765, "main.c"; 	PORTA = 0x00;
+     0005 02rr                      1-  544     	CLRR	_PORTA
+                                    1-  545     	.line	766, "main.c"; 	PORTB = 0x00;
+     0006 02rr                      1-  546     	CLRR	_PORTB
+                                    1-  547     	.line	770, "main.c"; 	IOSTA = 0x73; // PA5 Input <-- Set PA5 to open drain output
+     0007 2173                      1-  548     	MOVIA	0x73
+     0008 000r                      1-  549     	IOST	_IOSTA
+                                    1-  550     	.line	771, "main.c"; 	IOSTB = 0xF0; // PB5 output PB4 Input
+     0009 21F0                      1-  551     	MOVIA	0xf0
+     000A 000r                      1-  552     	IOST	_IOSTB
+                                    1-  553     	.line	777, "main.c"; 	CMPCR = C_RBias_High_Dis | C_RBias_Low_Dis | C_CMPFINV_Dis | 0x0A; // initial SFR CMPCR (CMPF_INV=0) measure LVD_L
+     000B 210A                      1-  554     	MOVIA	0x0a
+     000C 000r                      1-  555     	IOST	_CMPCR
+                                    1-  556     	.line	778, "main.c"; 	PCON1 &= 0xC3;
+     000D 001r                      1-  557     	IOSTR	_PCON1
+                                    1-  558     	BANKSEL	r0x1016
+     000E rrrr                      3-  108 m1      .banksel ram_address
+     000F 00rr                      1-  559     	MOVAR	r0x1016
+     0010 21C3                      1-  560     	MOVIA	0xc3
+     0011 10rr                      1-  561     	ANDAR	r0x1016,F
+     0012 01rr                      1-  562     	MOVR	r0x1016,W
+     0013 000r                      1-  563     	IOST	_PCON1
+                                    1-  564     	.line	779, "main.c"; 	PCON1 |= C_LVD_3P45V; // Set LVDS[3:0]=0101b (2.8V) , Timer0 disable
+     0014 001r                      1-  565     	IOSTR	_PCON1
+     0015 00rr                      1-  566     	MOVAR	r0x1016
+     0016 2128                      1-  567     	MOVIA	0x28
+     0017 11rr                      1-  568     	IORAR	r0x1016,F
+     0018 01rr                      1-  569     	MOVR	r0x1016,W
+     0019 000r                      1-  570     	IOST	_PCON1
+                                    1-  571     	.line	780, "main.c"; 	PCONbits.LVDEN = 1;   // Enable low-voltage detector
+     001A 1Arr                      1-  572     	BSR	_PCONbits,5
+                                    1-  573     	.line	783, "main.c"; 	T0MD = 0x0F; // 8M,2T  Prescaler0 to wdt,
+     001B 210F                      1-  574     	MOVIA	0x0f
+     001C 0003                      1-  575     	T0MD	
+                                    1-  576     	.line	792, "main.c"; 	INTE = (0x01 /*| C_INT_LVD*/); // Timer0 overflow interrupt enable bit
+     001D 2101                      1-  577     	MOVIA	0x01
+     001E 00rr                      1-  578     	MOVAR	_INTE
+                                    1-  579     	.line	793, "main.c"; 	INTF = 0;
+     001F 02rr                      1-  580     	CLRR	_INTF
+                                    1-  581     	.line	795, "main.c"; 	PCON = 0xFC; //  C_WDT_En | C_LVR_En;                // Enable WDT ,  Enable LVR
+     0020 21FC                      1-  582     	MOVIA	0xfc
+     0021 00rr                      1-  583     	MOVAR	_PCON
+                                    1-  584     	.line	798, "main.c"; 	PCON1 |= C_TMR0_En; // Enable Timer0
+     0022 001r                      1-  585     	IOSTR	_PCON1
+     0023 00rr                      1-  586     	MOVAR	r0x1016
+     0024 18rr                      1-  587     	BSR	r0x1016,0
+     0025 01rr                      1-  588     	MOVR	r0x1016,W
+     0026 000r                      1-  589     	IOST	_PCON1
+                                    1-  590     	.line	800, "main.c"; 	ENI();
+     0027 0004                      1-  591     	ENI
+                                    1-  592     	.line	802, "main.c"; 	delaySleepTime = CONST_DELAY_SLEEP_TIME;
+     0028 210A                      1-  593     	MOVIA	0x0a
+                                    1-  594     	BANKSEL	_delaySleepTime
+     0029 rrrr                      3-  108 m1      .banksel ram_address
+     002A 00rr                      1-  595     	MOVAR	_delaySleepTime
+                                    1-  596     	.line	803, "main.c"; 	bFlag_Power_On = 1;
+                                    1-  597     	BANKSEL	_vFlag_0
+     002B rrrr                      3-  108 m1      .banksel ram_address
+     002C 1Brr                      1-  598     	BSR	_vFlag_0,7
+                                    1-  599     	.line	805, "main.c"; 	moto_work_mode = 1;
+     002D 2101                      1-  600     	MOVIA	0x01
+                                    1-  601     	BANKSEL	_moto_work_mode
+     002E rrrr                      3-  108 m1      .banksel ram_address
+     002F 00rr                      1-  602     	MOVAR	_moto_work_mode
+     0030                           1-  603     _00404_DS_:
+                                    1-  604     	.line	809, "main.c"; 	CLRWDT(); // Clear WatchDog
+     0030 0002                      1-  605     	clrwdt
+                                    1-  606     	.line	813, "main.c"; 	if (bFlag_gSysTick_Change) // 128us
+                                    1-  607     	BANKSEL	_vFlag_0
+     0031 rrrr                      3-  108 m1      .banksel ram_address
+     0032 0Arr                      1-  608     	BTRSS	_vFlag_0,5
+                                    1-  609     	MGOTO	_00404_DS_
+     0033 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  610     	.line	815, "main.c"; 	bFlag_gSysTick_Change = 0;
+     0034 1Err                      1-  611     	BCR	_vFlag_0,5
+                                    1-  612     	.line	817, "main.c"; 	gSysTick++;
+                                    1-  613     	BANKSEL	_gSysTick
+     0035 rrrr                      3-  108 m1      .banksel ram_address
+     0036 01rr                      1-  614     	MOVR	_gSysTick,W
+                                    1-  615     	BANKSEL	r0x1016
+     0037 rrrr                      3-  108 m1      .banksel ram_address
+     0038 00rr                      1-  616     	MOVAR	r0x1016
+     0039 05rr                      1-  617     	INCR	r0x1016,W
+                                    1-  618     	BANKSEL	_gSysTick
+     003A rrrr                      3-  108 m1      .banksel ram_address
+     003B 00rr                      1-  619     	MOVAR	_gSysTick
+                                    1-  620     	.line	819, "main.c"; 	if (!(gSysTick & 0x7F)) // 16ms
+     003C 227F                      1-  621     	ANDIA	0x7f
+     003D 0903                      1-  622     	BTRSS	STATUS,2
+                                    1-  623     	MGOTO	_00001_DS_
+     003E 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  624     	.line	834, "main.c"; 	if (0 == dispTimerForce)
+                                    1-  625     	BANKSEL	_dispTimerForce
+     003F rrrr                      3-  108 m1      .banksel ram_address
+     0040 01rr                      1-  626     	MOVR	_dispTimerForce,W
+     0041 0903                      1-  627     	BTRSS	STATUS,2
+                                    1-  628     	MGOTO	_00365_DS_
+     0042 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  629     	.line	836, "main.c"; 	get_vin_status();
+                                    1-  630     	MCALL	_get_vin_status
+     0043 2rrr                      3-   64 m1      LCALL rom_address
+                                    1-  631     	.line	837, "main.c"; 	if (bFlag_Vin_Plug_In)
+                                    1-  632     	BANKSEL	_vFlag_0
+     0044 rrrr                      3-  108 m1      .banksel ram_address
+     0045 0Err                      1-  633     	BTRSC	_vFlag_0,4
+                                    1-  634     	.line	839, "main.c"; 	get_chrg_status();
+                                    1-  635     	MCALL	_get_chrg_status
+     0046 2rrr                      3-   64 m1      LCALL rom_address
+     0047                           1-  636     _00365_DS_:
+                                    1-  637     	.line	843, "main.c"; 	gpioKeyScan();
+                                    1-  638     	MCALL	_gpioKeyScan
+     0047 2rrr                      3-   64 m1      LCALL rom_address
+                                    1-  639     	.line	845, "main.c"; 	timer_slice_16ms++;
+                                    1-  640     	BANKSEL	_timer_slice_16ms
+     0048 rrrr                      3-  108 m1      .banksel ram_address
+     0049 01rr                      1-  641     	MOVR	_timer_slice_16ms,W
+                                    1-  642     	BANKSEL	r0x1016
+     004A rrrr                      3-  108 m1      .banksel ram_address
+     004B 00rr                      1-  643     	MOVAR	r0x1016
+     004C 05rr                      1-  644     	INCR	r0x1016,W
+                                    1-  645     	BANKSEL	_timer_slice_16ms
+     004D rrrr                      3-  108 m1      .banksel ram_address
+     004E 00rr                      1-  646     	MOVAR	_timer_slice_16ms
+                                    1-  647     	.line	856, "main.c"; 	if (!(timer_slice_16ms & 0x0F))
+     004F 220F                      1-  648     	ANDIA	0x0f
+     0050 0D03                      1-  649     	BTRSC	STATUS,2
+                                    1-  650     	.line	859, "main.c"; 	get_lvd_voltage();
+                                    1-  651     	MCALL	_get_lvd_voltage
+     0051 2rrr                      3-   64 m1      LCALL rom_address
+                                    1-  652     	.line	862, "main.c"; 	if (!(timer_slice_16ms & 0x1F))
+                                    1-  653     	BANKSEL	_timer_slice_16ms
+     0052 rrrr                      3-  108 m1      .banksel ram_address
+     0053 01rr                      1-  654     	MOVR	_timer_slice_16ms,W
+     0054 221F                      1-  655     	ANDIA	0x1f
+     0055 0903                      1-  656     	BTRSS	STATUS,2
+                                    1-  657     	MGOTO	_00001_DS_
+     0056 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  658     	.line	864, "main.c"; 	bFlag_Timeslice_500ms = 1;
+                                    1-  659     	BANKSEL	_vFlag_0
+     0057 rrrr                      3-  108 m1      .banksel ram_address
+     0058 19rr                      1-  660     	BSR	_vFlag_0,2
+     0059                           1-  661     _00001_DS_:
+                                    1-  662     	.line	868, "main.c"; 	if (bFlag_Timeslice_500ms)
+                                    1-  663     	BANKSEL	_vFlag_0
+     0059 rrrr                      3-  108 m1      .banksel ram_address
+     005A 09rr                      1-  664     	BTRSS	_vFlag_0,2
+                                    1-  665     	MGOTO	_00404_DS_
+     005B 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  666     	.line	870, "main.c"; 	bFlag_Timeslice_500ms = 0;
+     005C 1Drr                      1-  667     	BCR	_vFlag_0,2
+                                    1-  668     	.line	883, "main.c"; 	if (dispTimerForce)
+                                    1-  669     	BANKSEL	_dispTimerForce
+     005D rrrr                      3-  108 m1      .banksel ram_address
+     005E 01rr                      1-  670     	MOVR	_dispTimerForce,W
+     005F 0D03                      1-  671     	BTRSC	STATUS,2
+                                    1-  672     	MGOTO	_00376_DS_
+     0060 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  673     	.line	885, "main.c"; 	dispTimerForce--;
+     0061 01rr                      1-  674     	MOVR	_dispTimerForce,W
+                                    1-  675     	BANKSEL	r0x1016
+     0062 rrrr                      3-  108 m1      .banksel ram_address
+     0063 00rr                      1-  676     	MOVAR	r0x1016
+     0064 06rr                      1-  677     	DECR	r0x1016,W
+                                    1-  678     	BANKSEL	_dispTimerForce
+     0065 rrrr                      3-  108 m1      .banksel ram_address
+     0066 00rr                      1-  679     	MOVAR	_dispTimerForce
+                                    1-  680     	.line	886, "main.c"; 	if (dispTimerForce & BIT0)
+     0067 08rr                      1-  681     	BTRSS	_dispTimerForce,0
+                                    1-  682     	MGOTO	_00373_DS_
+     0068 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  683     	.line	888, "main.c"; 	P_LED_R_OFF;
+     0069 1Drr                      1-  684     	BCR	_PORTBbits,3
+                                    1-  685     	.line	889, "main.c"; 	P_LED_B_ON;
+     006A 19rr                      1-  686     	BSR	_PORTBbits,2
+                                    1-  687     	MGOTO	_00377_DS_
+     006B 3rrr                      3-   61 m1      LGOTO rom_address
+     006C                           1-  688     _00373_DS_:
+                                    1-  689     	.line	893, "main.c"; 	P_LED_B_OFF;
+     006C 1Drr                      1-  690     	BCR	_PORTBbits,2
+                                    1-  691     	MGOTO	_00377_DS_
+     006D 3rrr                      3-   61 m1      LGOTO rom_address
+     006E                           1-  692     _00376_DS_:
+                                    1-  693     	.line	898, "main.c"; 	P_LED_R_OFF;
+     006E 1Drr                      1-  694     	BCR	_PORTBbits,3
+     006F                           1-  695     _00377_DS_:
+                                    1-  696     	.line	901, "main.c"; 	if (dispTimerBatLow)
+                                    1-  697     	BANKSEL	_dispTimerBatLow
+     006F rrrr                      3-  108 m1      .banksel ram_address
+     0070 01rr                      1-  698     	MOVR	_dispTimerBatLow,W
+     0071 0D03                      1-  699     	BTRSC	STATUS,2
+                                    1-  700     	MGOTO	_00386_DS_
+     0072 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  701     	.line	903, "main.c"; 	dispTimerBatLow--;
+     0073 01rr                      1-  702     	MOVR	_dispTimerBatLow,W
+                                    1-  703     	BANKSEL	r0x1016
+     0074 rrrr                      3-  108 m1      .banksel ram_address
+     0075 00rr                      1-  704     	MOVAR	r0x1016
+     0076 06rr                      1-  705     	DECR	r0x1016,W
+                                    1-  706     	BANKSEL	_dispTimerBatLow
+     0077 rrrr                      3-  108 m1      .banksel ram_address
+     0078 00rr                      1-  707     	MOVAR	_dispTimerBatLow
+                                    1-  708     	.line	904, "main.c"; 	if (dispTimerBatLow & BIT0)
+     0079 08rr                      1-  709     	BTRSS	_dispTimerBatLow,0
+                                    1-  710     	MGOTO	_00379_DS_
+     007A 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  711     	.line	906, "main.c"; 	P_LED_R_ON;
+     007B 19rr                      1-  712     	BSR	_PORTBbits,3
+                                    1-  713     	.line	907, "main.c"; 	P_LED_R_OUTPUT;
+     007C 001r                      1-  714     	IOSTR	_IOSTB
+                                    1-  715     	BANKSEL	r0x1016
+     007D rrrr                      3-  108 m1      .banksel ram_address
+     007E 00rr                      1-  716     	MOVAR	r0x1016
+     007F 1Drr                      1-  717     	BCR	r0x1016,3
+     0080 01rr                      1-  718     	MOVR	r0x1016,W
+     0081 000r                      1-  719     	IOST	_IOSTB
+                                    1-  720     	MGOTO	_00380_DS_
+     0082 3rrr                      3-   61 m1      LGOTO rom_address
+     0083                           1-  721     _00379_DS_:
+                                    1-  722     	.line	911, "main.c"; 	P_LED_R_OFF;
+     0083 1Drr                      1-  723     	BCR	_PORTBbits,3
+                                    1-  724     	.line	912, "main.c"; 	P_LED_R_OUTPUT;
+     0084 001r                      1-  725     	IOSTR	_IOSTB
+                                    1-  726     	BANKSEL	r0x1016
+     0085 rrrr                      3-  108 m1      .banksel ram_address
+     0086 00rr                      1-  727     	MOVAR	r0x1016
+     0087 1Drr                      1-  728     	BCR	r0x1016,3
+     0088 01rr                      1-  729     	MOVR	r0x1016,W
+     0089 000r                      1-  730     	IOST	_IOSTB
+     008A                           1-  731     _00380_DS_:
+                                    1-  732     	.line	914, "main.c"; 	if (0 == dispTimerBatLow)
+                                    1-  733     	BANKSEL	_dispTimerBatLow
+     008A rrrr                      3-  108 m1      .banksel ram_address
+     008B 01rr                      1-  734     	MOVR	_dispTimerBatLow,W
+     008C 0903                      1-  735     	BTRSS	STATUS,2
+                                    1-  736     	MGOTO	_00386_DS_
+     008D 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  737     	.line	916, "main.c"; 	if (bFlag_bat_low)
+                                    1-  738     	BANKSEL	_vFlag_1
+     008E rrrr                      3-  108 m1      .banksel ram_address
+     008F 09rr                      1-  739     	BTRSS	_vFlag_1,2
+                                    1-  740     	MGOTO	_00386_DS_
+     0090 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  741     	.line	918, "main.c"; 	dispTimerBatLow = (CONST_dispTimerBatLow - 1);
+     0091 210A                      1-  742     	MOVIA	0x0a
+                                    1-  743     	BANKSEL	_dispTimerBatLow
+     0092 rrrr                      3-  108 m1      .banksel ram_address
+     0093 00rr                      1-  744     	MOVAR	_dispTimerBatLow
+     0094                           1-  745     _00386_DS_:
+                                    1-  746     	.line	925, "main.c"; 	if ((0 == bFlag_Vin_Plug_In) && (0 == bFlag_motor_open) /*&& (bFlag_OCP2_CC)*/)
+                                    1-  747     	BANKSEL	_vFlag_0
+     0094 rrrr                      3-  108 m1      .banksel ram_address
+     0095 0Err                      1-  748     	BTRSC	_vFlag_0,4
+                                    1-  749     	MGOTO	_00404_DS_
+     0096 3rrr                      3-   61 m1      LGOTO rom_address
+     0097 0Crr                      1-  750     	BTRSC	_vFlag_0,0
+                                    1-  751     	MGOTO	_00404_DS_
+     0098 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  752     	.line	927, "main.c"; 	if (!delaySleepTime)
+                                    1-  753     	BANKSEL	_delaySleepTime
+     0099 rrrr                      3-  108 m1      .banksel ram_address
+     009A 01rr                      1-  754     	MOVR	_delaySleepTime,W
+     009B 0903                      1-  755     	BTRSS	STATUS,2
+                                    1-  756     	MGOTO	_00394_DS_
+     009C 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  757     	.line	930, "main.c"; 	DISI();
+     009D 0013                      1-  758     	DISI
+                                    1-  759     	.line	931, "main.c"; 	INTE = 0x00; // Timer0 overflow interrupt enable bit
+     009E 02rr                      1-  760     	CLRR	_INTE
+                                    1-  761     	.line	932, "main.c"; 	PCON = 0x78; //! PA4 PA5 上拉disable
+     009F 2178                      1-  762     	MOVIA	0x78
+     00A0 00rr                      1-  763     	MOVAR	_PCON
+                                    1-  764     	.line	940, "main.c"; 	PORTA = 0x00;
+     00A1 02rr                      1-  765     	CLRR	_PORTA
+                                    1-  766     	.line	941, "main.c"; 	PORTB = 0x00;
+     00A2 02rr                      1-  767     	CLRR	_PORTB
+                                    1-  768     	.line	943, "main.c"; 	IOSTA = 0x73; // PA5 Input <-- Set PA5 to open drain output
+     00A3 2173                      1-  769     	MOVIA	0x73
+     00A4 000r                      1-  770     	IOST	_IOSTA
+                                    1-  771     	.line	944, "main.c"; 	IOSTB = 0xF0; // PB5 output PB4 Input
+     00A5 21F0                      1-  772     	MOVIA	0xf0
+     00A6 000r                      1-  773     	IOST	_IOSTB
+                                    1-  774     	.line	947, "main.c"; 	BODCON = 0x00; // PB4 open-drain
+     00A7 0200                      1-  775     	CLRA	
+     00A8 000r                      1-  776     	IOST	_BODCON
+                                    1-  777     	.line	948, "main.c"; 	P_LED_R_OFF;
+     00A9 1Drr                      1-  778     	BCR	_PORTBbits,3
+                                    1-  779     	.line	950, "main.c"; 	P_LED_B_OFF;
+     00AA 1Drr                      1-  780     	BCR	_PORTBbits,2
+                                    1-  781     	.line	951, "main.c"; 	AWUCON = (C_PA6_Wakeup | C_PA5_Wakeup); // | C_PA0_Wakeup
+     00AB 2160                      1-  782     	MOVIA	0x60
+     00AC 00rr                      1-  783     	MOVAR	_AWUCON
+                                    1-  784     	.line	952, "main.c"; 	BWUCON = C_PB4_Wakeup;
+     00AD 2110                      1-  785     	MOVIA	0x10
+     00AE 00rr                      1-  786     	MOVAR	_BWUCON
+                                    1-  787     	.line	954, "main.c"; 	INTE = C_INT_PABKey; // Enable PortB input change interrupt
+     00AF 2102                      1-  788     	MOVIA	0x02
+     00B0 00rr                      1-  789     	MOVAR	_INTE
+                                    1-  790     	.line	955, "main.c"; 	INTF = 0;
+     00B1 02rr                      1-  791     	CLRR	_INTF
+                                    1-  792     	.line	961, "main.c"; 	if (!P_KEY_POWER)
+     00B2 0Arr                      1-  793     	BTRSS	_PORTBbits,4
+                                    1-  794     	MGOTO	_00389_DS_
+     00B3 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  795     	.line	965, "main.c"; 	UPDATE_REG(PORTB);
+     00B4 01rr                      1-  796     	MOVR	_PORTB,F
+                                    1-  797     	.line	966, "main.c"; 	UPDATE_REG(PORTA);
+     00B5 01rr                      1-  798     	MOVR	_PORTA,F
+                                    1-  799     	.line	967, "main.c"; 	NOP();
+     00B6 0000                      1-  800     	nop
+                                    1-  801     	.line	968, "main.c"; 	SLEEP();
+     00B7 0001                      1-  802     	sleep
+                                    1-  803     	.line	969, "main.c"; 	NOP();
+     00B8 0000                      1-  804     	nop
+     00B9                           1-  805     _00389_DS_:
+                                    1-  806     	.line	971, "main.c"; 	INTFbits.PABIF = 0;
+     00B9 21FD                      1-  807     	MOVIA	0xfd
+     00BA 00rr                      1-  808     	MOVAR	(_INTFbits + 0)
+                                    1-  809     	.line	975, "main.c"; 	delaySleepTime = CONST_DELAY_SLEEP_TIME;
+     00BB 210A                      1-  810     	MOVIA	0x0a
+                                    1-  811     	BANKSEL	_delaySleepTime
+     00BC rrrr                      3-  108 m1      .banksel ram_address
+     00BD 00rr                      1-  812     	MOVAR	_delaySleepTime
+                                    1-  813     	.line	981, "main.c"; 	CMPCR = C_RBias_High_Dis | C_RBias_Low_Dis | C_CMPFINV_Dis | 0x0A; // initial SFR CMPCR (CMPF_INV=0) measure LVD_L
+     00BE 000r                      1-  814     	IOST	_CMPCR
+                                    1-  815     	.line	982, "main.c"; 	PCON = 0xFC;
+     00BF 21FC                      1-  816     	MOVIA	0xfc
+     00C0 00rr                      1-  817     	MOVAR	_PCON
+                                    1-  818     	.line	984, "main.c"; 	PCON1 &= 0xC3;
+     00C1 001r                      1-  819     	IOSTR	_PCON1
+                                    1-  820     	BANKSEL	r0x1016
+     00C2 rrrr                      3-  108 m1      .banksel ram_address
+     00C3 00rr                      1-  821     	MOVAR	r0x1016
+     00C4 21C3                      1-  822     	MOVIA	0xc3
+     00C5 10rr                      1-  823     	ANDAR	r0x1016,F
+     00C6 01rr                      1-  824     	MOVR	r0x1016,W
+     00C7 000r                      1-  825     	IOST	_PCON1
+                                    1-  826     	.line	985, "main.c"; 	if (bFlag_bat_low)
+                                    1-  827     	BANKSEL	_vFlag_1
+     00C8 rrrr                      3-  108 m1      .banksel ram_address
+     00C9 09rr                      1-  828     	BTRSS	_vFlag_1,2
+                                    1-  829     	MGOTO	_00391_DS_
+     00CA 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  830     	.line	987, "main.c"; 	PCON1 |= C_LVD_3P15V;
+     00CB 001r                      1-  831     	IOSTR	_PCON1
+                                    1-  832     	BANKSEL	r0x1016
+     00CC rrrr                      3-  108 m1      .banksel ram_address
+     00CD 00rr                      1-  833     	MOVAR	r0x1016
+     00CE 1Arr                      1-  834     	BSR	r0x1016,5
+     00CF 01rr                      1-  835     	MOVR	r0x1016,W
+     00D0 000r                      1-  836     	IOST	_PCON1
+                                    1-  837     	MGOTO	_00392_DS_
+     00D1 3rrr                      3-   61 m1      LGOTO rom_address
+     00D2                           1-  838     _00391_DS_:
+                                    1-  839     	.line	991, "main.c"; 	PCON1 |= C_LVD_3P45V; // Set LVDS[3:0]=0101b (2.8V) , Timer0 disable
+     00D2 001r                      1-  840     	IOSTR	_PCON1
+                                    1-  841     	BANKSEL	r0x1016
+     00D3 rrrr                      3-  108 m1      .banksel ram_address
+     00D4 00rr                      1-  842     	MOVAR	r0x1016
+     00D5 2128                      1-  843     	MOVIA	0x28
+     00D6 11rr                      1-  844     	IORAR	r0x1016,F
+     00D7 01rr                      1-  845     	MOVR	r0x1016,W
+     00D8 000r                      1-  846     	IOST	_PCON1
+     00D9                           1-  847     _00392_DS_:
+                                    1-  848     	.line	993, "main.c"; 	PCON1 |= C_TMR0_En;            // Enable Timer0
+     00D9 001r                      1-  849     	IOSTR	_PCON1
+                                    1-  850     	BANKSEL	r0x1016
+     00DA rrrr                      3-  108 m1      .banksel ram_address
+     00DB 00rr                      1-  851     	MOVAR	r0x1016
+     00DC 18rr                      1-  852     	BSR	r0x1016,0
+     00DD 01rr                      1-  853     	MOVR	r0x1016,W
+     00DE 000r                      1-  854     	IOST	_PCON1
+                                    1-  855     	.line	994, "main.c"; 	INTE = (0x01 /*| C_INT_LVD*/); // Timer0 overflow interrupt enable bit
+     00DF 2101                      1-  856     	MOVIA	0x01
+     00E0 00rr                      1-  857     	MOVAR	_INTE
+                                    1-  858     	.line	995, "main.c"; 	ENI();
+     00E1 0004                      1-  859     	ENI
+                                    1-  860     	MGOTO	_00404_DS_
+     00E2 3rrr                      3-   61 m1      LGOTO rom_address
+     00E3                           1-  861     _00394_DS_:
+                                    1-  862     	.line	999, "main.c"; 	delaySleepTime--;
+                                    1-  863     	BANKSEL	_delaySleepTime
+     00E3 rrrr                      3-  108 m1      .banksel ram_address
+     00E4 01rr                      1-  864     	MOVR	_delaySleepTime,W
+                                    1-  865     	BANKSEL	r0x1016
+     00E5 rrrr                      3-  108 m1      .banksel ram_address
+     00E6 00rr                      1-  866     	MOVAR	r0x1016
+     00E7 06rr                      1-  867     	DECR	r0x1016,W
+                                    1-  868     	BANKSEL	_delaySleepTime
+     00E8 rrrr                      3-  108 m1      .banksel ram_address
+     00E9 00rr                      1-  869     	MOVAR	_delaySleepTime
+                                    1-  870     	MGOTO	_00404_DS_
+     00EA 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  871     	.line	1007, "main.c"; 	}
+                                    1-  872     	RETURN	
+     00EB 0010                      3-   38 m1      ret
+                                    1-  873     ; exit point of _main
+                                    1-  875     ;***
+                                    1-  876     ;  pBlock Stats: dbName = C
+                                    1-  877     ;***
+                                    1-  878     ;has an exit
+                                    1-  879     ;functions called:
+                                    1-  880     ;   _motor_close
+                                    1-  881     ;   _motor_close
+                                    1-  882     ;1 compiler assigned register :
+                                    1-  883     ;   r0x1015
+                                    1-  884     ;; Starting pCode block
+                                    1-  885     .segment "code"; module=main, function=_get_lvd_voltage
+                                    1-  887     ;local variable name mapping:
+     0000                           1-  890     _get_lvd_voltage:
+                                    1-  891     ; 2 exit points
+                                    1-  892     	.line	691, "main.c"; 	if (bFlag_Vin_Plug_In)
+                                    1-  893     	BANKSEL	_vFlag_0
+     0000 rrrr                      3-  108 m1      .banksel ram_address
+     0001 0Arr                      1-  894     	BTRSS	_vFlag_0,4
+                                    1-  895     	MGOTO	_00338_DS_
+     0002 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  896     	.line	693, "main.c"; 	counter = 0;
+                                    1-  897     	BANKSEL	_get_lvd_voltage_counter_65536_73
+     0003 rrrr                      3-  108 m1      .banksel ram_address
+     0004 02rr                      1-  898     	CLRR	_get_lvd_voltage_counter_65536_73
+                                    1-  899     	.line	694, "main.c"; 	counter2 = 0;
+                                    1-  900     	BANKSEL	_get_lvd_voltage_counter2_65536_73
+     0005 rrrr                      3-  108 m1      .banksel ram_address
+     0006 02rr                      1-  901     	CLRR	_get_lvd_voltage_counter2_65536_73
+                                    1-  902     	.line	695, "main.c"; 	bFlag_bat_low = 0;
+                                    1-  903     	BANKSEL	_vFlag_1
+     0007 rrrr                      3-  108 m1      .banksel ram_address
+     0008 1Drr                      1-  904     	BCR	_vFlag_1,2
+                                    1-  905     	.line	696, "main.c"; 	bFlag_bat_shut_down = 0;
+     0009 1Drr                      1-  906     	BCR	_vFlag_1,3
+                                    1-  907     	.line	697, "main.c"; 	dispTimerBatLow = 0;
+                                    1-  908     	BANKSEL	_dispTimerBatLow
+     000A rrrr                      3-  108 m1      .banksel ram_address
+     000B 02rr                      1-  909     	CLRR	_dispTimerBatLow
+                                    1-  910     	.line	698, "main.c"; 	PCON1 &= 0xC3;
+     000C 001r                      1-  911     	IOSTR	_PCON1
+                                    1-  912     	BANKSEL	r0x1015
+     000D rrrr                      3-  108 m1      .banksel ram_address
+     000E 00rr                      1-  913     	MOVAR	r0x1015
+     000F 21C3                      1-  914     	MOVIA	0xc3
+     0010 10rr                      1-  915     	ANDAR	r0x1015,F
+     0011 01rr                      1-  916     	MOVR	r0x1015,W
+     0012 000r                      1-  917     	IOST	_PCON1
+                                    1-  918     	.line	699, "main.c"; 	PCON1 |= C_LVD_3P45V;
+     0013 001r                      1-  919     	IOSTR	_PCON1
+     0014 00rr                      1-  920     	MOVAR	r0x1015
+     0015 2128                      1-  921     	MOVIA	0x28
+     0016 11rr                      1-  922     	IORAR	r0x1015,F
+     0017 01rr                      1-  923     	MOVR	r0x1015,W
+     0018 000r                      1-  924     	IOST	_PCON1
+                                    1-  925     	.line	700, "main.c"; 	return;
+                                    1-  926     	MGOTO	_00357_DS_
+     0019 3rrr                      3-   61 m1      LGOTO rom_address
+     001A                           1-  927     _00338_DS_:
+                                    1-  928     	.line	703, "main.c"; 	if (0 == bFlag_bat_low)
+                                    1-  929     	BANKSEL	_vFlag_1
+     001A rrrr                      3-  108 m1      .banksel ram_address
+     001B 0Drr                      1-  930     	BTRSC	_vFlag_1,2
+                                    1-  931     	MGOTO	_00355_DS_
+     001C 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  932     	.line	707, "main.c"; 	if (!(PCON1 & C_LVDOUT))
+     001D 001r                      1-  933     	IOSTR	_PCON1
+                                    1-  934     	BANKSEL	r0x1015
+     001E rrrr                      3-  108 m1      .banksel ram_address
+     001F 00rr                      1-  935     	MOVAR	r0x1015
+     0020 0Frr                      1-  936     	BTRSC	r0x1015,6
+                                    1-  937     	MGOTO	_00345_DS_
+     0021 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  938     	.line	709, "main.c"; 	RA2 = 0;
+     0022 1Drr                      1-  939     	BCR	_PORTAbits,2
+                                    1-  940     	.line	710, "main.c"; 	counter++;
+                                    1-  941     	BANKSEL	_get_lvd_voltage_counter_65536_73
+     0023 rrrr                      3-  108 m1      .banksel ram_address
+     0024 05rr                      1-  942     	INCR	_get_lvd_voltage_counter_65536_73,F
+                                    1-  943     ;;swapping arguments (AOP_TYPEs 1/3)
+                                    1-  944     ;;unsigned compare: left >= lit(0x20=32), size=1
+                                    1-  945     	.line	711, "main.c"; 	if (counter > 31)
+     0025 2120                      1-  946     	MOVIA	0x20
+     0026 04rr                      1-  947     	SUBAR	_get_lvd_voltage_counter_65536_73,W
+     0027 0803                      1-  948     	BTRSS	STATUS,0
+                                    1-  949     	MGOTO	_00357_DS_
+     0028 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  950     	.line	713, "main.c"; 	bFlag_bat_low = 1;
+                                    1-  951     	BANKSEL	_vFlag_1
+     0029 rrrr                      3-  108 m1      .banksel ram_address
+     002A 19rr                      1-  952     	BSR	_vFlag_1,2
+                                    1-  953     	.line	715, "main.c"; 	PCON1 &= 0xC3;
+     002B 001r                      1-  954     	IOSTR	_PCON1
+                                    1-  955     	BANKSEL	r0x1015
+     002C rrrr                      3-  108 m1      .banksel ram_address
+     002D 00rr                      1-  956     	MOVAR	r0x1015
+     002E 21C3                      1-  957     	MOVIA	0xc3
+     002F 10rr                      1-  958     	ANDAR	r0x1015,F
+     0030 01rr                      1-  959     	MOVR	r0x1015,W
+     0031 000r                      1-  960     	IOST	_PCON1
+                                    1-  961     	.line	716, "main.c"; 	PCON1 |= C_LVD_3P15V;
+     0032 001r                      1-  962     	IOSTR	_PCON1
+     0033 00rr                      1-  963     	MOVAR	r0x1015
+     0034 1Arr                      1-  964     	BSR	r0x1015,5
+     0035 01rr                      1-  965     	MOVR	r0x1015,W
+     0036 000r                      1-  966     	IOST	_PCON1
+                                    1-  967     	.line	717, "main.c"; 	if (dispTimerForce)
+                                    1-  968     	BANKSEL	_dispTimerForce
+     0037 rrrr                      3-  108 m1      .banksel ram_address
+     0038 01rr                      1-  969     	MOVR	_dispTimerForce,W
+     0039 0D03                      1-  970     	BTRSC	STATUS,2
+                                    1-  971     	MGOTO	_00340_DS_
+     003A 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  972     	.line	719, "main.c"; 	dispTimerBatLow = dispTimerForce; //和挡位同步闪烁
+     003B 01rr                      1-  973     	MOVR	_dispTimerForce,W
+                                    1-  974     	BANKSEL	_dispTimerBatLow
+     003C rrrr                      3-  108 m1      .banksel ram_address
+     003D 00rr                      1-  975     	MOVAR	_dispTimerBatLow
+                                    1-  976     	MGOTO	_00357_DS_
+     003E 3rrr                      3-   61 m1      LGOTO rom_address
+     003F                           1-  977     _00340_DS_:
+                                    1-  978     	.line	723, "main.c"; 	dispTimerBatLow = CONST_dispTimerBatLow;
+     003F 210B                      1-  979     	MOVIA	0x0b
+                                    1-  980     	BANKSEL	_dispTimerBatLow
+     0040 rrrr                      3-  108 m1      .banksel ram_address
+     0041 00rr                      1-  981     	MOVAR	_dispTimerBatLow
+                                    1-  982     	MGOTO	_00357_DS_
+     0042 3rrr                      3-   61 m1      LGOTO rom_address
+     0043                           1-  983     _00345_DS_:
+                                    1-  984     	.line	729, "main.c"; 	counter = 0;
+                                    1-  985     	BANKSEL	_get_lvd_voltage_counter_65536_73
+     0043 rrrr                      3-  108 m1      .banksel ram_address
+     0044 02rr                      1-  986     	CLRR	_get_lvd_voltage_counter_65536_73
+                                    1-  987     	.line	730, "main.c"; 	RA2 = 1;
+     0045 19rr                      1-  988     	BSR	_PORTAbits,2
+                                    1-  989     	MGOTO	_00357_DS_
+     0046 3rrr                      3-   61 m1      LGOTO rom_address
+     0047                           1-  990     _00355_DS_:
+                                    1-  991     	.line	735, "main.c"; 	if (0 == bFlag_bat_shut_down)
+                                    1-  992     	BANKSEL	_vFlag_1
+     0047 rrrr                      3-  108 m1      .banksel ram_address
+     0048 0Drr                      1-  993     	BTRSC	_vFlag_1,3
+                                    1-  994     	MGOTO	_00357_DS_
+     0049 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1-  995     	.line	738, "main.c"; 	if (!(PCON1 & C_LVDOUT))
+     004A 001r                      1-  996     	IOSTR	_PCON1
+                                    1-  997     	BANKSEL	r0x1015
+     004B rrrr                      3-  108 m1      .banksel ram_address
+     004C 00rr                      1-  998     	MOVAR	r0x1015
+     004D 0Frr                      1-  999     	BTRSC	r0x1015,6
+                                    1- 1000     	MGOTO	_00350_DS_
+     004E 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1001     	.line	740, "main.c"; 	RA2 = 0;
+     004F 1Drr                      1- 1002     	BCR	_PORTAbits,2
+                                    1- 1003     	.line	741, "main.c"; 	counter2++;
+                                    1- 1004     	BANKSEL	_get_lvd_voltage_counter2_65536_73
+     0050 rrrr                      3-  108 m1      .banksel ram_address
+     0051 05rr                      1- 1005     	INCR	_get_lvd_voltage_counter2_65536_73,F
+                                    1- 1006     ;;swapping arguments (AOP_TYPEs 1/3)
+                                    1- 1007     ;;unsigned compare: left >= lit(0x20=32), size=1
+                                    1- 1008     	.line	742, "main.c"; 	if (counter2 > 31)
+     0052 2120                      1- 1009     	MOVIA	0x20
+     0053 04rr                      1- 1010     	SUBAR	_get_lvd_voltage_counter2_65536_73,W
+     0054 0803                      1- 1011     	BTRSS	STATUS,0
+                                    1- 1012     	MGOTO	_00357_DS_
+     0055 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1013     	.line	744, "main.c"; 	bFlag_bat_shut_down = 1;
+                                    1- 1014     	BANKSEL	_vFlag_1
+     0056 rrrr                      3-  108 m1      .banksel ram_address
+     0057 19rr                      1- 1015     	BSR	_vFlag_1,3
+                                    1- 1016     	.line	746, "main.c"; 	motor_close();
+                                    1- 1017     	MCALL	_motor_close
+     0058 2rrr                      3-   64 m1      LCALL rom_address
+                                    1- 1018     	MGOTO	_00357_DS_
+     0059 3rrr                      3-   61 m1      LGOTO rom_address
+     005A                           1- 1019     _00350_DS_:
+                                    1- 1020     	.line	751, "main.c"; 	counter2 = 0;
+                                    1- 1021     	BANKSEL	_get_lvd_voltage_counter2_65536_73
+     005A rrrr                      3-  108 m1      .banksel ram_address
+     005B 02rr                      1- 1022     	CLRR	_get_lvd_voltage_counter2_65536_73
+                                    1- 1023     	.line	752, "main.c"; 	RA2 = 1;
+     005C 19rr                      1- 1024     	BSR	_PORTAbits,2
+     005D                           1- 1025     _00357_DS_:
+                                    1- 1026     	.line	756, "main.c"; 	}
+                                    1- 1027     	RETURN	
+     005D 0010                      3-   38 m1      ret
+                                    1- 1028     ; exit point of _get_lvd_voltage
+                                    1- 1030     ;***
+                                    1- 1031     ;  pBlock Stats: dbName = C
+                                    1- 1032     ;***
+                                    1- 1033     ;has an exit
+                                    1- 1034     ;functions called:
+                                    1- 1035     ;   _disable_breathing_mode
+                                    1- 1036     ;   _enable_breathing_mode
+                                    1- 1037     ;   _disable_breathing_mode
+                                    1- 1038     ;   _enable_breathing_mode
+                                    1- 1039     ;1 compiler assigned register :
+                                    1- 1040     ;   r0x1014
+                                    1- 1041     ;; Starting pCode block
+                                    1- 1042     .segment "code"; module=main, function=_get_chrg_status
+                                    1- 1044     ;local variable name mapping:
+     0000                           1- 1046     _get_chrg_status:
+                                    1- 1047     ; 2 exit points
+                                    1- 1048     	.line	648, "main.c"; 	P_CHRG_FULL_INPUT;
+     0000 001r                      1- 1049     	IOSTR	_IOSTA
+                                    1- 1050     	BANKSEL	r0x1014
+     0001 rrrr                      3-  108 m1      .banksel ram_address
+     0002 00rr                      1- 1051     	MOVAR	r0x1014
+     0003 1Brr                      1- 1052     	BSR	r0x1014,6
+     0004 01rr                      1- 1053     	MOVR	r0x1014,W
+     0005 000r                      1- 1054     	IOST	_IOSTA
+                                    1- 1055     	.line	650, "main.c"; 	if (0 == bFlag_charge_complete)
+                                    1- 1056     	BANKSEL	_vFlag_0
+     0006 rrrr                      3-  108 m1      .banksel ram_address
+     0007 0Frr                      1- 1057     	BTRSC	_vFlag_0,6
+                                    1- 1058     	MGOTO	_00330_DS_
+     0008 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1059     	.line	652, "main.c"; 	if (P_CHRG_FULL)
+     0009 0Brr                      1- 1060     	BTRSS	_PORTAbits,6
+                                    1- 1061     	MGOTO	_00322_DS_
+     000A 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1062     	.line	654, "main.c"; 	if (++counter > 128)
+                                    1- 1063     	BANKSEL	_get_chrg_status_counter_65536_63
+     000B rrrr                      3-  108 m1      .banksel ram_address
+     000C 05rr                      1- 1064     	INCR	_get_chrg_status_counter_65536_63,F
+                                    1- 1065     ;;swapping arguments (AOP_TYPEs 1/3)
+                                    1- 1066     ;;unsigned compare: left >= lit(0x81=129), size=1
+     000D 2181                      1- 1067     	MOVIA	0x81
+     000E 04rr                      1- 1068     	SUBAR	_get_chrg_status_counter_65536_63,W
+     000F 0803                      1- 1069     	BTRSS	STATUS,0
+                                    1- 1070     	MGOTO	_00332_DS_
+     0010 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1071     	.line	656, "main.c"; 	bFlag_charge_complete = 1;
+                                    1- 1072     	BANKSEL	_vFlag_0
+     0011 rrrr                      3-  108 m1      .banksel ram_address
+     0012 1Brr                      1- 1073     	BSR	_vFlag_0,6
+                                    1- 1074     	.line	658, "main.c"; 	disable_breathing_mode();
+                                    1- 1075     	MCALL	_disable_breathing_mode
+     0013 2rrr                      3-   64 m1      LCALL rom_address
+                                    1- 1076     	.line	659, "main.c"; 	P_LED_B_ON;
+     0014 19rr                      1- 1077     	BSR	_PORTBbits,2
+                                    1- 1078     	MGOTO	_00332_DS_
+     0015 3rrr                      3-   61 m1      LGOTO rom_address
+     0016                           1- 1079     _00322_DS_:
+                                    1- 1080     	.line	664, "main.c"; 	counter = 0;
+                                    1- 1081     	BANKSEL	_get_chrg_status_counter_65536_63
+     0016 rrrr                      3-  108 m1      .banksel ram_address
+     0017 02rr                      1- 1082     	CLRR	_get_chrg_status_counter_65536_63
+                                    1- 1083     	MGOTO	_00332_DS_
+     0018 3rrr                      3-   61 m1      LGOTO rom_address
+     0019                           1- 1084     _00330_DS_:
+                                    1- 1085     	.line	669, "main.c"; 	if (!(P_CHRG_FULL))
+     0019 0Frr                      1- 1086     	BTRSC	_PORTAbits,6
+                                    1- 1087     	MGOTO	_00327_DS_
+     001A 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1088     	.line	671, "main.c"; 	if (++counter > 63)
+                                    1- 1089     	BANKSEL	_get_chrg_status_counter_65536_63
+     001B rrrr                      3-  108 m1      .banksel ram_address
+     001C 05rr                      1- 1090     	INCR	_get_chrg_status_counter_65536_63,F
+                                    1- 1091     ;;swapping arguments (AOP_TYPEs 1/3)
+                                    1- 1092     ;;unsigned compare: left >= lit(0x40=64), size=1
+     001D 2140                      1- 1093     	MOVIA	0x40
+     001E 04rr                      1- 1094     	SUBAR	_get_chrg_status_counter_65536_63,W
+     001F 0803                      1- 1095     	BTRSS	STATUS,0
+                                    1- 1096     	MGOTO	_00332_DS_
+     0020 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1097     	.line	673, "main.c"; 	bFlag_charge_complete = 0; //
+                                    1- 1098     	BANKSEL	_vFlag_0
+     0021 rrrr                      3-  108 m1      .banksel ram_address
+     0022 1Frr                      1- 1099     	BCR	_vFlag_0,6
+                                    1- 1100     	.line	674, "main.c"; 	delaySleepTime = CONST_DELAY_SLEEP_TIME;
+     0023 210A                      1- 1101     	MOVIA	0x0a
+                                    1- 1102     	BANKSEL	_delaySleepTime
+     0024 rrrr                      3-  108 m1      .banksel ram_address
+     0025 00rr                      1- 1103     	MOVAR	_delaySleepTime
+                                    1- 1104     	.line	675, "main.c"; 	enable_breathing_mode();
+                                    1- 1105     	MCALL	_enable_breathing_mode
+     0026 2rrr                      3-   64 m1      LCALL rom_address
+                                    1- 1106     	MGOTO	_00332_DS_
+     0027 3rrr                      3-   61 m1      LGOTO rom_address
+     0028                           1- 1107     _00327_DS_:
+                                    1- 1108     	.line	680, "main.c"; 	counter = 0;
+                                    1- 1109     	BANKSEL	_get_chrg_status_counter_65536_63
+     0028 rrrr                      3-  108 m1      .banksel ram_address
+     0029 02rr                      1- 1110     	CLRR	_get_chrg_status_counter_65536_63
+     002A                           1- 1111     _00332_DS_:
+                                    1- 1112     	.line	683, "main.c"; 	}
+                                    1- 1113     	RETURN	
+     002A 0010                      3-   38 m1      ret
+                                    1- 1114     ; exit point of _get_chrg_status
+                                    1- 1116     ;***
+                                    1- 1117     ;  pBlock Stats: dbName = C
+                                    1- 1118     ;***
+                                    1- 1119     ;has an exit
+                                    1- 1120     ;functions called:
+                                    1- 1121     ;   _disable_breathing_mode
+                                    1- 1122     ;   _disable_breathing_mode
+                                    1- 1123     ;1 compiler assigned register :
+                                    1- 1124     ;   r0x1014
+                                    1- 1125     ;; Starting pCode block
+                                    1- 1126     .segment "code"; module=main, function=_get_vin_status
+                                    1- 1128     ;local variable name mapping:
+     0000                           1- 1130     _get_vin_status:
+                                    1- 1131     ; 2 exit points
+                                    1- 1132     	.line	608, "main.c"; 	P_VIN_INPUT;
+     0000 001r                      1- 1133     	IOSTR	_IOSTA
+                                    1- 1134     	BANKSEL	r0x1014
+     0001 rrrr                      3-  108 m1      .banksel ram_address
+     0002 00rr                      1- 1135     	MOVAR	r0x1014
+     0003 1Arr                      1- 1136     	BSR	r0x1014,5
+     0004 01rr                      1- 1137     	MOVR	r0x1014,W
+     0005 000r                      1- 1138     	IOST	_IOSTA
+                                    1- 1139     	.line	610, "main.c"; 	if (bFlag_Vin_Plug_In)
+                                    1- 1140     	BANKSEL	_vFlag_0
+     0006 rrrr                      3-  108 m1      .banksel ram_address
+     0007 0Arr                      1- 1141     	BTRSS	_vFlag_0,4
+                                    1- 1142     	MGOTO	_00312_DS_
+     0008 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1143     	.line	612, "main.c"; 	if (!(P_VIN))
+     0009 0Err                      1- 1144     	BTRSC	_PORTAbits,5
+                                    1- 1145     	MGOTO	_00304_DS_
+     000A 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1146     	.line	614, "main.c"; 	if (++counter > CONST_VIN_FILTER)
+                                    1- 1147     	BANKSEL	_get_vin_status_counter_65536_53
+     000B rrrr                      3-  108 m1      .banksel ram_address
+     000C 05rr                      1- 1148     	INCR	_get_vin_status_counter_65536_53,F
+                                    1- 1149     ;;swapping arguments (AOP_TYPEs 1/3)
+                                    1- 1150     ;;unsigned compare: left >= lit(0x20=32), size=1
+     000D 2120                      1- 1151     	MOVIA	0x20
+     000E 04rr                      1- 1152     	SUBAR	_get_vin_status_counter_65536_53,W
+     000F 0803                      1- 1153     	BTRSS	STATUS,0
+                                    1- 1154     	MGOTO	_00314_DS_
+     0010 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1155     	.line	616, "main.c"; 	bFlag_Vin_Plug_In = 0;
+                                    1- 1156     	BANKSEL	_vFlag_0
+     0011 rrrr                      3-  108 m1      .banksel ram_address
+     0012 1Err                      1- 1157     	BCR	_vFlag_0,4
+                                    1- 1158     	.line	618, "main.c"; 	disable_breathing_mode();
+                                    1- 1159     	MCALL	_disable_breathing_mode
+     0013 2rrr                      3-   64 m1      LCALL rom_address
+                                    1- 1160     	MGOTO	_00314_DS_
+     0014 3rrr                      3-   61 m1      LGOTO rom_address
+     0015                           1- 1161     _00304_DS_:
+                                    1- 1162     	.line	623, "main.c"; 	counter = 0;
+                                    1- 1163     	BANKSEL	_get_vin_status_counter_65536_53
+     0015 rrrr                      3-  108 m1      .banksel ram_address
+     0016 02rr                      1- 1164     	CLRR	_get_vin_status_counter_65536_53
+                                    1- 1165     	MGOTO	_00314_DS_
+     0017 3rrr                      3-   61 m1      LGOTO rom_address
+     0018                           1- 1166     _00312_DS_:
+                                    1- 1167     	.line	628, "main.c"; 	if (P_VIN)
+     0018 0Arr                      1- 1168     	BTRSS	_PORTAbits,5
+                                    1- 1169     	MGOTO	_00309_DS_
+     0019 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1170     	.line	630, "main.c"; 	if (++counter > CONST_VIN_FILTER)
+                                    1- 1171     	BANKSEL	_get_vin_status_counter_65536_53
+     001A rrrr                      3-  108 m1      .banksel ram_address
+     001B 05rr                      1- 1172     	INCR	_get_vin_status_counter_65536_53,F
+                                    1- 1173     ;;swapping arguments (AOP_TYPEs 1/3)
+                                    1- 1174     ;;unsigned compare: left >= lit(0x20=32), size=1
+     001C 2120                      1- 1175     	MOVIA	0x20
+     001D 04rr                      1- 1176     	SUBAR	_get_vin_status_counter_65536_53,W
+     001E 0803                      1- 1177     	BTRSS	STATUS,0
+                                    1- 1178     	MGOTO	_00314_DS_
+     001F 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1179     	.line	632, "main.c"; 	bFlag_Vin_Plug_In = 1; //
+                                    1- 1180     	BANKSEL	_vFlag_0
+     0020 rrrr                      3-  108 m1      .banksel ram_address
+     0021 1Arr                      1- 1181     	BSR	_vFlag_0,4
+                                    1- 1182     	MGOTO	_00314_DS_
+     0022 3rrr                      3-   61 m1      LGOTO rom_address
+     0023                           1- 1183     _00309_DS_:
+                                    1- 1184     	.line	639, "main.c"; 	counter = 0;
+                                    1- 1185     	BANKSEL	_get_vin_status_counter_65536_53
+     0023 rrrr                      3-  108 m1      .banksel ram_address
+     0024 02rr                      1- 1186     	CLRR	_get_vin_status_counter_65536_53
+     0025                           1- 1187     _00314_DS_:
+                                    1- 1188     	.line	642, "main.c"; 	}
+                                    1- 1189     	RETURN	
+     0025 0010                      3-   38 m1      ret
+                                    1- 1190     ; exit point of _get_vin_status
+                                    1- 1192     ;***
+                                    1- 1193     ;  pBlock Stats: dbName = C
+                                    1- 1194     ;***
+                                    1- 1195     ;has an exit
+                                    1- 1196     ;functions called:
+                                    1- 1197     ;   _motor_close
+                                    1- 1198     ;   _motor_close
+                                    1- 1199     ;1 compiler assigned register :
+                                    1- 1200     ;   r0x1017
+                                    1- 1201     ;; Starting pCode block
+                                    1- 1202     .segment "code"; module=main, function=_get_motor_in_status
+                                    1- 1204     ;local variable name mapping:
+     0000                           1- 1206     _get_motor_in_status:
+                                    1- 1207     ; 2 exit points
+                                    1- 1208     	.line	568, "main.c"; 	P_MOTOR_PLUGIN_INPUT;
+     0000 001r                      1- 1209     	IOSTR	_IOSTA
+                                    1- 1210     	BANKSEL	r0x1017
+     0001 rrrr                      3-  108 m1      .banksel ram_address
+     0002 00rr                      1- 1211     	MOVAR	r0x1017
+     0003 1Arr                      1- 1212     	BSR	r0x1017,4
+     0004 01rr                      1- 1213     	MOVR	r0x1017,W
+     0005 000r                      1- 1214     	IOST	_IOSTA
+                                    1- 1215     	.line	570, "main.c"; 	if (bFlag_motor_plugin)
+                                    1- 1216     	BANKSEL	_vFlag_0
+     0006 rrrr                      3-  108 m1      .banksel ram_address
+     0007 08rr                      1- 1217     	BTRSS	_vFlag_0,1
+                                    1- 1218     	MGOTO	_00294_DS_
+     0008 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1219     	.line	572, "main.c"; 	if (!P_MOTOR_PLUGIN)
+     0009 0Err                      1- 1220     	BTRSC	_PORTAbits,4
+                                    1- 1221     	MGOTO	_00286_DS_
+     000A 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1222     	.line	574, "main.c"; 	if (++counter > CONST_PLUGIN_FILTER)
+                                    1- 1223     	BANKSEL	_get_motor_in_status_counter_65536_43
+     000B rrrr                      3-  108 m1      .banksel ram_address
+     000C 05rr                      1- 1224     	INCR	_get_motor_in_status_counter_65536_43,F
+                                    1- 1225     ;;swapping arguments (AOP_TYPEs 1/3)
+                                    1- 1226     ;;unsigned compare: left >= lit(0x9=9), size=1
+     000D 2109                      1- 1227     	MOVIA	0x09
+     000E 04rr                      1- 1228     	SUBAR	_get_motor_in_status_counter_65536_43,W
+     000F 0803                      1- 1229     	BTRSS	STATUS,0
+                                    1- 1230     	MGOTO	_00296_DS_
+     0010 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1231     	.line	576, "main.c"; 	bFlag_motor_plugin = 0;
+                                    1- 1232     	BANKSEL	_vFlag_0
+     0011 rrrr                      3-  108 m1      .banksel ram_address
+     0012 1Crr                      1- 1233     	BCR	_vFlag_0,1
+                                    1- 1234     	.line	577, "main.c"; 	motor_close();
+                                    1- 1235     	MCALL	_motor_close
+     0013 2rrr                      3-   64 m1      LCALL rom_address
+                                    1- 1236     	MGOTO	_00296_DS_
+     0014 3rrr                      3-   61 m1      LGOTO rom_address
+     0015                           1- 1237     _00286_DS_:
+                                    1- 1238     	.line	582, "main.c"; 	counter = 0;
+                                    1- 1239     	BANKSEL	_get_motor_in_status_counter_65536_43
+     0015 rrrr                      3-  108 m1      .banksel ram_address
+     0016 02rr                      1- 1240     	CLRR	_get_motor_in_status_counter_65536_43
+                                    1- 1241     	MGOTO	_00296_DS_
+     0017 3rrr                      3-   61 m1      LGOTO rom_address
+     0018                           1- 1242     _00294_DS_:
+                                    1- 1243     	.line	587, "main.c"; 	if (P_MOTOR_PLUGIN)
+     0018 0Arr                      1- 1244     	BTRSS	_PORTAbits,4
+                                    1- 1245     	MGOTO	_00291_DS_
+     0019 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1246     	.line	589, "main.c"; 	if (++counter > CONST_PLUGIN_FILTER)
+                                    1- 1247     	BANKSEL	_get_motor_in_status_counter_65536_43
+     001A rrrr                      3-  108 m1      .banksel ram_address
+     001B 05rr                      1- 1248     	INCR	_get_motor_in_status_counter_65536_43,F
+                                    1- 1249     ;;swapping arguments (AOP_TYPEs 1/3)
+                                    1- 1250     ;;unsigned compare: left >= lit(0x9=9), size=1
+     001C 2109                      1- 1251     	MOVIA	0x09
+     001D 04rr                      1- 1252     	SUBAR	_get_motor_in_status_counter_65536_43,W
+     001E 0803                      1- 1253     	BTRSS	STATUS,0
+                                    1- 1254     	MGOTO	_00296_DS_
+     001F 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1255     	.line	591, "main.c"; 	bFlag_motor_plugin = 1; // kaigai
+                                    1- 1256     	BANKSEL	_vFlag_0
+     0020 rrrr                      3-  108 m1      .banksel ram_address
+     0021 18rr                      1- 1257     	BSR	_vFlag_0,1
+                                    1- 1258     	MGOTO	_00296_DS_
+     0022 3rrr                      3-   61 m1      LGOTO rom_address
+     0023                           1- 1259     _00291_DS_:
+                                    1- 1260     	.line	596, "main.c"; 	counter = 0;
+                                    1- 1261     	BANKSEL	_get_motor_in_status_counter_65536_43
+     0023 rrrr                      3-  108 m1      .banksel ram_address
+     0024 02rr                      1- 1262     	CLRR	_get_motor_in_status_counter_65536_43
+     0025                           1- 1263     _00296_DS_:
+                                    1- 1264     	.line	599, "main.c"; 	}
+                                    1- 1265     	RETURN	
+     0025 0010                      3-   38 m1      ret
+                                    1- 1266     ; exit point of _get_motor_in_status
+                                    1- 1268     ;***
+                                    1- 1269     ;  pBlock Stats: dbName = C
+                                    1- 1270     ;***
+                                    1- 1271     ;has an exit
+                                    1- 1272     ;functions called:
+                                    1- 1273     ;   _motor_open
+                                    1- 1274     ;   _disable_breathing_mode
+                                    1- 1275     ;   _disable_breathing_mode
+                                    1- 1276     ;   _disable_breathing_mode
+                                    1- 1277     ;   _disable_breathing_mode
+                                    1- 1278     ;   _motor_close
+                                    1- 1279     ;   _motor_open
+                                    1- 1280     ;   _disable_breathing_mode
+                                    1- 1281     ;   _disable_breathing_mode
+                                    1- 1282     ;   _disable_breathing_mode
+                                    1- 1283     ;   _disable_breathing_mode
+                                    1- 1284     ;   _motor_close
+                                    1- 1285     ;1 compiler assigned register :
+                                    1- 1286     ;   r0x1015
+                                    1- 1287     ;; Starting pCode block
+                                    1- 1288     .segment "code"; module=main, function=_gpioKeyScan
+     0000                           1- 1290     _gpioKeyScan:
+                                    1- 1291     ; 2 exit points
+                                    1- 1292     	.line	395, "main.c"; 	P_KEY_POWER_INPUT;
+     0000 001r                      1- 1293     	IOSTR	_IOSTB
+                                    1- 1294     	BANKSEL	r0x1015
+     0001 rrrr                      3-  108 m1      .banksel ram_address
+     0002 00rr                      1- 1295     	MOVAR	r0x1015
+     0003 1Arr                      1- 1296     	BSR	r0x1015,4
+     0004 01rr                      1- 1297     	MOVR	r0x1015,W
+     0005 000r                      1- 1298     	IOST	_IOSTB
+                                    1- 1299     	.line	396, "main.c"; 	if (gpioKeyWaitTimer)
+                                    1- 1300     	BANKSEL	_gpioKeyWaitTimer
+     0006 rrrr                      3-  108 m1      .banksel ram_address
+     0007 01rr                      1- 1301     	MOVR	_gpioKeyWaitTimer,W
+     0008 0D03                      1- 1302     	BTRSC	STATUS,2
+                                    1- 1303     	MGOTO	_00169_DS_
+     0009 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1304     	.line	397, "main.c"; 	gpioKeyWaitTimer--;
+     000A 01rr                      1- 1305     	MOVR	_gpioKeyWaitTimer,W
+                                    1- 1306     	BANKSEL	r0x1015
+     000B rrrr                      3-  108 m1      .banksel ram_address
+     000C 00rr                      1- 1307     	MOVAR	r0x1015
+     000D 06rr                      1- 1308     	DECR	r0x1015,W
+                                    1- 1309     	BANKSEL	_gpioKeyWaitTimer
+     000E rrrr                      3-  108 m1      .banksel ram_address
+     000F 00rr                      1- 1310     	MOVAR	_gpioKeyWaitTimer
+     0010                           1- 1311     _00169_DS_:
+                                    1- 1312     	.line	399, "main.c"; 	KeyIndex = 0;
+                                    1- 1313     	BANKSEL	_vFlag_1
+     0010 rrrr                      3-  108 m1      .banksel ram_address
+     0011 1Err                      1- 1314     	BCR	_vFlag_1,5
+                                    1- 1315     	.line	401, "main.c"; 	if (P_KEY_POWER)
+     0012 0Err                      1- 1316     	BTRSC	_PORTBbits,4
+                                    1- 1317     	.line	403, "main.c"; 	KeyIndex = 1;
+     0013 1Arr                      1- 1318     	BSR	_vFlag_1,5
+                                    1- 1319     	.line	406, "main.c"; 	switch (GpioKeyState)
+                                    1- 1320     	BANKSEL	_GpioKeyState
+     0014 rrrr                      3-  108 m1      .banksel ram_address
+     0015 01rr                      1- 1321     	MOVR	_GpioKeyState,W
+     0016 0D03                      1- 1322     	BTRSC	STATUS,2
+                                    1- 1323     	MGOTO	_00172_DS_
+     0017 3rrr                      3-   61 m1      LGOTO rom_address
+     0018 01rr                      1- 1324     	MOVR	_GpioKeyState,W
+     0019 2401                      1- 1325     	XORIA	0x01
+     001A 0D03                      1- 1326     	BTRSC	STATUS,2
+                                    1- 1327     	MGOTO	_00175_DS_
+     001B 3rrr                      3-   61 m1      LGOTO rom_address
+     001C 01rr                      1- 1328     	MOVR	_GpioKeyState,W
+     001D 2402                      1- 1329     	XORIA	0x02
+     001E 0D03                      1- 1330     	BTRSC	STATUS,2
+                                    1- 1331     	MGOTO	_00181_DS_
+     001F 3rrr                      3-   61 m1      LGOTO rom_address
+     0020 01rr                      1- 1332     	MOVR	_GpioKeyState,W
+     0021 2403                      1- 1333     	XORIA	0x03
+     0022 0D03                      1- 1334     	BTRSC	STATUS,2
+                                    1- 1335     	MGOTO	_00197_DS_
+     0023 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1336     	MGOTO	_00200_DS_
+     0024 3rrr                      3-   61 m1      LGOTO rom_address
+     0025                           1- 1337     _00172_DS_:
+                                    1- 1338     	.line	409, "main.c"; 	if (KeyIndex)
+                                    1- 1339     	BANKSEL	_vFlag_1
+     0025 rrrr                      3-  108 m1      .banksel ram_address
+     0026 0Arr                      1- 1340     	BTRSS	_vFlag_1,5
+                                    1- 1341     	MGOTO	_00174_DS_
+     0027 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1342     	.line	412, "main.c"; 	return MSG_NONE;
+     0028 2100                      1- 1343     	MOVIA	0x00
+                                    1- 1344     	MGOTO	_00202_DS_
+     0029 3rrr                      3-   61 m1      LGOTO rom_address
+     002A                           1- 1345     _00174_DS_:
+                                    1- 1346     	.line	417, "main.c"; 	gpioKeyWaitTimer = GPIO_KEY_JTTER_TIME; // gSysTick_current;
+     002A 2102                      1- 1347     	MOVIA	0x02
+                                    1- 1348     	BANKSEL	_gpioKeyWaitTimer
+     002B rrrr                      3-  108 m1      .banksel ram_address
+     002C 00rr                      1- 1349     	MOVAR	_gpioKeyWaitTimer
+                                    1- 1350     	.line	419, "main.c"; 	GpioKeyState = GPIO_KEY_STATE_JITTER;
+     002D 2101                      1- 1351     	MOVIA	0x01
+                                    1- 1352     	BANKSEL	_GpioKeyState
+     002E rrrr                      3-  108 m1      .banksel ram_address
+     002F 00rr                      1- 1353     	MOVAR	_GpioKeyState
+     0030                           1- 1354     _00175_DS_:
+                                    1- 1355     	.line	422, "main.c"; 	if (KeyIndex) // if(PreKeyIndex != KeyIndex)
+                                    1- 1356     	BANKSEL	_vFlag_1
+     0030 rrrr                      3-  108 m1      .banksel ram_address
+     0031 0Arr                      1- 1357     	BTRSS	_vFlag_1,5
+                                    1- 1358     	MGOTO	_00179_DS_
+     0032 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1359     	.line	425, "main.c"; 	GpioKeyState = GPIO_KEY_STATE_IDLE;
+                                    1- 1360     	BANKSEL	_GpioKeyState
+     0033 rrrr                      3-  108 m1      .banksel ram_address
+     0034 02rr                      1- 1361     	CLRR	_GpioKeyState
+                                    1- 1362     	MGOTO	_00201_DS_
+     0035 3rrr                      3-   61 m1      LGOTO rom_address
+     0036                           1- 1363     _00179_DS_:
+                                    1- 1364     	.line	428, "main.c"; 	else if (!gpioKeyWaitTimer) // if(gSysTick_current - gpioKeyWaitTimer > GPIO_KEY_JTTER_TIME)
+                                    1- 1365     	BANKSEL	_gpioKeyWaitTimer
+     0036 rrrr                      3-  108 m1      .banksel ram_address
+     0037 01rr                      1- 1366     	MOVR	_gpioKeyWaitTimer,W
+     0038 0903                      1- 1367     	BTRSS	STATUS,2
+                                    1- 1368     	MGOTO	_00201_DS_
+     0039 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1369     	.line	434, "main.c"; 	gpioKeyWaitTimer = GPIO_KEY_CP_TIME; // gSysTick_current;
+     003A 21C8                      1- 1370     	MOVIA	0xc8
+     003B 00rr                      1- 1371     	MOVAR	_gpioKeyWaitTimer
+                                    1- 1372     	.line	435, "main.c"; 	GpioKeyState = GPIO_KEY_STATE_PRESS_DOWN;
+     003C 2102                      1- 1373     	MOVIA	0x02
+                                    1- 1374     	BANKSEL	_GpioKeyState
+     003D rrrr                      3-  108 m1      .banksel ram_address
+     003E 00rr                      1- 1375     	MOVAR	_GpioKeyState
+                                    1- 1376     	.line	439, "main.c"; 	break;
+                                    1- 1377     	MGOTO	_00201_DS_
+     003F 3rrr                      3-   61 m1      LGOTO rom_address
+     0040                           1- 1378     _00181_DS_:
+                                    1- 1379     	.line	442, "main.c"; 	if (KeyIndex) // if(PreKeyIndex != KeyIndex)
+                                    1- 1380     	BANKSEL	_vFlag_1
+     0040 rrrr                      3-  108 m1      .banksel ram_address
+     0041 0Arr                      1- 1381     	BTRSS	_vFlag_1,5
+                                    1- 1382     	MGOTO	_00195_DS_
+     0042 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1383     	.line	446, "main.c"; 	GpioKeyState = GPIO_KEY_STATE_IDLE;
+                                    1- 1384     	BANKSEL	_GpioKeyState
+     0043 rrrr                      3-  108 m1      .banksel ram_address
+     0044 02rr                      1- 1385     	CLRR	_GpioKeyState
+                                    1- 1386     	.line	449, "main.c"; 	if (0 == bFlag_bat_shut_down)
+                                    1- 1387     	BANKSEL	_vFlag_1
+     0045 rrrr                      3-  108 m1      .banksel ram_address
+     0046 0Drr                      1- 1388     	BTRSC	_vFlag_1,3
+                                    1- 1389     	MGOTO	_00191_DS_
+     0047 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1390     	.line	451, "main.c"; 	if (0 == bFlag_motor_open)
+                                    1- 1391     	BANKSEL	_vFlag_0
+     0048 rrrr                      3-  108 m1      .banksel ram_address
+     0049 0Crr                      1- 1392     	BTRSC	_vFlag_0,0
+                                    1- 1393     	MGOTO	_00188_DS_
+     004A 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1394     	.line	453, "main.c"; 	motor_open();
+                                    1- 1395     	MCALL	_motor_open
+     004B 2rrr                      3-   64 m1      LCALL rom_address
+                                    1- 1396     	MGOTO	_00191_DS_
+     004C 3rrr                      3-   61 m1      LGOTO rom_address
+     004D                           1- 1397     _00188_DS_:
+                                    1- 1398     	.line	457, "main.c"; 	switch (moto_work_mode)
+                                    1- 1399     	BANKSEL	_moto_work_mode
+     004D rrrr                      3-  108 m1      .banksel ram_address
+     004E 01rr                      1- 1400     	MOVR	_moto_work_mode,W
+                                    1- 1401     	BANKSEL	r0x1015
+     004F rrrr                      3-  108 m1      .banksel ram_address
+     0050 00rr                      1- 1402     	MOVAR	r0x1015
+     0051 2401                      1- 1403     	XORIA	0x01
+     0052 0D03                      1- 1404     	BTRSC	STATUS,2
+                                    1- 1405     	MGOTO	_00182_DS_
+     0053 3rrr                      3-   61 m1      LGOTO rom_address
+     0054 01rr                      1- 1406     	MOVR	r0x1015,W
+     0055 2402                      1- 1407     	XORIA	0x02
+     0056 0D03                      1- 1408     	BTRSC	STATUS,2
+                                    1- 1409     	MGOTO	_00183_DS_
+     0057 3rrr                      3-   61 m1      LGOTO rom_address
+     0058 01rr                      1- 1410     	MOVR	r0x1015,W
+     0059 2403                      1- 1411     	XORIA	0x03
+     005A 0D03                      1- 1412     	BTRSC	STATUS,2
+                                    1- 1413     	MGOTO	_00184_DS_
+     005B 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1414     	MGOTO	_00185_DS_
+     005C 3rrr                      3-   61 m1      LGOTO rom_address
+     005D                           1- 1415     _00182_DS_:
+                                    1- 1416     	.line	460, "main.c"; 	moto_work_mode = 2;
+     005D 2102                      1- 1417     	MOVIA	0x02
+                                    1- 1418     	BANKSEL	_moto_work_mode
+     005E rrrr                      3-  108 m1      .banksel ram_address
+     005F 00rr                      1- 1419     	MOVAR	_moto_work_mode
+                                    1- 1420     	.line	461, "main.c"; 	P_5V_REF_INPUT;
+     0060 001r                      1- 1421     	IOSTR	_IOSTB
+                                    1- 1422     	BANKSEL	r0x1015
+     0061 rrrr                      3-  108 m1      .banksel ram_address
+     0062 00rr                      1- 1423     	MOVAR	r0x1015
+     0063 1Arr                      1- 1424     	BSR	r0x1015,5
+     0064 01rr                      1- 1425     	MOVR	r0x1015,W
+     0065 000r                      1- 1426     	IOST	_IOSTB
+                                    1- 1427     	.line	462, "main.c"; 	P_9V_REF_INPUT;
+     0066 001r                      1- 1428     	IOSTR	_IOSTA
+     0067 00rr                      1- 1429     	MOVAR	r0x1015
+     0068 18rr                      1- 1430     	BSR	r0x1015,1
+     0069 01rr                      1- 1431     	MOVR	r0x1015,W
+     006A 000r                      1- 1432     	IOST	_IOSTA
+                                    1- 1433     	.line	463, "main.c"; 	P_7V_REF_CLR;
+     006B 1Crr                      1- 1434     	BCR	_PORTAbits,0
+                                    1- 1435     	.line	464, "main.c"; 	P_7V_REF_OUTPUT;
+     006C 001r                      1- 1436     	IOSTR	_IOSTA
+     006D 00rr                      1- 1437     	MOVAR	r0x1015
+     006E 1Crr                      1- 1438     	BCR	r0x1015,0
+     006F 01rr                      1- 1439     	MOVR	r0x1015,W
+     0070 000r                      1- 1440     	IOST	_IOSTA
+                                    1- 1441     	.line	465, "main.c"; 	dispTimerForce = (4 + PY);
+     0071 2105                      1- 1442     	MOVIA	0x05
+                                    1- 1443     	BANKSEL	_dispTimerForce
+     0072 rrrr                      3-  108 m1      .banksel ram_address
+     0073 00rr                      1- 1444     	MOVAR	_dispTimerForce
+                                    1- 1445     	.line	466, "main.c"; 	disable_breathing_mode();
+                                    1- 1446     	MCALL	_disable_breathing_mode
+     0074 2rrr                      3-   64 m1      LCALL rom_address
+                                    1- 1447     	.line	467, "main.c"; 	break;
+                                    1- 1448     	MGOTO	_00191_DS_
+     0075 3rrr                      3-   61 m1      LGOTO rom_address
+     0076                           1- 1449     _00183_DS_:
+                                    1- 1450     	.line	469, "main.c"; 	moto_work_mode = 3;
+     0076 2103                      1- 1451     	MOVIA	0x03
+                                    1- 1452     	BANKSEL	_moto_work_mode
+     0077 rrrr                      3-  108 m1      .banksel ram_address
+     0078 00rr                      1- 1453     	MOVAR	_moto_work_mode
+                                    1- 1454     	.line	470, "main.c"; 	P_5V_REF_INPUT;
+     0079 001r                      1- 1455     	IOSTR	_IOSTB
+                                    1- 1456     	BANKSEL	r0x1015
+     007A rrrr                      3-  108 m1      .banksel ram_address
+     007B 00rr                      1- 1457     	MOVAR	r0x1015
+     007C 1Arr                      1- 1458     	BSR	r0x1015,5
+     007D 01rr                      1- 1459     	MOVR	r0x1015,W
+     007E 000r                      1- 1460     	IOST	_IOSTB
+                                    1- 1461     	.line	471, "main.c"; 	P_7V_REF_INPUT;
+     007F 001r                      1- 1462     	IOSTR	_IOSTA
+     0080 00rr                      1- 1463     	MOVAR	r0x1015
+     0081 18rr                      1- 1464     	BSR	r0x1015,0
+     0082 01rr                      1- 1465     	MOVR	r0x1015,W
+     0083 000r                      1- 1466     	IOST	_IOSTA
+                                    1- 1467     	.line	472, "main.c"; 	P_9V_REF_CLR;
+     0084 1Crr                      1- 1468     	BCR	_PORTAbits,1
+                                    1- 1469     	.line	473, "main.c"; 	P_9V_REF_OUTPUT;
+     0085 001r                      1- 1470     	IOSTR	_IOSTA
+     0086 00rr                      1- 1471     	MOVAR	r0x1015
+     0087 1Crr                      1- 1472     	BCR	r0x1015,1
+     0088 01rr                      1- 1473     	MOVR	r0x1015,W
+     0089 000r                      1- 1474     	IOST	_IOSTA
+                                    1- 1475     	.line	474, "main.c"; 	dispTimerForce = (6 + PY);
+     008A 2107                      1- 1476     	MOVIA	0x07
+                                    1- 1477     	BANKSEL	_dispTimerForce
+     008B rrrr                      3-  108 m1      .banksel ram_address
+     008C 00rr                      1- 1478     	MOVAR	_dispTimerForce
+                                    1- 1479     	.line	475, "main.c"; 	disable_breathing_mode();
+                                    1- 1480     	MCALL	_disable_breathing_mode
+     008D 2rrr                      3-   64 m1      LCALL rom_address
+                                    1- 1481     	.line	476, "main.c"; 	break;
+                                    1- 1482     	MGOTO	_00191_DS_
+     008E 3rrr                      3-   61 m1      LGOTO rom_address
+     008F                           1- 1483     _00184_DS_:
+                                    1- 1484     	.line	479, "main.c"; 	moto_work_mode = 1;
+     008F 2101                      1- 1485     	MOVIA	0x01
+                                    1- 1486     	BANKSEL	_moto_work_mode
+     0090 rrrr                      3-  108 m1      .banksel ram_address
+     0091 00rr                      1- 1487     	MOVAR	_moto_work_mode
+                                    1- 1488     	.line	480, "main.c"; 	P_7V_REF_INPUT;
+     0092 001r                      1- 1489     	IOSTR	_IOSTA
+                                    1- 1490     	BANKSEL	r0x1015
+     0093 rrrr                      3-  108 m1      .banksel ram_address
+     0094 00rr                      1- 1491     	MOVAR	r0x1015
+     0095 18rr                      1- 1492     	BSR	r0x1015,0
+     0096 01rr                      1- 1493     	MOVR	r0x1015,W
+     0097 000r                      1- 1494     	IOST	_IOSTA
+                                    1- 1495     	.line	481, "main.c"; 	P_9V_REF_INPUT;
+     0098 001r                      1- 1496     	IOSTR	_IOSTA
+     0099 00rr                      1- 1497     	MOVAR	r0x1015
+     009A 18rr                      1- 1498     	BSR	r0x1015,1
+     009B 01rr                      1- 1499     	MOVR	r0x1015,W
+     009C 000r                      1- 1500     	IOST	_IOSTA
+                                    1- 1501     	.line	482, "main.c"; 	P_5V_REF_CLR;
+     009D 1Err                      1- 1502     	BCR	_PORTBbits,5
+                                    1- 1503     	.line	483, "main.c"; 	P_5V_REF_OUTPUT;
+     009E 001r                      1- 1504     	IOSTR	_IOSTB
+     009F 00rr                      1- 1505     	MOVAR	r0x1015
+     00A0 1Err                      1- 1506     	BCR	r0x1015,5
+     00A1 01rr                      1- 1507     	MOVR	r0x1015,W
+     00A2 000r                      1- 1508     	IOST	_IOSTB
+                                    1- 1509     	.line	484, "main.c"; 	dispTimerForce = (2 + PY);
+     00A3 2103                      1- 1510     	MOVIA	0x03
+                                    1- 1511     	BANKSEL	_dispTimerForce
+     00A4 rrrr                      3-  108 m1      .banksel ram_address
+     00A5 00rr                      1- 1512     	MOVAR	_dispTimerForce
+                                    1- 1513     	.line	485, "main.c"; 	disable_breathing_mode();
+                                    1- 1514     	MCALL	_disable_breathing_mode
+     00A6 2rrr                      3-   64 m1      LCALL rom_address
+                                    1- 1515     	.line	486, "main.c"; 	break;
+                                    1- 1516     	MGOTO	_00191_DS_
+     00A7 3rrr                      3-   61 m1      LGOTO rom_address
+     00A8                           1- 1517     _00185_DS_:
+                                    1- 1518     	.line	488, "main.c"; 	moto_work_mode = 1;
+     00A8 2101                      1- 1519     	MOVIA	0x01
+                                    1- 1520     	BANKSEL	_moto_work_mode
+     00A9 rrrr                      3-  108 m1      .banksel ram_address
+     00AA 00rr                      1- 1521     	MOVAR	_moto_work_mode
+                                    1- 1522     	.line	489, "main.c"; 	P_7V_REF_INPUT;
+     00AB 001r                      1- 1523     	IOSTR	_IOSTA
+                                    1- 1524     	BANKSEL	r0x1015
+     00AC rrrr                      3-  108 m1      .banksel ram_address
+     00AD 00rr                      1- 1525     	MOVAR	r0x1015
+     00AE 18rr                      1- 1526     	BSR	r0x1015,0
+     00AF 01rr                      1- 1527     	MOVR	r0x1015,W
+     00B0 000r                      1- 1528     	IOST	_IOSTA
+                                    1- 1529     	.line	490, "main.c"; 	P_9V_REF_INPUT;
+     00B1 001r                      1- 1530     	IOSTR	_IOSTA
+     00B2 00rr                      1- 1531     	MOVAR	r0x1015
+     00B3 18rr                      1- 1532     	BSR	r0x1015,1
+     00B4 01rr                      1- 1533     	MOVR	r0x1015,W
+     00B5 000r                      1- 1534     	IOST	_IOSTA
+                                    1- 1535     	.line	491, "main.c"; 	P_5V_REF_CLR;
+     00B6 1Err                      1- 1536     	BCR	_PORTBbits,5
+                                    1- 1537     	.line	492, "main.c"; 	P_5V_REF_OUTPUT;
+     00B7 001r                      1- 1538     	IOSTR	_IOSTB
+     00B8 00rr                      1- 1539     	MOVAR	r0x1015
+     00B9 1Err                      1- 1540     	BCR	r0x1015,5
+     00BA 01rr                      1- 1541     	MOVR	r0x1015,W
+     00BB 000r                      1- 1542     	IOST	_IOSTB
+                                    1- 1543     	.line	493, "main.c"; 	dispTimerForce = (2 + PY);
+     00BC 2103                      1- 1544     	MOVIA	0x03
+                                    1- 1545     	BANKSEL	_dispTimerForce
+     00BD rrrr                      3-  108 m1      .banksel ram_address
+     00BE 00rr                      1- 1546     	MOVAR	_dispTimerForce
+                                    1- 1547     	.line	494, "main.c"; 	disable_breathing_mode();
+                                    1- 1548     	MCALL	_disable_breathing_mode
+     00BF 2rrr                      3-   64 m1      LCALL rom_address
+     00C0                           1- 1549     _00191_DS_:
+                                    1- 1550     	.line	500, "main.c"; 	return MSG_MODE; // GpioKeyEvent[PreKeyIndex][1]; //SPR
+     00C0 2121                      1- 1551     	MOVIA	0x21
+                                    1- 1552     	MGOTO	_00202_DS_
+     00C1 3rrr                      3-   61 m1      LGOTO rom_address
+     00C2                           1- 1553     _00195_DS_:
+                                    1- 1554     	.line	503, "main.c"; 	else if (!gpioKeyWaitTimer) // if(gSysTick_current - gpioKeyWaitTimer > GPIO_KEY_CP_TIME)
+                                    1- 1555     	BANKSEL	_gpioKeyWaitTimer
+     00C2 rrrr                      3-  108 m1      .banksel ram_address
+     00C3 01rr                      1- 1556     	MOVR	_gpioKeyWaitTimer,W
+     00C4 0903                      1- 1557     	BTRSS	STATUS,2
+                                    1- 1558     	MGOTO	_00201_DS_
+     00C5 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1559     	.line	511, "main.c"; 	GpioKeyState = GPIO_KEY_STATE_CP;
+     00C6 2103                      1- 1560     	MOVIA	0x03
+                                    1- 1561     	BANKSEL	_GpioKeyState
+     00C7 rrrr                      3-  108 m1      .banksel ram_address
+     00C8 00rr                      1- 1562     	MOVAR	_GpioKeyState
+                                    1- 1563     	.line	524, "main.c"; 	motor_close();
+                                    1- 1564     	MCALL	_motor_close
+     00C9 2rrr                      3-   64 m1      LCALL rom_address
+                                    1- 1565     	.line	526, "main.c"; 	return MSG_POWER_ON; // GpioKeyEvent[PreKeyIndex][2];  //CPS
+     00CA 2141                      1- 1566     	MOVIA	0x41
+                                    1- 1567     	MGOTO	_00202_DS_
+     00CB 3rrr                      3-   61 m1      LGOTO rom_address
+     00CC                           1- 1568     _00197_DS_:
+                                    1- 1569     	.line	532, "main.c"; 	if (KeyIndex) // if(PreKeyIndex != KeyIndex)
+                                    1- 1570     	BANKSEL	_vFlag_1
+     00CC rrrr                      3-  108 m1      .banksel ram_address
+     00CD 0Arr                      1- 1571     	BTRSS	_vFlag_1,5
+                                    1- 1572     	MGOTO	_00201_DS_
+     00CE 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1573     	.line	537, "main.c"; 	GpioKeyState = GPIO_KEY_STATE_IDLE;
+                                    1- 1574     	BANKSEL	_GpioKeyState
+     00CF rrrr                      3-  108 m1      .banksel ram_address
+     00D0 02rr                      1- 1575     	CLRR	_GpioKeyState
+                                    1- 1576     	.line	551, "main.c"; 	break;
+                                    1- 1577     	MGOTO	_00201_DS_
+     00D1 3rrr                      3-   61 m1      LGOTO rom_address
+     00D2                           1- 1578     _00200_DS_:
+                                    1- 1579     	.line	554, "main.c"; 	GpioKeyState = GPIO_KEY_STATE_IDLE;
+                                    1- 1580     	BANKSEL	_GpioKeyState
+     00D2 rrrr                      3-  108 m1      .banksel ram_address
+     00D3 02rr                      1- 1581     	CLRR	_GpioKeyState
+     00D4                           1- 1582     _00201_DS_:
+                                    1- 1583     	.line	558, "main.c"; 	return MSG_NONE;
+     00D4 2100                      1- 1584     	MOVIA	0x00
+     00D5                           1- 1585     _00202_DS_:
+                                    1- 1586     	.line	559, "main.c"; 	}
+                                    1- 1587     	RETURN	
+     00D5 0010                      3-   38 m1      ret
+                                    1- 1588     ; exit point of _gpioKeyScan
+                                    1- 1590     ;***
+                                    1- 1591     ;  pBlock Stats: dbName = C
+                                    1- 1592     ;***
+                                    1- 1593     ;has an exit
+                                    1- 1594     ;1 compiler assigned register :
+                                    1- 1595     ;   r0x1014
+                                    1- 1596     ;; Starting pCode block
+                                    1- 1597     .segment "code"; module=main, function=_motor_close
+     0000                           1- 1599     _motor_close:
+                                    1- 1600     ; 2 exit points
+                                    1- 1601     	.line	327, "main.c"; 	P_MOTOR_EN_CLR;
+     0000 1Drr                      1- 1602     	BCR	_PORTAbits,3
+                                    1- 1603     	.line	328, "main.c"; 	P_MOTOR_EN_OUTPUT;
+     0001 001r                      1- 1604     	IOSTR	_IOSTA
+                                    1- 1605     	BANKSEL	r0x1014
+     0002 rrrr                      3-  108 m1      .banksel ram_address
+     0003 00rr                      1- 1606     	MOVAR	r0x1014
+     0004 1Drr                      1- 1607     	BCR	r0x1014,3
+     0005 01rr                      1- 1608     	MOVR	r0x1014,W
+     0006 000r                      1- 1609     	IOST	_IOSTA
+                                    1- 1610     	.line	329, "main.c"; 	BOOST_EN_CLR;
+     0007 1Crr                      1- 1611     	BCR	_PORTBbits,1
+                                    1- 1612     	.line	330, "main.c"; 	BOOST_EN_OUTPUT;
+     0008 001r                      1- 1613     	IOSTR	_IOSTB
+     0009 00rr                      1- 1614     	MOVAR	r0x1014
+     000A 1Crr                      1- 1615     	BCR	r0x1014,1
+     000B 01rr                      1- 1616     	MOVR	r0x1014,W
+     000C 000r                      1- 1617     	IOST	_IOSTB
+                                    1- 1618     	.line	331, "main.c"; 	P_5V_REF_INPUT;
+     000D 001r                      1- 1619     	IOSTR	_IOSTB
+     000E 00rr                      1- 1620     	MOVAR	r0x1014
+     000F 1Arr                      1- 1621     	BSR	r0x1014,5
+     0010 01rr                      1- 1622     	MOVR	r0x1014,W
+     0011 000r                      1- 1623     	IOST	_IOSTB
+                                    1- 1624     	.line	332, "main.c"; 	P_7V_REF_INPUT;
+     0012 001r                      1- 1625     	IOSTR	_IOSTA
+     0013 00rr                      1- 1626     	MOVAR	r0x1014
+     0014 18rr                      1- 1627     	BSR	r0x1014,0
+     0015 01rr                      1- 1628     	MOVR	r0x1014,W
+     0016 000r                      1- 1629     	IOST	_IOSTA
+                                    1- 1630     	.line	333, "main.c"; 	P_9V_REF_INPUT;
+     0017 001r                      1- 1631     	IOSTR	_IOSTA
+     0018 00rr                      1- 1632     	MOVAR	r0x1014
+     0019 18rr                      1- 1633     	BSR	r0x1014,1
+     001A 01rr                      1- 1634     	MOVR	r0x1014,W
+     001B 000r                      1- 1635     	IOST	_IOSTA
+                                    1- 1636     	.line	334, "main.c"; 	bFlag_motor_open = 0;
+                                    1- 1637     	BANKSEL	_vFlag_0
+     001C rrrr                      3-  108 m1      .banksel ram_address
+     001D 1Crr                      1- 1638     	BCR	_vFlag_0,0
+                                    1- 1639     	.line	335, "main.c"; 	}
+                                    1- 1640     	RETURN	
+     001E 0010                      3-   38 m1      ret
+                                    1- 1641     ; exit point of _motor_close
+                                    1- 1643     ;***
+                                    1- 1644     ;  pBlock Stats: dbName = C
+                                    1- 1645     ;***
+                                    1- 1646     ;has an exit
+                                    1- 1647     ;functions called:
+                                    1- 1648     ;   _disable_breathing_mode
+                                    1- 1649     ;   _disable_breathing_mode
+                                    1- 1650     ;   _disable_breathing_mode
+                                    1- 1651     ;   _disable_breathing_mode
+                                    1- 1652     ;   _disable_breathing_mode
+                                    1- 1653     ;   _disable_breathing_mode
+                                    1- 1654     ;   _disable_breathing_mode
+                                    1- 1655     ;   _disable_breathing_mode
+                                    1- 1656     ;1 compiler assigned register :
+                                    1- 1657     ;   r0x1014
+                                    1- 1658     ;; Starting pCode block
+                                    1- 1659     .segment "code"; module=main, function=_motor_open
+     0000                           1- 1661     _motor_open:
+                                    1- 1662     ; 2 exit points
+                                    1- 1663     	.line	270, "main.c"; 	bFlag_motor_open = 1;
+                                    1- 1664     	BANKSEL	_vFlag_0
+     0000 rrrr                      3-  108 m1      .banksel ram_address
+     0001 18rr                      1- 1665     	BSR	_vFlag_0,0
+                                    1- 1666     	.line	271, "main.c"; 	delaySleepTime = CONST_DELAY_SLEEP_TIME;
+     0002 210A                      1- 1667     	MOVIA	0x0a
+                                    1- 1668     	BANKSEL	_delaySleepTime
+     0003 rrrr                      3-  108 m1      .banksel ram_address
+     0004 00rr                      1- 1669     	MOVAR	_delaySleepTime
+                                    1- 1670     	.line	272, "main.c"; 	P_MOTOR_EN_SET;
+     0005 19rr                      1- 1671     	BSR	_PORTAbits,3
+                                    1- 1672     	.line	273, "main.c"; 	P_MOTOR_EN_OUTPUT;
+     0006 001r                      1- 1673     	IOSTR	_IOSTA
+                                    1- 1674     	BANKSEL	r0x1014
+     0007 rrrr                      3-  108 m1      .banksel ram_address
+     0008 00rr                      1- 1675     	MOVAR	r0x1014
+     0009 1Drr                      1- 1676     	BCR	r0x1014,3
+     000A 01rr                      1- 1677     	MOVR	r0x1014,W
+     000B 000r                      1- 1678     	IOST	_IOSTA
+                                    1- 1679     	.line	274, "main.c"; 	BOOST_EN_SET;
+     000C 18rr                      1- 1680     	BSR	_PORTBbits,1
+                                    1- 1681     	.line	275, "main.c"; 	BOOST_EN_OUTPUT;
+     000D 001r                      1- 1682     	IOSTR	_IOSTB
+     000E 00rr                      1- 1683     	MOVAR	r0x1014
+     000F 1Crr                      1- 1684     	BCR	r0x1014,1
+     0010 01rr                      1- 1685     	MOVR	r0x1014,W
+     0011 000r                      1- 1686     	IOST	_IOSTB
+                                    1- 1687     	.line	276, "main.c"; 	switch (moto_work_mode)
+                                    1- 1688     	BANKSEL	_moto_work_mode
+     0012 rrrr                      3-  108 m1      .banksel ram_address
+     0013 01rr                      1- 1689     	MOVR	_moto_work_mode,W
+                                    1- 1690     	BANKSEL	r0x1014
+     0014 rrrr                      3-  108 m1      .banksel ram_address
+     0015 00rr                      1- 1691     	MOVAR	r0x1014
+     0016 2401                      1- 1692     	XORIA	0x01
+     0017 0D03                      1- 1693     	BTRSC	STATUS,2
+                                    1- 1694     	MGOTO	_00138_DS_
+     0018 3rrr                      3-   61 m1      LGOTO rom_address
+     0019 01rr                      1- 1695     	MOVR	r0x1014,W
+     001A 2402                      1- 1696     	XORIA	0x02
+     001B 0D03                      1- 1697     	BTRSC	STATUS,2
+                                    1- 1698     	MGOTO	_00139_DS_
+     001C 3rrr                      3-   61 m1      LGOTO rom_address
+     001D 01rr                      1- 1699     	MOVR	r0x1014,W
+     001E 2403                      1- 1700     	XORIA	0x03
+     001F 0D03                      1- 1701     	BTRSC	STATUS,2
+                                    1- 1702     	MGOTO	_00140_DS_
+     0020 3rrr                      3-   61 m1      LGOTO rom_address
+                                    1- 1703     	MGOTO	_00141_DS_
+     0021 3rrr                      3-   61 m1      LGOTO rom_address
+     0022                           1- 1704     _00138_DS_:
+                                    1- 1705     	.line	279, "main.c"; 	P_7V_REF_INPUT;
+     0022 001r                      1- 1706     	IOSTR	_IOSTA
+                                    1- 1707     	BANKSEL	r0x1014
+     0023 rrrr                      3-  108 m1      .banksel ram_address
+     0024 00rr                      1- 1708     	MOVAR	r0x1014
+     0025 18rr                      1- 1709     	BSR	r0x1014,0
+     0026 01rr                      1- 1710     	MOVR	r0x1014,W
+     0027 000r                      1- 1711     	IOST	_IOSTA
+                                    1- 1712     	.line	280, "main.c"; 	P_9V_REF_INPUT;
+     0028 001r                      1- 1713     	IOSTR	_IOSTA
+     0029 00rr                      1- 1714     	MOVAR	r0x1014
+     002A 18rr                      1- 1715     	BSR	r0x1014,1
+     002B 01rr                      1- 1716     	MOVR	r0x1014,W
+     002C 000r                      1- 1717     	IOST	_IOSTA
+                                    1- 1718     	.line	281, "main.c"; 	P_5V_REF_CLR;
+     002D 1Err                      1- 1719     	BCR	_PORTBbits,5
+                                    1- 1720     	.line	282, "main.c"; 	P_5V_REF_OUTPUT;
+     002E 001r                      1- 1721     	IOSTR	_IOSTB
+     002F 00rr                      1- 1722     	MOVAR	r0x1014
+     0030 1Err                      1- 1723     	BCR	r0x1014,5
+     0031 01rr                      1- 1724     	MOVR	r0x1014,W
+     0032 000r                      1- 1725     	IOST	_IOSTB
+                                    1- 1726     	.line	284, "main.c"; 	P_LED_B_OFF;
+     0033 1Drr                      1- 1727     	BCR	_PORTBbits,2
+                                    1- 1728     	.line	285, "main.c"; 	P_LED_R_ON;
+     0034 19rr                      1- 1729     	BSR	_PORTBbits,3
+                                    1- 1730     	.line	286, "main.c"; 	dispTimerForce = (2 + PY);
+     0035 2103                      1- 1731     	MOVIA	0x03
+                                    1- 1732     	BANKSEL	_dispTimerForce
+     0036 rrrr                      3-  108 m1      .banksel ram_address
+     0037 00rr                      1- 1733     	MOVAR	_dispTimerForce
+                                    1- 1734     	.line	287, "main.c"; 	disable_breathing_mode();
+                                    1- 1735     	MCALL	_disable_breathing_mode
+     0038 2rrr                      3-   64 m1      LCALL rom_address
+                                    1- 1736     	.line	288, "main.c"; 	break;
+                                    1- 1737     	MGOTO	_00143_DS_
+     0039 3rrr                      3-   61 m1      LGOTO rom_address
+     003A                           1- 1738     _00139_DS_:
+                                    1- 1739     	.line	290, "main.c"; 	P_5V_REF_INPUT;
+     003A 001r                      1- 1740     	IOSTR	_IOSTB
+                                    1- 1741     	BANKSEL	r0x1014
+     003B rrrr                      3-  108 m1      .banksel ram_address
+     003C 00rr                      1- 1742     	MOVAR	r0x1014
+     003D 1Arr                      1- 1743     	BSR	r0x1014,5
+     003E 01rr                      1- 1744     	MOVR	r0x1014,W
+     003F 000r                      1- 1745     	IOST	_IOSTB
+                                    1- 1746     	.line	291, "main.c"; 	P_9V_REF_INPUT;
+     0040 001r                      1- 1747     	IOSTR	_IOSTA
+     0041 00rr                      1- 1748     	MOVAR	r0x1014
+     0042 18rr                      1- 1749     	BSR	r0x1014,1
+     0043 01rr                      1- 1750     	MOVR	r0x1014,W
+     0044 000r                      1- 1751     	IOST	_IOSTA
+                                    1- 1752     	.line	292, "main.c"; 	P_7V_REF_CLR;
+     0045 1Crr                      1- 1753     	BCR	_PORTAbits,0
+                                    1- 1754     	.line	293, "main.c"; 	P_7V_REF_OUTPUT;
+     0046 001r                      1- 1755     	IOSTR	_IOSTA
+     0047 00rr                      1- 1756     	MOVAR	r0x1014
+     0048 1Crr                      1- 1757     	BCR	r0x1014,0
+     0049 01rr                      1- 1758     	MOVR	r0x1014,W
+     004A 000r                      1- 1759     	IOST	_IOSTA
+                                    1- 1760     	.line	295, "main.c"; 	P_LED_B_OFF;
+     004B 1Drr                      1- 1761     	BCR	_PORTBbits,2
+                                    1- 1762     	.line	296, "main.c"; 	P_LED_R_ON;
+     004C 19rr                      1- 1763     	BSR	_PORTBbits,3
+                                    1- 1764     	.line	297, "main.c"; 	dispTimerForce = (4 + PY);
+     004D 2105                      1- 1765     	MOVIA	0x05
+                                    1- 1766     	BANKSEL	_dispTimerForce
+     004E rrrr                      3-  108 m1      .banksel ram_address
+     004F 00rr                      1- 1767     	MOVAR	_dispTimerForce
+                                    1- 1768     	.line	298, "main.c"; 	disable_breathing_mode();
+                                    1- 1769     	MCALL	_disable_breathing_mode
+     0050 2rrr                      3-   64 m1      LCALL rom_address
+                                    1- 1770     	.line	299, "main.c"; 	break;
+                                    1- 1771     	MGOTO	_00143_DS_
+     0051 3rrr                      3-   61 m1      LGOTO rom_address
+     0052                           1- 1772     _00140_DS_:
+                                    1- 1773     	.line	301, "main.c"; 	P_5V_REF_INPUT;
+     0052 001r                      1- 1774     	IOSTR	_IOSTB
+                                    1- 1775     	BANKSEL	r0x1014
+     0053 rrrr                      3-  108 m1      .banksel ram_address
+     0054 00rr                      1- 1776     	MOVAR	r0x1014
+     0055 1Arr                      1- 1777     	BSR	r0x1014,5
+     0056 01rr                      1- 1778     	MOVR	r0x1014,W
+     0057 000r                      1- 1779     	IOST	_IOSTB
+                                    1- 1780     	.line	302, "main.c"; 	P_7V_REF_INPUT;
+     0058 001r                      1- 1781     	IOSTR	_IOSTA
+     0059 00rr                      1- 1782     	MOVAR	r0x1014
+     005A 18rr                      1- 1783     	BSR	r0x1014,0
+     005B 01rr                      1- 1784     	MOVR	r0x1014,W
+     005C 000r                      1- 1785     	IOST	_IOSTA
+                                    1- 1786     	.line	303, "main.c"; 	P_9V_REF_CLR;
+     005D 1Crr                      1- 1787     	BCR	_PORTAbits,1
+                                    1- 1788     	.line	304, "main.c"; 	P_9V_REF_OUTPUT;
+     005E 001r                      1- 1789     	IOSTR	_IOSTA
+     005F 00rr                      1- 1790     	MOVAR	r0x1014
+     0060 1Crr                      1- 1791     	BCR	r0x1014,1
+     0061 01rr                      1- 1792     	MOVR	r0x1014,W
+     0062 000r                      1- 1793     	IOST	_IOSTA
+                                    1- 1794     	.line	306, "main.c"; 	P_LED_B_OFF;
+     0063 1Drr                      1- 1795     	BCR	_PORTBbits,2
+                                    1- 1796     	.line	307, "main.c"; 	P_LED_R_ON;
+     0064 19rr                      1- 1797     	BSR	_PORTBbits,3
+                                    1- 1798     	.line	308, "main.c"; 	dispTimerForce = (6 + PY);
+     0065 2107                      1- 1799     	MOVIA	0x07
+                                    1- 1800     	BANKSEL	_dispTimerForce
+     0066 rrrr                      3-  108 m1      .banksel ram_address
+     0067 00rr                      1- 1801     	MOVAR	_dispTimerForce
+                                    1- 1802     	.line	309, "main.c"; 	disable_breathing_mode();
+                                    1- 1803     	MCALL	_disable_breathing_mode
+     0068 2rrr                      3-   64 m1      LCALL rom_address
+                                    1- 1804     	.line	310, "main.c"; 	break;
+                                    1- 1805     	MGOTO	_00143_DS_
+     0069 3rrr                      3-   61 m1      LGOTO rom_address
+     006A                           1- 1806     _00141_DS_:
+                                    1- 1807     	.line	312, "main.c"; 	P_7V_REF_INPUT;
+     006A 001r                      1- 1808     	IOSTR	_IOSTA
+                                    1- 1809     	BANKSEL	r0x1014
+     006B rrrr                      3-  108 m1      .banksel ram_address
+     006C 00rr                      1- 1810     	MOVAR	r0x1014
+     006D 18rr                      1- 1811     	BSR	r0x1014,0
+     006E 01rr                      1- 1812     	MOVR	r0x1014,W
+     006F 000r                      1- 1813     	IOST	_IOSTA
+                                    1- 1814     	.line	313, "main.c"; 	P_9V_REF_INPUT;
+     0070 001r                      1- 1815     	IOSTR	_IOSTA
+     0071 00rr                      1- 1816     	MOVAR	r0x1014
+     0072 18rr                      1- 1817     	BSR	r0x1014,1
+     0073 01rr                      1- 1818     	MOVR	r0x1014,W
+     0074 000r                      1- 1819     	IOST	_IOSTA
+                                    1- 1820     	.line	314, "main.c"; 	P_5V_REF_CLR;
+     0075 1Err                      1- 1821     	BCR	_PORTBbits,5
+                                    1- 1822     	.line	315, "main.c"; 	P_5V_REF_OUTPUT;
+     0076 001r                      1- 1823     	IOSTR	_IOSTB
+     0077 00rr                      1- 1824     	MOVAR	r0x1014
+     0078 1Err                      1- 1825     	BCR	r0x1014,5
+     0079 01rr                      1- 1826     	MOVR	r0x1014,W
+     007A 000r                      1- 1827     	IOST	_IOSTB
+                                    1- 1828     	.line	317, "main.c"; 	P_LED_B_OFF;
+     007B 1Drr                      1- 1829     	BCR	_PORTBbits,2
+                                    1- 1830     	.line	318, "main.c"; 	P_LED_R_ON;
+     007C 19rr                      1- 1831     	BSR	_PORTBbits,3
+                                    1- 1832     	.line	319, "main.c"; 	moto_work_mode = 1;
+     007D 2101                      1- 1833     	MOVIA	0x01
+                                    1- 1834     	BANKSEL	_moto_work_mode
+     007E rrrr                      3-  108 m1      .banksel ram_address
+     007F 00rr                      1- 1835     	MOVAR	_moto_work_mode
+                                    1- 1836     	.line	320, "main.c"; 	dispTimerForce = (2 + PY);
+     0080 2103                      1- 1837     	MOVIA	0x03
+                                    1- 1838     	BANKSEL	_dispTimerForce
+     0081 rrrr                      3-  108 m1      .banksel ram_address
+     0082 00rr                      1- 1839     	MOVAR	_dispTimerForce
+                                    1- 1840     	.line	321, "main.c"; 	disable_breathing_mode();
+                                    1- 1841     	MCALL	_disable_breathing_mode
+     0083 2rrr                      3-   64 m1      LCALL rom_address
+     0084                           1- 1842     _00143_DS_:
+                                    1- 1843     	.line	324, "main.c"; 	}
+                                    1- 1844     	RETURN	
+     0084 0010                      3-   38 m1      ret
+                                    1- 1845     ; exit point of _motor_open
+                                    1- 1847     ;***
+                                    1- 1848     ;  pBlock Stats: dbName = C
+                                    1- 1849     ;***
+                                    1- 1850     ;has an exit
+                                    1- 1851     ;; Starting pCode block
+                                    1- 1852     .segment "code"; module=main, function=_disable_breathing_mode
+     0000                           1- 1854     _disable_breathing_mode:
+                                    1- 1855     ; 2 exit points
+                                    1- 1856     	.line	253, "main.c"; 	bFlag_Vin_Plug_In = 0;
+                                    1- 1857     	BANKSEL	_vFlag_0
+     0000 rrrr                      3-  108 m1      .banksel ram_address
+     0001 1Err                      1- 1858     	BCR	_vFlag_0,4
+                                    1- 1859     	.line	254, "main.c"; 	bFlag_charge_complete = 1;
+     0002 1Brr                      1- 1860     	BSR	_vFlag_0,6
+                                    1- 1861     	.line	257, "main.c"; 	bFlag_is_breathing_mode = 0;
+                                    1- 1862     	BANKSEL	_vFlag_1
+     0003 rrrr                      3-  108 m1      .banksel ram_address
+     0004 1Crr                      1- 1863     	BCR	_vFlag_1,0
+                                    1- 1864     	.line	259, "main.c"; 	P_LED_B_CLR;
+     0005 1Drr                      1- 1865     	BCR	_PORTBbits,2
+                                    1- 1866     	.line	266, "main.c"; 	}
+                                    1- 1867     	RETURN	
+     0006 0010                      3-   38 m1      ret
+                                    1- 1868     ; exit point of _disable_breathing_mode
+                                    1- 1870     ;***
+                                    1- 1871     ;  pBlock Stats: dbName = C
+                                    1- 1872     ;***
+                                    1- 1873     ;has an exit
+                                    1- 1874     ;; Starting pCode block
+                                    1- 1875     .segment "code"; module=main, function=_enable_breathing_mode
+     0000                           1- 1877     _enable_breathing_mode:
+                                    1- 1878     ; 2 exit points
+                                    1- 1879     	.line	241, "main.c"; 	bFlag_is_breathing_mode = 1;
+                                    1- 1880     	BANKSEL	_vFlag_1
+     0000 rrrr                      3-  108 m1      .banksel ram_address
+     0001 18rr                      1- 1881     	BSR	_vFlag_1,0
+                                    1- 1882     	.line	249, "main.c"; 	}
+                                    1- 1883     	RETURN	
+     0002 0010                      3-   38 m1      ret
+                                    1- 1884     ; exit point of _enable_breathing_mode
+                                    1- 1887     ;	code size estimation:
+                                    1- 1888     ;	  771+  163 =   934 instructions ( 2194 byte)
+                                    1- 1890     	end
+
+SYMBOL TABLE            TYPE     VALUE
+__pin_count__           Constant 0000000E
+__processor__           Constant 00800544
+C                       Constant 00000000
+DC                      Constant 00000001
+ENABLE_RAM_BANK         Constant 00000001
+F                       Constant 00000001
+FSR                     Constant 00000004
+INDF                    Constant 00000000
+PCHBUF                  Constant 0000000A
+PCL                     Constant 00000002
+STATUS                  Constant 00000003
+USEFGOTO                Constant 00000000
+W                       Constant 00000000
+Z                       Constant 00000002
+
+
+SOURCE FILE TABLE
+001 OBJ/main.s
+002 ny8a054e.inc
+003 common.inc
+004 main.c
+
+PROCESSOR    = NY8A054E (8 bits)
+PROGRAM ROM  = 0x00000000 - 0x000007FF
+DATA ROM     = 0x00000000 - 0x000007FF
+RESERVED MEM = 0x00000800 - 0x00000810
+SRAM / SFR   = 0x00000000 - 0x00000000
